@@ -9,7 +9,7 @@ import 'package:amazy_app/widgets/AppBarWidget.dart';
 import 'package:amazy_app/widgets/custom_loading_widget.dart';
 import 'package:amazy_app/widgets/snackbars.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+// import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -35,7 +35,7 @@ class _InstaMojoPaymentState extends State<InstaMojoPayment> {
 
   String checkoutUrl;
 
-  final flutterWebviewPlugin = new FlutterWebviewPlugin();
+  // final flutterWebviewPlugin = new FlutterWebviewPlugin();
 
   double progress = 0;
   String url = "";

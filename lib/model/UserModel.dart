@@ -26,6 +26,11 @@ class User {
         "user": user.toJson(),
         "message": message,
       };
+
+  @override
+  String toString() {
+    return 'User{user: $user, message: $message}';
+  }
 }
 
 class UserClass {
@@ -58,14 +63,14 @@ class UserClass {
   dynamic lastName;
   dynamic username;
   dynamic photo;
-  int roleId;
+  dynamic roleId;
   dynamic mobileVerifiedAt;
   String email;
-  int isVerified;
+  dynamic isVerified;
   dynamic verifyCode;
   dynamic emailVerifiedAt;
   String notificationPreference;
-  int isActive;
+  dynamic isActive;
   dynamic avatar;
   dynamic phone;
   dynamic dateOfBirth;
@@ -74,6 +79,11 @@ class UserClass {
   DateTime updatedAt;
   String name;
   List<CustomerAddress> customerAddresses;
+
+  @override
+  String toString() {
+    return 'UserClass{id: $id, firstName: $firstName, lastName: $lastName, username: $username, photo: $photo, roleId: $roleId, mobileVerifiedAt: $mobileVerifiedAt, email: $email, isVerified: $isVerified, verifyCode: $verifyCode, emailVerifiedAt: $emailVerifiedAt, notificationPreference: $notificationPreference, isActive: $isActive, avatar: $avatar, phone: $phone, dateOfBirth: $dateOfBirth, description: $description, createdAt: $createdAt, updatedAt: $updatedAt, name: $name, customerAddresses: $customerAddresses}';
+  }
 
   factory UserClass.fromJson(Map<String, dynamic> json) => UserClass(
         id: json["id"],
@@ -193,4 +203,9 @@ class CustomerAddress {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
+
+  @override
+  String toString() {
+    return 'CustomerAddress{id: $id, customerId: $customerId, name: $name, email: $email, phone: $phone, address: $address, city: $city, state: $state, country: $country, postalCode: $postalCode, isShippingDefault: $isShippingDefault, isBillingDefault: $isBillingDefault, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }

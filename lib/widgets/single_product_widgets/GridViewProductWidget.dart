@@ -33,10 +33,11 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
   }
 
   double getGiftCardPriceForCart() {
-    dynamic productPrice = 0.0;
+    double productPrice = 0.0;
     if (widget.productModel.giftCardEndDate.millisecondsSinceEpoch <
         DateTime.now().millisecondsSinceEpoch) {
       productPrice = widget.productModel.giftCardSellingPrice;
+      print("gift${ widget.productModel.giftCardSellingPrice.runtimeType}");
     } else {
       if (widget.productModel.discountType == 0 ||
           widget.productModel.discountType == "0") {

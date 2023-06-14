@@ -211,8 +211,7 @@ class _HomeState extends State<Home> {
                                     HomePageSlider slider = _homeController.homePageModel.value.sliders[sliderIndex];
                                     return FancyShimmerImage(
                                       imageUrl: AppConfig.assetPath +
-                                          '/' +
-                                          slider.sliderImage,
+                                          '/' + slider.sliderImage,
                                       boxFit: BoxFit.cover,
                                       width: Get.width,
                                       errorWidget: FancyShimmerImage(
@@ -1475,7 +1474,8 @@ class _HomeState extends State<Home> {
                                   ),
                                 ],
                               );
-                            } else {
+                            }
+                            else {
                               return Column(
                                 children: [
                                   HomeTitlesWidget(

@@ -656,7 +656,9 @@ class _AccountPageState extends State<AccountPage> {
                                           if (!loginController.loggedIn.value) {
                                             Get.dialog(LoginPage(),
                                                 useSafeArea: false);
-                                          } else {}
+                                          } else {
+
+                                          }
                                         },
                                       ),
                                       AccountTiles(

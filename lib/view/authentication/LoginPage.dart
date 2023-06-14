@@ -10,6 +10,7 @@ import 'package:amazy_app/utils/styles.dart';
 import 'package:amazy_app/view/authentication/ForgotPassword.dart';
 import 'package:amazy_app/view/authentication/OtpVerificationPage.dart';
 import 'package:amazy_app/widgets/snackbars.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -18,11 +19,14 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
+import '../MainNavigation.dart';
 import 'RegistrationPage.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends GetView<LoginController> {
   final _googleSignIn = GoogleSignIn();
+
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   final LoginController _loginController = Get.put(LoginController());
 
@@ -33,9 +37,13 @@ class LoginPage extends GetView<LoginController> {
   Map<String, dynamic> _userData;
   AccessToken _accessToken;
 
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // key: _scaffoldKey,
       body: Obx(() {
         if (_loginController.loggedIn.value == true) {
           Get.back();
@@ -447,33 +455,37 @@ class LoginPage extends GetView<LoginController> {
                                 ),
                                 AppConfig.googleLogin
                                     ? InkWell(
-                                        onTap: () async {
-                                          GoogleSignInAccount
-                                              googleSignInAccount =
-                                              await _googleSignIn.signIn();
+                                        onTap: ()
 
-                                          await googleSignInAccount
-                                              .authentication
-                                              .then((value) async {
-                                            log(value.idToken.toString());
+                                         async {
+                                          print("Login Enter:");
+                                          GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+
+                                           googleSignInAccount.authentication.then((value) async {
+                                            log("token :${value.idToken.toString()}");
+                                            log("name :${googleSignInAccount.displayName}",);
 
                                             Map data = {
-                                              "provider_id":
-                                                  googleSignInAccount.id,
+                                              "provider_id": googleSignInAccount.id,
                                               "provider_name": "google",
-                                              "name": googleSignInAccount
-                                                  .displayName,
-                                              "email":
-                                                  googleSignInAccount.email,
+                                              "name": googleSignInAccount.displayName,
+                                              "email": googleSignInAccount.email,
                                               "token": value.idToken.toString(),
                                             };
 
-                                            await _loginController
-                                                .socialLogin(data)
-                                                .then((value) {
-                                              if (value == true) {
-                                                Get.back();
+                                             _loginController.socialLogin(data).then((value) {
+                                              print("data: ${_loginController.socialLogin(data)}");
+                                               print(value);
+
+                                               if (value == true) {
+                                                print("login::");
+                                                print(value);
+
+                                                Navigator.push(context, MaterialPageRoute(builder: (context){
+                                                        return Card();
+                                                      }));
                                               } else {
+                                                print("logout::");
                                                 _googleSignIn.signOut();
                                               }
                                             });
@@ -578,9 +590,12 @@ class LoginPage extends GetView<LoginController> {
                         ],
                       )
                     : SizedBox.shrink(),
+
                 SizedBox(
                   height: 10,
                 ),
+
+                // sign up
                 GestureDetector(
                   onTap: () {
                     Get.dialog(RegistrationPage(), useSafeArea: false);

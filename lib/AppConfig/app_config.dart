@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../model/Customer/CustomerData.dart';
 
 class AppConfig {
   // static const String hostUrl = 'https://amazy.rishfa.com';
@@ -31,11 +34,15 @@ class AppConfig {
   static const String privacyPolicyUrl =
       'https://spn21.spondan.com/amazy_app/privacy-policy';
 
-  static bool googleLogin = false;
+  static bool googleLogin = true;
 
-  static bool facebookLogin = false;
+  static bool facebookLogin = true;
 
   static bool appleLogin = false;
 
   static bool isDemo = false;
+
+
+
+
 }

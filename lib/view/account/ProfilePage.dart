@@ -22,12 +22,19 @@ import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
+import '../../model/Customer/CustomerData.dart';
+import '../../widgets/SettingsListTileWidget.dart';
+
 class ProfilePage extends StatefulWidget {
+  CustomerData user;
+  ProfilePage({this.user});
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
   final LoginController loginController = Get.put(LoginController());
   final GeneralSettingsController currencyController =
       Get.put(GeneralSettingsController());
@@ -109,6 +116,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+
   final TextEditingController firstNameCtrl = TextEditingController();
   final TextEditingController lastNameCtrl = TextEditingController();
   final TextEditingController dobCtrl = TextEditingController();
@@ -118,6 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
+    print("user=${widget.user}");
     firstNameCtrl.text = loginController.profileData.value.firstName ?? "";
     lastNameCtrl.text = loginController.profileData.value.lastName ?? "";
     dobCtrl.text = loginController.profileData.value.dateOfBirth ?? "";
@@ -125,8 +134,13 @@ class _ProfilePageState extends State<ProfilePage> {
     phoneNumberCtrl.text = loginController.profileData.value.phone ?? "";
     emailCtrl.text = loginController.profileData.value.email ?? "";
     super.initState();
+    getdata();
   }
 
+  getdata()
+  async {
+  print("===${await loginController.getProfileData()}");
+}
   String getAbsoluteDate(int date) {
     return date < 10 ? '0$date' : '$date';
   }
@@ -298,8 +312,16 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: ListView(
                             padding: EdgeInsets.zero,
                             children: [
+
                               TextFormField(
-                                controller: firstNameCtrl,
+                                // initialValue:
+
+                                 controller: firstNameCtrl,
+                                // onChanged: (value){
+                                //   widget.user.firstName = value;
+                                // }
+
+
                                 keyboardType: TextInputType.text,
                                 decoration: CustomInputDecoration()
                                     .underlineDecoration(label: "First name"),

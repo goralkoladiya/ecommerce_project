@@ -177,7 +177,7 @@ class FlashDealAllProduct {
 
   ProductModel product;
 
-  factory FlashDealAllProduct.fromJson(Map<String, dynamic> json) =>
+  factory FlashDealAllProduct.fromJson(Map<double, dynamic> json) =>
       FlashDealAllProduct(
         id: json["id"],
         flashDealId: json["flash_deal_id"],

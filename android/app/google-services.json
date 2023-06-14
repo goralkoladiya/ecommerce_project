@@ -1,93 +1,42 @@
 {
   "project_info": {
-    "project_number": "709818571440",
-    "project_id": "amazcart-341610",
-    "storage_bucket": "amazcart-341610.appspot.com"
+    "project_number": "93011728362",
+    "project_id": "indie-demo-project",
+    "storage_bucket": "indie-demo-project.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:709818571440:android:b6e5ab88e464eedd9c3975",
+        "mobilesdk_app_id": "1:93011728362:android:09bcc0950f986d78b84493",
         "android_client_info": {
-          "package_name": "com.amazcart.app"
+          "package_name": "com.yoursoftware.ecommerce"
         }
       },
       "oauth_client": [
         {
-          "client_id": "709818571440-5k62lpm2jabhq6ash1aak83falf7e0us.apps.googleusercontent.com",
+          "client_id": "93011728362-a6dfpo0t9irevnj7arhap8l90pnh6eeu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.amazcart.app",
-            "certificate_hash": "14f89ff51ff906ba1595d86f4e617a17f51d4c68"
+            "package_name": "com.yoursoftware.ecommerce",
+            "certificate_hash": "96aa8dd724db6c3e762e0fc4899ad3cce9d5eef8"
           }
         },
         {
-          "client_id": "709818571440-ikqf1tp9cnj919ropc94eki3v9qvnk6r.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.amazcart.app",
-            "certificate_hash": "eb300a7c988ed95bc4a74f393c9a8fdfcb5f5822"
-          }
-        },
-        {
-          "client_id": "709818571440-pq2vd5sojijmam6r5ctg404hf2si0q0b.apps.googleusercontent.com",
+          "client_id": "93011728362-4ocar71bli247570vriessnv481g3hbq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDpd8vWvIUl24C8A8CeRxK2hRQdSVz4FMs"
+          "current_key": "AIzaSyDKcJE3PMbrBQYLuRwB-3T9es2pM73lmLg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "709818571440-92ke8uht7h8o3m4kgbasldtd0pb3ke52.apps.googleusercontent.com",
+              "client_id": "93011728362-4ocar71bli247570vriessnv481g3hbq.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "709818571440-2mv014jl4akgu7n0pcod4k188bvpbam9.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.zoyeedigitals.app"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:709818571440:android:05bdbc2b7fd3612e9c3975",
-        "android_client_info": {
-          "package_name": "com.amazy.app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "709818571440-pq2vd5sojijmam6r5ctg404hf2si0q0b.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDpd8vWvIUl24C8A8CeRxK2hRQdSVz4FMs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "709818571440-92ke8uht7h8o3m4kgbasldtd0pb3ke52.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "709818571440-2mv014jl4akgu7n0pcod4k188bvpbam9.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.zoyeedigitals.app"
-              }
             }
           ]
         }

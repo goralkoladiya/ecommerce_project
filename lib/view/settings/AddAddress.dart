@@ -55,6 +55,7 @@ class _AddAddressState extends State<AddAddress> {
       var response = await http.get(
         myAddressUrl,
       );
+      print("response=$response");
       var jsonString = jsonDecode(response.body);
       if (response.statusCode == 200) {
         return CountryList.fromJson(jsonString['countries']);
@@ -98,6 +99,7 @@ class _AddAddressState extends State<AddAddress> {
   Future<CityList> getCities(stateId) async {
     try {
       Uri myAddressUrl = Uri.parse(URLs.cityByState(stateId));
+
       var response = await http.get(
         myAddressUrl,
       );
@@ -314,6 +316,7 @@ class _AddAddressState extends State<AddAddress> {
                   buttonText: 'Save Address'.tr,
                   onTap: () async {
                     if (_formKey.currentState.validate()) {
+                      print("button clicked");
                       Map data = {
                         "name": fullNameCtrl.text,
                         "email": emailCtrl.text,
@@ -327,7 +330,9 @@ class _AddAddressState extends State<AddAddress> {
                       await addressController
                           .addAddress(data)
                           .then((value) async {
+                        print("value==$val");
                         if (value) {
+
                           SnackBars()
                               .snackBarSuccess('Address added successfully'.tr);
                           await addressController.getAllAddress().then((value) {
@@ -359,7 +364,7 @@ class _AddAddressState extends State<AddAddress> {
         color: Colors.grey.withOpacity(0.2),
         borderRadius: BorderRadius.all(Radius.circular(5)),
       ),
-      height: 35,
+      height: 35,width: double.infinity,
       child: DropdownButton(
         elevation: 1,
         isExpanded: true,

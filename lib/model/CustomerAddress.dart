@@ -54,7 +54,7 @@ class Address {
   });
 
   int id;
-  int customerId;
+  dynamic customerId;
   String name;
   String email;
   String phone;
@@ -63,8 +63,8 @@ class Address {
   String state;
   String country;
   String postalCode;
-  int isShippingDefault;
-  int isBillingDefault;
+  dynamic isShippingDefault;
+  dynamic isBillingDefault;
   DateTime createdAt;
   DateTime updatedAt;
   GetCountry getCountry;
@@ -131,11 +131,11 @@ class GetStateOrCity {
 
   int id;
   String name;
-  int stateId;
-  int status;
+  dynamic stateId;
+  dynamic status;
   dynamic createdAt;
   dynamic updatedAt;
-  int countryId;
+  dynamic countryId;
 
   factory GetStateOrCity.fromJson(Map<String, dynamic> json) => GetStateOrCity(
         id: json["id"],
@@ -173,7 +173,7 @@ class GetCountry {
   String code;
   String name;
   String phonecode;
-  int status;
+  dynamic status;
   dynamic createdAt;
   dynamic updatedAt;
 

@@ -437,18 +437,10 @@ class _WishListState extends State<WishList> {
                                                           ],
                                                         ),
                                                         Text(
-                                                          value[prodIndex]
-                                                                      .type ==
-                                                                  ProductType
-                                                                      .PRODUCT
-                                                              ? _currencyController
-                                                                  .calculateMainPrice(
-                                                                      value[prodIndex]
-                                                                          .product)
+                                                          value[prodIndex].type == ProductType.PRODUCT
+                                                              ? _currencyController.calculateMainPrice(value[prodIndex].product)
                                                               : _currencyController
-                                                                  .calculateWishListGiftcardPrice(
-                                                                      value[prodIndex]
-                                                                          .giftcard),
+                                                                  .calculateWishListGiftcardPrice(value[prodIndex].giftcard),
                                                           style: AppStyles
                                                               .appFontMedium
                                                               .copyWith(

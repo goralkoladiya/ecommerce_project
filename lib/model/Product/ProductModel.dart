@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:amazy_app/model/Product/GalleryImageData.dart';
 import 'package:amazy_app/model/Product/ProductType.dart';
 import 'package:amazy_app/model/Product/ProductVariantDetail.dart';
@@ -68,10 +70,10 @@ class ProductModel {
   dynamic maxSellPrice;
   dynamic totalSale;
   dynamic avgRating;
-  double maxSellingPrice;
+  dynamic maxSellingPrice;
   dynamic rating;
   HasDeal hasDeal;
-  String hasDiscount;
+  dynamic hasDiscount;
   Product product;
   List<Skus> skus;
   List<Review> reviews;
@@ -79,7 +81,7 @@ class ProductModel {
   HasDeal flashDeal;
   SellerData seller;
   ProductType productType;
-  double giftCardSellingPrice;
+  dynamic giftCardSellingPrice;
   String giftCardThumbnailImage;
   DateTime giftCardStartDate;
   DateTime giftCardEndDate;
@@ -201,4 +203,10 @@ class ProductModel {
             ? null
             : List<dynamic>.from(giftCardGalleryImages.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    return json.encode('ProductModel{id: $id, userId: $userId, productId: $productId, tax: $tax, taxType: $taxType, discount: $discount, discountType: $discountType, discountStartDate: $discountStartDate, discountEndDate: $discountEndDate, productName: $productName, slug: $slug, thumImg: $thumImg, status: $status, stockManage: $stockManage, isApproved: $isApproved, minSellPrice: $minSellPrice, maxSellPrice: $maxSellPrice, totalSale: $totalSale, avgRating: $avgRating, maxSellingPrice: $maxSellingPrice, rating: $rating, hasDeal: $hasDeal, hasDiscount: $hasDiscount, product: $product, skus: $skus, reviews: $reviews, variantDetails: $variantDetails, flashDeal: $flashDeal, seller: $seller, productType: $productType, giftCardSellingPrice: $giftCardSellingPrice, giftCardThumbnailImage: $giftCardThumbnailImage, giftCardStartDate: $giftCardStartDate, giftCardEndDate: $giftCardEndDate, giftCardSku: $giftCardSku, giftCardName: $giftCardName, giftCardDescription: $giftCardDescription, giftCardGalleryImages: $giftCardGalleryImages}'
+    );
+  }
 }

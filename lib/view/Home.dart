@@ -208,10 +208,7 @@ class _HomeState extends State<Home> {
                                   autoplayDelay: 5000,
                                   itemBuilder:
                                       (BuildContext context, int sliderIndex) {
-                                    HomePageSlider slider = _homeController
-                                        .homePageModel
-                                        .value
-                                        .sliders[sliderIndex];
+                                    HomePageSlider slider = _homeController.homePageModel.value.sliders[sliderIndex];
                                     return FancyShimmerImage(
                                       imageUrl: AppConfig.assetPath +
                                           '/' +
@@ -220,54 +217,50 @@ class _HomeState extends State<Home> {
                                       width: Get.width,
                                       errorWidget: FancyShimmerImage(
                                         imageUrl:
-                                            "${AppConfig.assetPath}/backend/img/default.png",
+                                        "${AppConfig.assetPath}/backend/img/default.png",
                                         boxFit: BoxFit.contain,
                                         errorWidget: FancyShimmerImage(
                                           imageUrl:
-                                              "${AppConfig.assetPath}/backend/img/default.png",
+                                          "${AppConfig.assetPath}/backend/img/default.png",
                                           boxFit: BoxFit.contain,
                                         ),
                                       ),
                                     );
                                   },
                                   onTap: (sliderIndex) {
-                                    HomePageSlider slider = _homeController
-                                        .homePageModel
-                                        .value
-                                        .sliders[sliderIndex];
-                                    if (slider.dataType ==
-                                        SliderDataType.PRODUCT) {
+                                    HomePageSlider slider = _homeController.homePageModel.value.sliders[sliderIndex];
+                                    if (slider.dataType == SliderDataType.PRODUCT) {
                                       Get.to(() => ProductDetails(
-                                            productID: slider.dataId,
-                                          ));
+                                        productID: slider.dataId,
+                                      ));
                                     } else if (slider.dataType ==
                                         SliderDataType.CATEGORY) {
                                       Get.to(() => ProductsByCategory(
-                                            categoryId: slider.dataId,
-                                          ));
+                                        categoryId: slider.dataId,
+                                      ));
                                     } else if (slider.dataType ==
                                         SliderDataType.BRAND) {
                                       Get.to(() => ProductsByBrands(
-                                            brandId: slider.dataId,
-                                          ));
+                                        brandId: slider.dataId,
+                                      ));
                                     } else if (slider.dataType ==
                                         SliderDataType.TAG) {
                                       Get.to(() => ProductsByTags(
-                                            tagName: slider.tag.name,
-                                            tagId: slider.tag.id,
-                                          ));
+                                        tagName: slider.tag.name,
+                                        tagId: slider.tag.id,
+                                      ));
                                     }
                                   },
                                   pagination: SwiperPagination(
                                       margin: EdgeInsets.all(5.0),
                                       builder: SwiperCustomPagination(builder:
                                           (BuildContext context,
-                                              SwiperPluginConfig config) {
+                                          SwiperPluginConfig config) {
                                         return Align(
                                           alignment: Alignment.bottomCenter,
                                           child: RectSwiperPaginationBuilder(
                                             color:
-                                                Colors.white.withOpacity(0.5),
+                                            Colors.white.withOpacity(0.5),
                                             activeColor: Colors.white,
                                             size: Size(5.0, 5.0),
                                             activeSize: Size(20.0, 5.0),
@@ -286,11 +279,15 @@ class _HomeState extends State<Home> {
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 15.0, left: 15, right: 20),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Wrap(
+                            runSpacing: 10,
+                            spacing: 10,
+                            direction: Axis.horizontal,
+                            // crossAxisAlignment: CrossAxisAlignment.center,
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Image.asset(
                                     'assets/images/Shipping.png',
@@ -303,7 +300,7 @@ class _HomeState extends State<Home> {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "Free Shipping".tr,
@@ -322,10 +319,8 @@ class _HomeState extends State<Home> {
                                   )
                                 ],
                               ),
-                              SizedBox(
-                                width: 20
-                              ),
                               Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Image.asset(
                                     'assets/images/help.png',
@@ -333,12 +328,12 @@ class _HomeState extends State<Home> {
                                     height: 30,
                                   ),
                                   SizedBox(
-                                    width: 5
+                                      width: 5
                                   ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "Help Center".tr,
@@ -357,10 +352,8 @@ class _HomeState extends State<Home> {
                                   )
                                 ],
                               ),
-                              SizedBox(
-                                width: 20
-                              ),
                               Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Image.asset(
                                     'assets/images/money.png',
@@ -373,7 +366,7 @@ class _HomeState extends State<Home> {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "Money Back".tr,
@@ -402,10 +395,8 @@ class _HomeState extends State<Home> {
                           padding: const EdgeInsets.only(
                               left: 10.0, right: 10.0, top: 30.0),
                           child: Obx(() {
-                            if (!_homeController.isHomePageLoading.value &&
-                                _homeController.homePageModel.value
-                                        .topCategories.length >
-                                    0) {
+                            if (!_homeController.isHomePageLoading.value && _homeController.homePageModel.value
+                                .topCategories.length > 0) {
                               return Container(
                                 height: 100,
                                 child: ListView.separated(
@@ -441,28 +432,28 @@ class _HomeState extends State<Home> {
                                               customBorder: CircleBorder(),
                                               onTap: () async {
                                                 Get.to(() => ProductsByCategory(
-                                                      categoryId: category.id,
-                                                    ));
+                                                  categoryId: category.id,
+                                                ));
                                               },
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   gradient: selectColor(index),
                                                   borderRadius:
-                                                      BorderRadius.circular(12),
+                                                  BorderRadius.circular(12),
                                                 ),
                                                 child: category.icon != null
                                                     ? Icon(
-                                                        FaCustomIcon
-                                                            .getFontAwesomeIcon(
-                                                                category.icon),
-                                                        color: Colors.white,
-                                                        size: 20,
-                                                      )
+                                                  FaCustomIcon
+                                                      .getFontAwesomeIcon(
+                                                      category.icon),
+                                                  color: Colors.white,
+                                                  size: 20,
+                                                )
                                                     : Icon(
-                                                        Icons.list_alt_outlined,
-                                                        color: Colors.white,
-                                                        size: 20,
-                                                      ),
+                                                  Icons.list_alt_outlined,
+                                                  color: Colors.white,
+                                                  size: 20,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -491,7 +482,7 @@ class _HomeState extends State<Home> {
                                   shrinkWrap: true,
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                  SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 5,
                                     mainAxisSpacing: 10.0,
                                     crossAxisSpacing: 10.0,
@@ -501,7 +492,7 @@ class _HomeState extends State<Home> {
                                   itemBuilder: (context, index) {
                                     return Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      CrossAxisAlignment.center,
                                       children: [
                                         ClipRRect(
                                           borderRadius: BorderRadius.all(
@@ -555,7 +546,7 @@ class _HomeState extends State<Home> {
                                                 horizontal: 5, vertical: 10),
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                               boxShadow: [
                                                 BoxShadow(
                                                   color: Color(0x1a000000),
@@ -567,7 +558,7 @@ class _HomeState extends State<Home> {
                                             ),
                                             child: ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(5),
+                                              BorderRadius.circular(5),
                                               child: LoadingSkeleton(
                                                 height: 210,
                                                 width: 150,
@@ -620,11 +611,11 @@ class _HomeState extends State<Home> {
                                           },
                                           itemBuilder: (context, flashIndex) {
                                             FlashDealAllProduct flashDeal =
-                                                _homeController
-                                                    .homePageModel
-                                                    .value
-                                                    .flashDeal
-                                                    .allProducts[flashIndex];
+                                            _homeController
+                                                .homePageModel
+                                                .value
+                                                .flashDeal
+                                                .allProducts[flashIndex];
                                             return HorizontalProductWidget(
                                               productModel: flashDeal.product,
                                             );
@@ -652,7 +643,7 @@ class _HomeState extends State<Home> {
                                 children: [
                                   ClipRRect(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
+                                    BorderRadius.all(Radius.circular(5)),
                                     clipBehavior: Clip.antiAlias,
                                     child: Container(
                                       height: 80,
@@ -660,7 +651,7 @@ class _HomeState extends State<Home> {
                                       color: AppStyles.pinkColor,
                                       child: Row(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         children: [
                                           SizedBox(
                                             width: 15,
@@ -678,9 +669,9 @@ class _HomeState extends State<Home> {
                                           ),
                                           Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            MainAxisAlignment.center,
                                             children: [
                                               Text(
                                                 'New Users Zone!'.tr,
@@ -727,7 +718,7 @@ class _HomeState extends State<Home> {
                                   ),
                                   ClipRRect(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
+                                    BorderRadius.all(Radius.circular(5)),
                                     child: Container(
                                       height: 150,
                                       padding: EdgeInsets.all(4),
@@ -738,7 +729,7 @@ class _HomeState extends State<Home> {
                                             flex: 2,
                                             child: Row(
                                               children:
-                                                  List.generate(2, (index) {
+                                              List.generate(2, (index) {
                                                 return Expanded(
                                                   child: Padding(
                                                     padding: const EdgeInsets
@@ -747,21 +738,21 @@ class _HomeState extends State<Home> {
                                                     ),
                                                     child: ClipRRect(
                                                       borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  5)),
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              5)),
                                                       child: Container(
                                                         decoration:
-                                                            BoxDecoration(
+                                                        BoxDecoration(
                                                           color: Colors.white,
                                                         ),
                                                         child: Column(
                                                           mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
+                                                          MainAxisAlignment
+                                                              .center,
                                                           crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
+                                                          CrossAxisAlignment
+                                                              .center,
                                                           children: [
                                                             SizedBox(
                                                               height: 10,
@@ -772,10 +763,10 @@ class _HomeState extends State<Home> {
                                                               colors: [
                                                                 Colors.black
                                                                     .withOpacity(
-                                                                        0.1),
+                                                                    0.1),
                                                                 Colors.black
                                                                     .withOpacity(
-                                                                        0.2),
+                                                                    0.2),
                                                               ],
                                                             ),
                                                             SizedBox(
@@ -787,10 +778,10 @@ class _HomeState extends State<Home> {
                                                               colors: [
                                                                 Colors.black
                                                                     .withOpacity(
-                                                                        0.1),
+                                                                    0.1),
                                                                 Colors.black
                                                                     .withOpacity(
-                                                                        0.2),
+                                                                    0.2),
                                                               ],
                                                             ),
                                                             SizedBox(
@@ -819,7 +810,7 @@ class _HomeState extends State<Home> {
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     'Discount'.tr,
@@ -828,7 +819,7 @@ class _HomeState extends State<Home> {
                                                         .kFontWhite14w5
                                                         .copyWith(
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                      FontWeight.bold,
                                                       fontSize: 14,
                                                     ),
                                                   ),
@@ -842,21 +833,21 @@ class _HomeState extends State<Home> {
                                                     },
                                                     child: Container(
                                                       alignment:
-                                                          Alignment.center,
+                                                      Alignment.center,
                                                       height: 30,
                                                       width: 80,
                                                       decoration: BoxDecoration(
                                                           color:
-                                                              Color(0xffFFD600),
+                                                          Color(0xffFFD600),
                                                           borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          25))),
+                                                          BorderRadius.all(
+                                                              Radius
+                                                                  .circular(
+                                                                  25))),
                                                       child: Text(
                                                         'Shop Now'.tr,
                                                         textAlign:
-                                                            TextAlign.center,
+                                                        TextAlign.center,
                                                         style: AppStyles
                                                             .appFontLight
                                                             .copyWith(
@@ -880,7 +871,7 @@ class _HomeState extends State<Home> {
                               );
                             } else {
                               if (_homeController
-                                      .homePageModel.value.newUserZone !=
+                                  .homePageModel.value.newUserZone !=
                                   null) {
                                 return Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -902,7 +893,7 @@ class _HomeState extends State<Home> {
                                           ),
                                           child: Row(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            CrossAxisAlignment.center,
                                             children: [
                                               SizedBox(
                                                 width: 15,
@@ -920,9 +911,9 @@ class _HomeState extends State<Home> {
                                               ),
                                               Column(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     'New Users Zone!'.tr,
@@ -930,7 +921,7 @@ class _HomeState extends State<Home> {
                                                         .kFontWhite14w5
                                                         .copyWith(
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                      FontWeight.bold,
                                                       fontSize: 17,
                                                     ),
                                                   ),
@@ -961,7 +952,7 @@ class _HomeState extends State<Home> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 15
+                                                  width: 15
                                               ),
                                             ],
                                           ),
@@ -969,11 +960,11 @@ class _HomeState extends State<Home> {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 10
+                                        height: 10
                                     ),
                                     ClipRRect(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
+                                      BorderRadius.all(Radius.circular(5)),
                                       child: Container(
                                         height: 150,
                                         padding: EdgeInsets.symmetric(
@@ -1007,8 +998,8 @@ class _HomeState extends State<Home> {
                                                     return Expanded(
                                                       child: GestureDetector(
                                                         behavior:
-                                                            HitTestBehavior
-                                                                .translucent,
+                                                        HitTestBehavior
+                                                            .translucent,
                                                         onTap: () async {
                                                           Get.to(() => ProductDetails(
                                                               productID: _homeController
@@ -1016,25 +1007,25 @@ class _HomeState extends State<Home> {
                                                                   .value
                                                                   .newUserZone
                                                                   .allProducts[
-                                                                      index]
+                                                              index]
                                                                   .product
                                                                   .id));
                                                         },
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
+                                                          const EdgeInsets
+                                                              .symmetric(
                                                             horizontal: 4,
                                                           ),
                                                           child: ClipRRect(
                                                             borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            5)),
+                                                            BorderRadius
+                                                                .all(Radius
+                                                                .circular(
+                                                                5)),
                                                             child: Container(
                                                               decoration:
-                                                                  BoxDecoration(
+                                                              BoxDecoration(
                                                                 color: Colors
                                                                     .white,
                                                               ),
@@ -1046,22 +1037,22 @@ class _HomeState extends State<Home> {
                                                                   Expanded(
                                                                     flex: 2,
                                                                     child:
-                                                                        Padding(
+                                                                    Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
-                                                                              8.0),
+                                                                      const EdgeInsets.all(
+                                                                          8.0),
                                                                       child:
-                                                                          FancyShimmerImage(
+                                                                      FancyShimmerImage(
                                                                         imageUrl:
-                                                                            '${AppConfig.assetPath}/${_homeController.homePageModel.value.newUserZone.allProducts[index].product.product.thumbnailImageSource}',
+                                                                        '${AppConfig.assetPath}/${_homeController.homePageModel.value.newUserZone.allProducts[index].product.product.thumbnailImageSource}',
                                                                         boxFit:
-                                                                            BoxFit.contain,
+                                                                        BoxFit.contain,
                                                                         errorWidget:
-                                                                            FancyShimmerImage(
+                                                                        FancyShimmerImage(
                                                                           imageUrl:
-                                                                              "${AppConfig.assetPath}/backend/img/default.png",
+                                                                          "${AppConfig.assetPath}/backend/img/default.png",
                                                                           boxFit:
-                                                                              BoxFit.contain,
+                                                                          BoxFit.contain,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -1072,31 +1063,31 @@ class _HomeState extends State<Home> {
                                                                   Expanded(
                                                                     flex: 1,
                                                                     child:
-                                                                        Padding(
+                                                                    Padding(
                                                                       padding: const EdgeInsets
-                                                                              .symmetric(
+                                                                          .symmetric(
                                                                           horizontal:
-                                                                              4.0),
+                                                                          4.0),
                                                                       child:
-                                                                          Wrap(
+                                                                      Wrap(
                                                                         crossAxisAlignment:
-                                                                            WrapCrossAlignment.center,
+                                                                        WrapCrossAlignment.center,
                                                                         children: [
                                                                           Text(
                                                                             "${_settingsController.calculatePrice(_homeController.homePageModel.value.newUserZone.allProducts[index].product)}+${ _settingsController.appCurrency.value}",
                                                                             overflow:
-                                                                                TextOverflow.ellipsis,
+                                                                            TextOverflow.ellipsis,
                                                                             style:
-                                                                                AppStyles.kFontPink15w5.copyWith(fontSize: 12),
+                                                                            AppStyles.kFontPink15w5.copyWith(fontSize: 12),
                                                                           ),
                                                                           SizedBox(
                                                                             width:
-                                                                                3,
+                                                                            3,
                                                                           ),
                                                                           Text(
                                                                             _settingsController.calculateMainPrice(_homeController.homePageModel.value.newUserZone.allProducts[index].product),
                                                                             style:
-                                                                                AppStyles.kFontGrey12w5.copyWith(
+                                                                            AppStyles.kFontGrey12w5.copyWith(
                                                                               decoration: TextDecoration.lineThrough,
                                                                               fontSize: 12,
                                                                             ),
@@ -1119,14 +1110,14 @@ class _HomeState extends State<Home> {
                                                 ),
                                               ),
                                             SizedBox(
-                                              width: 4
+                                                width: 4
                                             ),
                                             ClipRRect(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(5)),
                                               child: GestureDetector(
                                                 behavior:
-                                                    HitTestBehavior.translucent,
+                                                HitTestBehavior.translucent,
                                                 onTap: () {
                                                   // Get.to(() => NewUserZonePage());
                                                 },
@@ -1134,32 +1125,32 @@ class _HomeState extends State<Home> {
                                                   width: Get.width * 0.35,
                                                   decoration: BoxDecoration(
                                                     gradient:
-                                                        AppStyles.gradient,
+                                                    AppStyles.gradient,
                                                   ),
                                                   child: Column(
                                                     mainAxisSize:
-                                                        MainAxisSize.max,
+                                                    MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                    MainAxisAlignment
+                                                        .center,
                                                     children: [
                                                       Text(
                                                         '${_homeController.homePageModel.value.newUserZone.coupon.discount}% ' +
                                                             'OFF'.tr,
                                                         textAlign:
-                                                            TextAlign.center,
+                                                        TextAlign.center,
                                                         style: AppStyles
                                                             .kFontWhite14w5
                                                             .copyWith(
                                                           fontWeight:
-                                                              FontWeight.bold,
+                                                          FontWeight.bold,
                                                           fontSize: 14,
                                                         ),
                                                       ),
                                                       Text(
                                                         '${_homeController.homePageModel.value.newUserZone.coupon.title}',
                                                         textAlign:
-                                                            TextAlign.center,
+                                                        TextAlign.center,
                                                         style: AppStyles
                                                             .appFontLight
                                                             .copyWith(
@@ -1177,7 +1168,7 @@ class _HomeState extends State<Home> {
                                                         },
                                                         child: Container(
                                                           alignment:
-                                                              Alignment.center,
+                                                          Alignment.center,
                                                           height: 30,
                                                           width: 80,
                                                           decoration: BoxDecoration(
@@ -1185,8 +1176,8 @@ class _HomeState extends State<Home> {
                                                                   0xffFFD600),
                                                               borderRadius: BorderRadius
                                                                   .all(Radius
-                                                                      .circular(
-                                                                          25))),
+                                                                  .circular(
+                                                                  25))),
                                                           child: Text(
                                                             'Shop Now'.tr,
                                                             textAlign: TextAlign
@@ -1205,7 +1196,7 @@ class _HomeState extends State<Home> {
                                               ),
                                             ),
                                             SizedBox(
-                                              width: 4
+                                                width: 4
                                             ),
                                           ],
                                         ),
@@ -1244,7 +1235,7 @@ class _HomeState extends State<Home> {
                                   ),
                                   ClipRRect(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                    BorderRadius.all(Radius.circular(10)),
                                     child: Container(
                                       color: AppStyles.lightBlueColorAlt,
                                       child: Container(
@@ -1252,10 +1243,10 @@ class _HomeState extends State<Home> {
                                         child: Container(
                                           child: GridView.builder(
                                             physics:
-                                                NeverScrollableScrollPhysics(),
+                                            NeverScrollableScrollPhysics(),
                                             shrinkWrap: true,
                                             gridDelegate:
-                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                            SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisCount: 4,
                                               mainAxisSpacing: 10.0,
                                               crossAxisSpacing: 10.0,
@@ -1300,13 +1291,13 @@ class _HomeState extends State<Home> {
                                   ),
                                   ClipRRect(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                    BorderRadius.all(Radius.circular(10)),
                                     child: Container(
                                       color: AppStyles.lightBlueColorAlt,
                                       child: Container(
                                         height: _homeController
-                                                    .chunkedBrands.length >
-                                                4
+                                            .chunkedBrands.length >
+                                            4
                                             ? 230
                                             : 130,
                                         padding: EdgeInsets.all(10),
@@ -1318,10 +1309,10 @@ class _HomeState extends State<Home> {
                                                 .map((e) {
                                               return GridView.builder(
                                                 physics:
-                                                    NeverScrollableScrollPhysics(),
+                                                NeverScrollableScrollPhysics(),
                                                 padding: EdgeInsets.zero,
                                                 gridDelegate:
-                                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                                SliverGridDelegateWithFixedCrossAxisCount(
                                                   crossAxisCount: 4,
                                                   mainAxisSpacing: 10.0,
                                                   crossAxisSpacing: 10.0,
@@ -1329,7 +1320,7 @@ class _HomeState extends State<Home> {
                                                 ),
                                                 itemBuilder: (context, index) {
                                                   CategoryBrand brand =
-                                                      e[index];
+                                                  e[index];
                                                   return InkWell(
                                                     onTap: () {
                                                       Get.to(() =>
@@ -1339,11 +1330,11 @@ class _HomeState extends State<Home> {
                                                     },
                                                     child: ClipRRect(
                                                       borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  5)),
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              5)),
                                                       clipBehavior:
-                                                          Clip.antiAlias,
+                                                      Clip.antiAlias,
                                                       child: Container(
                                                         color: Colors.white,
                                                         child: Column(
@@ -1351,30 +1342,30 @@ class _HomeState extends State<Home> {
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        8.0),
+                                                                const EdgeInsets
+                                                                    .all(
+                                                                    8.0),
                                                                 child: brand.logo !=
-                                                                        null
+                                                                    null
                                                                     ? Container(
-                                                                        child:
-                                                                            FancyShimmerImage(
-                                                                          imageUrl:
-                                                                              AppConfig.assetPath + '/' + brand.logo ?? '',
-                                                                          boxFit:
-                                                                              BoxFit.contain,
-                                                                          errorWidget:
-                                                                              FancyShimmerImage(
-                                                                            imageUrl:
-                                                                                "${AppConfig.assetPath}/backend/img/default.png",
-                                                                            boxFit:
-                                                                                BoxFit.contain,
-                                                                          ),
-                                                                        ),
-                                                                      )
+                                                                  child:
+                                                                  FancyShimmerImage(
+                                                                    imageUrl:
+                                                                    AppConfig.assetPath + '/' + brand.logo ?? '',
+                                                                    boxFit:
+                                                                    BoxFit.contain,
+                                                                    errorWidget:
+                                                                    FancyShimmerImage(
+                                                                      imageUrl:
+                                                                      "${AppConfig.assetPath}/backend/img/default.png",
+                                                                      boxFit:
+                                                                      BoxFit.contain,
+                                                                    ),
+                                                                  ),
+                                                                )
                                                                     : Container(
-                                                                        child: Icon(
-                                                                            Icons.list_alt)),
+                                                                    child: Icon(
+                                                                        Icons.list_alt)),
                                                               ),
                                                             ),
                                                             SizedBox(
@@ -1383,21 +1374,21 @@ class _HomeState extends State<Home> {
                                                             Padding(
                                                               padding: EdgeInsets.symmetric(
                                                                   vertical:
-                                                                      brand.name.length <
-                                                                              10
-                                                                          ? 1.0
-                                                                          : 0.0,
+                                                                  brand.name.length <
+                                                                      10
+                                                                      ? 1.0
+                                                                      : 0.0,
                                                                   horizontal:
-                                                                      4),
+                                                                  4),
                                                               child: Text(
                                                                 brand.name,
                                                                 textAlign:
-                                                                    TextAlign
-                                                                        .center,
+                                                                TextAlign
+                                                                    .center,
                                                                 maxLines: 2,
                                                                 overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
+                                                                TextOverflow
+                                                                    .ellipsis,
                                                                 style: AppStyles
                                                                     .appFontLight
                                                                     .copyWith(
@@ -1425,23 +1416,23 @@ class _HomeState extends State<Home> {
                                             //   activeColor: Colors.transparent,
                                             // ),
                                             pagination: SwiperPagination(
-                                                margin: EdgeInsets.zero,
-                                                builder: SwiperCustomPagination(
-                                                    builder:
-                                                        (BuildContext context,
-                                                            SwiperPluginConfig
-                                                                config) {
+                                              margin: EdgeInsets.zero,
+                                              builder: SwiperCustomPagination(
+                                                builder:
+                                                    (BuildContext context,
+                                                    SwiperPluginConfig
+                                                    config) {
                                                   return Align(
                                                     alignment:
-                                                        Alignment.bottomCenter,
+                                                    Alignment.bottomCenter,
                                                     child:
-                                                        RectSwiperPaginationBuilder(
+                                                    RectSwiperPaginationBuilder(
                                                       color: Colors.white
                                                           .withOpacity(0.5),
                                                       activeColor: Colors.pink,
                                                       size: Size(5.0, 5.0),
                                                       activeSize:
-                                                          Size(20.0, 5.0),
+                                                      Size(20.0, 5.0),
                                                     ).build(context, config),
                                                   );
                                                 },),),
@@ -1464,12 +1455,10 @@ class _HomeState extends State<Home> {
                             if (_homeController.isHomePageLoading.value) {
                               return Column(
                                 children: [
-                                  SizedBox(
-                                    height: 30,
-                                  ),
+                                  SizedBox(height: 30,),
                                   ClipRRect(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
+                                    BorderRadius.all(Radius.circular(5)),
                                     child: Container(
                                       child: LoadingSkeleton(
                                         height: 150,
@@ -1496,14 +1485,10 @@ class _HomeState extends State<Home> {
                                     },
                                     showDeal: false,
                                   ),
-                                  _homeController
-                                      .homePageModel.value.topPicks.length!=0?Container(
+                                  _homeController.homePageModel.value.topPicks.length!=0?Container(
                                     height: 220,
                                     child: ListView.separated(
-                                        itemCount: _homeController
-                                            .homePageModel.value.topPicks
-                                            .take(8)
-                                            .length,
+                                        itemCount: _homeController.homePageModel.value.topPicks.take(8).length,
                                         shrinkWrap: true,
                                         scrollDirection: Axis.horizontal,
                                         physics: BouncingScrollPhysics(),
@@ -1514,11 +1499,8 @@ class _HomeState extends State<Home> {
                                           );
                                         },
                                         itemBuilder: (context, topPickIndex) {
-                                          ProductModel prod = _homeController
-                                              .homePageModel
-                                              .value
-                                              .topPicks[topPickIndex];
-
+                                          ProductModel prod = _homeController.homePageModel.value.topPicks[topPickIndex];
+                                          print(prod);
                                           return HorizontalProductWidget(
                                             productModel: prod,
                                           );
@@ -1569,6 +1551,7 @@ class _HomeState extends State<Home> {
                       ),
                       itemBuilder:
                           (BuildContext c, ProductModel prod, int index) {
+
                         return GridViewProductWidget(
                           productModel: prod,
                         );

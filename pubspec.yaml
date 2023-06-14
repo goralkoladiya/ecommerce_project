@@ -22,6 +22,8 @@ dependencies:
   dio:
   persistent_bottom_nav_bar:
   google_sign_in:
+  firebase_auth:
+  firebase_core: 
   expandable:
   octo_image:
   animated_splash_screen:

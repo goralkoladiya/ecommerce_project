@@ -23,12 +23,10 @@ class _HorizontalProductWidgetState extends State<HorizontalProductWidget> {
       Get.put(GeneralSettingsController());
 
   double getPriceForCart() {
-    return double.parse((widget.productModel.hasDeal != null
-            ? widget.productModel.hasDeal.discount > 0
+    return double.parse((widget.productModel.hasDeal != null ? widget.productModel.hasDeal.discount > 0
                 ? currencyController.calculatePrice(widget.productModel)
                 : currencyController.calculatePrice(widget.productModel)
-            : currencyController.calculatePrice(widget.productModel))
-        .toString());
+            : currencyController.calculatePrice(widget.productModel)).toString());
   }
 
   // int wishListId = 0;
@@ -102,12 +100,10 @@ class _HorizontalProductWidgetState extends State<HorizontalProductWidget> {
                             ? FancyShimmerImage(
                                 imageUrl: AppConfig.assetPath +
                                     '/' +
-                                    widget.productModel.product
-                                        .thumbnailImageSource,
+                                    widget.productModel.product.thumbnailImageSource,
                                 boxFit: BoxFit.contain,
                                 errorWidget: FancyShimmerImage(
-                                  imageUrl:
-                                      "${AppConfig.assetPath}/backend/img/default.png",
+                                  imageUrl: "${AppConfig.assetPath}/backend/img/default.png",
                                   boxFit: BoxFit.contain,
                                 ),
                               )

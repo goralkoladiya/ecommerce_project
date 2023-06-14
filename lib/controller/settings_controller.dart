@@ -106,6 +106,8 @@ class GeneralSettingsController extends GetxController {
                 .first;
             appCurrency.value = currency.value.symbol.toString();
             conversionRate.value = currency.value.convertRate.toPrecision(2);
+
+            print(" conversionRate.value :: ${ conversionRate.value}");
             currencyName.value = currency.value.name;
             currencyCode.value = currency.value.code;
             vendorType.value = settingsModel.value.vendorType;
@@ -324,32 +326,131 @@ class GeneralSettingsController extends GetxController {
     return amountText;
   }
 
-  String calculatePrice(ProductModel prod) {
+  String calculatePrice222(ProductModel prod) {
+    print("ProductModel=$prod");
     if (prod.productType == ProductType.GIFT_CARD) {
       if (prod.giftCardEndDate.compareTo(DateTime.now()) > 0) {
+        print("priceText1:: ${singlePrice(sellingPrice(prod.giftCardSellingPrice, prod.discountType, prod.discount))}");
         priceText = singlePrice(sellingPrice(
-                prod.giftCardSellingPrice, prod.discountType, prod.discount))
+            prod.giftCardSellingPrice, prod.discountType, prod.discount))
             .toStringAsFixed(2);
+
       } else {
+        print("priceText2:: ${singlePrice(prod.giftCardSellingPrice).toStringAsFixed(2)}");
         priceText = singlePrice(prod.giftCardSellingPrice).toStringAsFixed(2);
       }
     }
     else {
       if (prod.hasDeal != null) {
         if (prod.product.productType == 1) {
+          print("priceTex3:: ${singlePrice(sellingPrice(prod.skus.first.sellingPrice, prod.hasDeal.discountType, prod.hasDeal.discount))}");
           priceText = singlePrice(sellingPrice(prod.skus.first.sellingPrice,
-                  prod.hasDeal.discountType, prod.hasDeal.discount))
-              .toStringAsFixed(2);
+              prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2);
         } else {
-          if (sellingPrice(prod.minSellPrice, prod.hasDeal.discountType,
-                  prod.hasDeal.discount) ==
-              sellingPrice(prod.maxSellingPrice, prod.hasDeal.discountType,
-                  prod.hasDeal.discount)) {
+          if (sellingPrice(prod.minSellPrice, prod.hasDeal.discountType, prod.hasDeal.discount) ==
+              sellingPrice(prod.maxSellingPrice, prod.hasDeal.discountType, prod.hasDeal.discount)) {
+            print("priceText4:: ${singlePrice(sellingPrice(prod.minSellPrice, prod.hasDeal.discountType, prod.hasDeal.discount))}");
+            priceText = singlePrice(sellingPrice(prod.minSellPrice,
+                prod.hasDeal.discountType, prod.hasDeal.discount))
+                .toStringAsFixed(2);
+          } else {
+            // print("${prod.productName} -- ${prod.product.productType} -- Max: ${prod.maxSellingPrice} -- Min: ${prod.minSellPrice}");
+            print("priceText5:: ${singlePrice(sellingPrice(prod.minSellPrice, prod.hasDeal.discountType, prod.hasDeal.discount))}");
+
+            priceText = singlePrice(sellingPrice(prod.minSellPrice,
+                prod.hasDeal.discountType, prod.hasDeal.discount))
+                .toStringAsFixed(2);
+          }
+        }
+      } else {
+        if (prod.product.productType == 1) {
+          if (prod.hasDiscount == 'yes') {
+            print("priceText6:: ${singlePrice(sellingPrice(prod.maxSellingPrice, prod.discountType, prod.discount))}");
+
+            priceText = singlePrice(sellingPrice(
+                prod.maxSellingPrice, prod.discountType, prod.discount))
+                .toStringAsFixed(2);
+          } else {
+            priceText = singlePrice(prod.maxSellingPrice).toStringAsFixed(2);
+            print("priceText7::${singlePrice(prod.maxSellingPrice).toStringAsFixed(2)}");
+          }
+        } else {
+          ///variant product
+          if (sellingPrice(prod.minSellPrice, prod.discountType, prod.discount) ==
+              sellingPrice(prod.maxSellingPrice, prod.discountType, prod.discount)) {
+            if (prod.hasDiscount == 'yes') {
+              priceText = singlePrice(sellingPrice(prod.skus.first.sellingPrice,
+                  prod.discountType, prod.discount))
+                  .toStringAsFixed(2);
+            } else {
+              priceText =
+                  singlePrice(prod.skus.first.sellingPrice).toStringAsFixed(2);
+            }
+          }
+          else {
+            double priceA;
+            print("prod.minSellPrice : ${prod.minSellPrice}");
+            print("prod.discountType : ${prod.discountType}");
+            print("prod.discount : ${prod.discount}");
+            print(prod.minSellPrice.runtimeType);
+            print(prod.discountType.runtimeType);
+            print(prod.discount.runtimeType);
+
+            if (prod.hasDiscount == 'yes') {
+              print("priceText AA:: ${(sellingPrice(double.parse(prod.minSellPrice), double.parse(prod.discountType),double.parse( prod.discount)))}");
+
+              priceA = 1234;
+              // priceA = singlePrice(sellingPrice(double.parse(prod.minSellPrice), double.parse(prod.discountType),double.parse( prod.discount)));
+
+            } else {
+              // print("priceText AE:: ${singlePrice(prod.minSellPrice).toStringAsFixed(2)}");
+              // priceA = 4567;
+              priceA = singlePrice(double.parse(prod.minSellPrice));
+              // priceB = singlePrice(prod.maxSellingPrice).toStringAsFixed(2);
+            }
+            priceText = '$priceA';
+
+            print("priceText8:: $priceText");
+          }
+        }
+      }
+    }
+    print("priceText9::${priceText}");
+    return priceText;
+  }
+
+
+  String calculatePrice(ProductModel prod) {
+    print("ProductModel=$prod");
+    if (prod.productType == ProductType.GIFT_CARD) {
+      if (prod.giftCardEndDate.compareTo(DateTime.now()) > 0) {
+        print("priceText1:: ${singlePrice(sellingPrice(prod.giftCardSellingPrice, prod.discountType, prod.discount))}");
+        priceText = singlePrice(sellingPrice(
+                prod.giftCardSellingPrice, prod.discountType, prod.discount))
+            .toStringAsFixed(2);
+
+      } else {
+        print("priceText2:: ${singlePrice(prod.giftCardSellingPrice).toStringAsFixed(2)}");
+        priceText = singlePrice(prod.giftCardSellingPrice).toStringAsFixed(2);
+      }
+    }
+    else {
+      if (prod.hasDeal != null) {
+        if (prod.product.productType == 1) {
+          print("priceTex3:: ${singlePrice(sellingPrice(prod.skus.first.sellingPrice, prod.hasDeal.discountType, prod.hasDeal.discount))}");
+          priceText = singlePrice(sellingPrice(prod.skus.first.sellingPrice,
+              prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2);
+        } else {
+          if (sellingPrice(prod.minSellPrice, prod.hasDeal.discountType, prod.hasDeal.discount) ==
+              sellingPrice(prod.maxSellingPrice, prod.hasDeal.discountType, prod.hasDeal.discount)) {
+            print("priceText4:: ${singlePrice(sellingPrice(prod.minSellPrice, prod.hasDeal.discountType, prod.hasDeal.discount))}");
             priceText = singlePrice(sellingPrice(prod.minSellPrice,
                     prod.hasDeal.discountType, prod.hasDeal.discount))
                 .toStringAsFixed(2);
           } else {
             // print("${prod.productName} -- ${prod.product.productType} -- Max: ${prod.maxSellingPrice} -- Min: ${prod.minSellPrice}");
+            print("priceText5:: ${singlePrice(sellingPrice(prod.minSellPrice, prod.hasDeal.discountType, prod.hasDeal.discount))}");
+
             priceText = singlePrice(sellingPrice(prod.minSellPrice,
                     prod.hasDeal.discountType, prod.hasDeal.discount))
                 .toStringAsFixed(2);
@@ -358,18 +459,19 @@ class GeneralSettingsController extends GetxController {
       } else {
         if (prod.product.productType == 1) {
           if (prod.hasDiscount == 'yes') {
+            print("priceText6:: ${singlePrice(sellingPrice(prod.maxSellingPrice, prod.discountType, prod.discount))}");
+
             priceText = singlePrice(sellingPrice(
                     prod.maxSellingPrice, prod.discountType, prod.discount))
                 .toStringAsFixed(2);
           } else {
             priceText = singlePrice(prod.maxSellingPrice).toStringAsFixed(2);
+             print("priceText7::${singlePrice(prod.maxSellingPrice).toStringAsFixed(2)}");
           }
         } else {
           ///variant product
-          if (sellingPrice(
-                  prod.minSellPrice, prod.discountType, prod.discount) ==
-              sellingPrice(
-                  prod.maxSellingPrice, prod.discountType, prod.discount)) {
+          if (sellingPrice(prod.minSellPrice, prod.discountType, prod.discount) ==
+              sellingPrice(prod.maxSellingPrice, prod.discountType, prod.discount)) {
             if (prod.hasDiscount == 'yes') {
               priceText = singlePrice(sellingPrice(prod.skus.first.sellingPrice,
                       prod.discountType, prod.discount))
@@ -379,25 +481,27 @@ class GeneralSettingsController extends GetxController {
                   singlePrice(prod.skus.first.sellingPrice).toStringAsFixed(2);
             }
           } else {
-            var priceA;
+            dynamic priceA;
             // var priceB;
             if (prod.hasDiscount == 'yes') {
-              priceA = singlePrice(sellingPrice(
-                      prod.minSellPrice, prod.discountType, prod.discount))
-                  .toStringAsFixed(2);
+              print("priceText A:: ${singlePrice(sellingPrice(prod.minSellPrice, prod.discountType, prod.discount)).toStringAsFixed(2)}");
+              priceA = singlePrice(sellingPrice(prod.minSellPrice, prod.discountType, prod.discount)).toStringAsFixed(2);
               // priceB = singlePrice(sellingPrice(
               //         prod.maxSellingPrice, prod.discountType, prod.discount))
               //     .toStringAsFixed(2);
             } else {
+              print("priceText AE:: ${singlePrice(prod.minSellPrice).toStringAsFixed(2)}");
               priceA = singlePrice(prod.minSellPrice).toStringAsFixed(2);
               // priceB = singlePrice(prod.maxSellingPrice).toStringAsFixed(2);
             }
             priceText = '$priceA';
+
+            print("priceText8:: $priceText");
           }
         }
       }
     }
-    print("priceText==${priceText}");
+    print("priceText9::${priceText}");
     return priceText;
   }
 
@@ -406,22 +510,12 @@ class GeneralSettingsController extends GetxController {
 
     if (productModel.hasDiscount == 'yes' || productModel.hasDeal != null) {
       if (productModel.product.productType == 1) {
-        amountText = double.parse(
-                    (productModel.maxSellingPrice * conversionRate.value)
-                        .toString())
-                .toStringAsFixed(2) +
+        amountText = double.parse((productModel.maxSellingPrice * conversionRate.value).toString()).toStringAsFixed(2) +
             appCurrency.value;
       } else {
-        amountText = double.parse(
-                    (productModel.minSellPrice * conversionRate.value)
-                        .toString())
-                .toStringAsFixed(2) +
-            appCurrency.value +
-            ' - ' +
-            double.parse((productModel.maxSellingPrice * conversionRate.value)
-                    .toString())
-                .toStringAsFixed(2) +
-            appCurrency.value;
+        amountText = double.parse((productModel.minSellPrice * conversionRate.value).toString()).toStringAsFixed(2) +
+            appCurrency.value + ' - ' +
+            double.parse((productModel.maxSellingPrice * conversionRate.value).toString()).toStringAsFixed(2) + appCurrency.value;
       }
     } else {
       amountText = '';
@@ -432,18 +526,25 @@ class GeneralSettingsController extends GetxController {
   String calculatePriceWithVariant(ProductModel prod) {
     if (prod.hasDeal != null) {
       if (prod.product.productType == 1) {
+        print("priceText10:: ${singlePrice(sellingPrice(prod.skus.first.sellingPrice,
+            prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2)}");
+
         priceText = singlePrice(sellingPrice(prod.skus.first.sellingPrice,
-                prod.hasDeal.discountType, prod.hasDeal.discount))
-            .toStringAsFixed(2);
+                prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2);
       } else {
         if (sellingPrice(prod.minSellPrice, prod.hasDeal.discountType,
-                prod.hasDeal.discount) ==
-            sellingPrice(prod.maxSellingPrice, prod.hasDeal.discountType,
-                prod.hasDeal.discount))
+                prod.hasDeal.discount) == sellingPrice(prod.maxSellingPrice, prod.hasDeal.discountType, prod.hasDeal.discount)) {
+
+          print("priceText11:: ${singlePrice(sellingPrice(prod.minSellPrice,
+              prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2)}");
           priceText = singlePrice(sellingPrice(prod.minSellPrice,
                   prod.hasDeal.discountType, prod.hasDeal.discount))
               .toStringAsFixed(2);
-        else {
+        } else {
+
+          print("priceText12:: ${singlePrice(sellingPrice(prod.minSellPrice,
+              prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2)}");
+
           priceText = singlePrice(sellingPrice(prod.minSellPrice,
                   prod.hasDeal.discountType, prod.hasDeal.discount))
               .toStringAsFixed(2);
@@ -452,42 +553,54 @@ class GeneralSettingsController extends GetxController {
     } else {
       if (prod.product.productType == 1) {
         if (prod.hasDiscount == 'yes') {
+
+          print("priceText13:: ${singlePrice(sellingPrice(prod.minSellPrice,
+              prod.discountType, prod.discount)).toStringAsFixed(2)}");
+
           priceText = singlePrice(sellingPrice(
-                  prod.maxSellingPrice, prod.discountType, prod.discount))
-              .toStringAsFixed(2);
+                  prod.maxSellingPrice, prod.discountType, prod.discount)).toStringAsFixed(2);
         } else {
           priceText = singlePrice(prod.maxSellingPrice).toStringAsFixed(2);
+          print("priceText14:: ${singlePrice(prod.maxSellingPrice).toStringAsFixed(2)}");
         }
       } else {
         ///variant product
         if (sellingPrice(prod.minSellPrice, prod.discountType, prod.discount) ==
-            sellingPrice(
-                prod.maxSellingPrice, prod.discountType, prod.discount)) {
+            sellingPrice(prod.maxSellingPrice, prod.discountType, prod.discount)) {
           if (prod.hasDiscount == 'yes') {
             priceText = singlePrice(sellingPrice(prod.skus.first.sellingPrice,
-                    prod.discountType, prod.discount))
-                .toStringAsFixed(2);
+                prod.discountType, prod.discount)).toStringAsFixed(2);
+            print("priceText15:: ${priceText = singlePrice(sellingPrice(prod.skus.first.sellingPrice,
+                prod.discountType, prod.discount)).toStringAsFixed(2)}");
+
           } else {
             priceText =
                 singlePrice(prod.skus.first.sellingPrice).toStringAsFixed(2);
+            print("priceText16:: ${singlePrice(prod.skus.first.sellingPrice).toStringAsFixed(2)}");
           }
         } else {
           var priceA;
           var priceB;
           if (prod.hasDiscount == 'yes') {
             priceA = singlePrice(sellingPrice(prod.skus.first.sellingPrice,
-                    prod.discountType, prod.discount))
-                .toStringAsFixed(2);
+                    prod.discountType, prod.discount)).toStringAsFixed(2);
             priceB = singlePrice(sellingPrice(prod.skus.last.sellingPrice,
-                    prod.discountType, prod.discount))
-                .toStringAsFixed(2);
+                    prod.discountType, prod.discount)).toStringAsFixed(2);
+
+            print("priceText17:: $priceA");
+            print("priceText18:: $priceB");
+
           } else {
             priceA =
                 singlePrice(prod.skus.first.sellingPrice).toStringAsFixed(2);
             priceB =
                 singlePrice(prod.skus.last.sellingPrice).toStringAsFixed(2);
+
+            print("priceText19:: $priceA");
+            print("priceText20:: $priceB");
           }
           priceText = '$priceA - $priceB';
+          print("priceText21:: $priceText");
         }
       }
     }
@@ -495,36 +608,46 @@ class GeneralSettingsController extends GetxController {
   }
 
   String calculateGiftcardPrice(ProductModel prod) {
-    String price = "";
+
+   String price = "";
     if (prod.giftCardEndDate.compareTo(DateTime.now()) > 0) {
-      price = singlePrice(sellingPrice(
-              prod.giftCardSellingPrice, prod.discountType, prod.discount))
-          .toStringAsFixed(2);
+      price = singlePrice(sellingPrice(prod.giftCardSellingPrice, prod.discountType, prod.discount)).toStringAsFixed(2);
+      print("price :::: $price");
     } else {
       price = singlePrice(prod.giftCardSellingPrice).toStringAsFixed(2);
+      print("price :::: $price");
     }
     return price;
   }
 
   String calculateWishListGiftcardPrice(GiftCardData giftCardData) {
     String price = "";
-    price = double.parse(
-                (giftCardData.sellingPrice * conversionRate.value).toString())
-            .toStringAsFixed(2) +
-        appCurrency.value;
+    price = double.parse((giftCardData.sellingPrice * conversionRate.value).toString()).toStringAsFixed(2) + appCurrency.value;
     return price;
   }
 
-  dynamic sellingPrice(amount, discountType, discountAmount) {
-    var discount = 0.0;
+  double sellingPrice(amount, discountType, discountAmount) {
+    double discount = 0.0;
     if (discountType == "0" || discountType == 0) {
-      discount = (amount / 100) * discountAmount;
+      discount = (amount / 100) * double.parse(discountAmount);
+      print("discount0 :::: $discount");
+      print("discountAmount0 :::: $discountAmount");
+      print("amount0 :::: $amount");
     }
     if (discountType == "1" || discountType == 1) {
-      discount = discountAmount;
+      discount = double.parse(discountAmount);
+      print("discount1 :::: $discount");
+      print("discountAmount 1:::: $discountAmount");
+      print("amount1 :::: $amount");
+
     }
-    var sellingPrice = amount - discount;
+    print("dis-amount "+discountAmount.runtimeType.toString());
+    amount=amount.toString().substring(0,amount.toString().length-3);
+
+    dynamic sellingPrice = double.parse(amount) - discount;
+    print("sellingPrice ::: $sellingPrice");
     return sellingPrice;
+
   }
 
   double singlePrice(double price) {

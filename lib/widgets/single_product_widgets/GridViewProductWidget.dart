@@ -21,8 +21,7 @@ class GridViewProductWidget extends StatefulWidget {
 }
 
 class _GridViewProductWidgetState extends State<GridViewProductWidget> {
-  final GeneralSettingsController currencyController =
-      Get.put(GeneralSettingsController());
+  final GeneralSettingsController currencyController = Get.put(GeneralSettingsController());
 
   double getPriceForCart() {
     return double.parse((widget.productModel.hasDeal != null
@@ -54,6 +53,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print("Model : ${widget.productModel}");
     return GestureDetector(
       onTap: () async {
         if (widget.productModel.productType == ProductType.PRODUCT) {
@@ -147,7 +147,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                   : SizedBox.shrink(),
                             ),
                           )
-                        : Positioned(
+                        :  Positioned(
                             top: 0,
                             left: 0,
                             child: Align(
@@ -177,12 +177,8 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                           ),
                                         )
                                       : Container()
-                                  : widget.productModel.discountStartDate !=
-                                              null &&
-                                          currencyController.endDate
-                                                  .millisecondsSinceEpoch <
-                                              DateTime.now()
-                                                  .millisecondsSinceEpoch
+                                  : widget.productModel.discountStartDate != null &&
+                                          currencyController.endDate.millisecondsSinceEpoch < DateTime.now().millisecondsSinceEpoch
                                       ? Container()
                                       : widget.productModel.discount != "0"
                                           ? Container(
@@ -195,14 +191,12 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                                 color: AppStyles.pinkColor,
                                               ),
                                               child: Text(
-                                                widget.productModel
-                                                            .discountType ==
-                                                        "0"
+                                                widget.productModel.discountType == "0"
                                                     ? '-${widget.productModel.discount.toString()}% '
-                                                    : '${(widget.productModel.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
+                                                    : '${(double.parse(widget.productModel.discount) * currencyController.conversionRate.value)
+                                                      .toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                                                 textAlign: TextAlign.center,
-                                                style: AppStyles.appFontBook
-                                                    .copyWith(
+                                                style: AppStyles.appFontBook.copyWith(
                                                   color: Colors.white,
                                                   fontSize: 12,
                                                 ),
@@ -267,11 +261,9 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                             children: [
                               SizedBox(height: 5),
                               Text(
-                                widget.productModel.productType ==
-                                        ProductType.PRODUCT
+                                widget.productModel.productType == ProductType.PRODUCT
                                     ? widget.productModel.productName.toString()
-                                    : widget.productModel.giftCardName
-                                        .toString(),
+                                    : widget.productModel.giftCardName.toString(),
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppStyles.appFontBold.copyWith(
@@ -335,15 +327,13 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                           ],
                                         )
                                   : Wrap(
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.center,
+                                      crossAxisAlignment: WrapCrossAlignment.center,
                                       alignment: WrapAlignment.start,
-                                      runSpacing: 2,
-                                      spacing: 2,
+                                      runSpacing: 2, spacing: 2,
                                       runAlignment: WrapAlignment.start,
                                       children: [
                                         Text(
-                                          '${currencyController.calculatePrice(widget.productModel)}${currencyController.appCurrency.value}',
+                                          '${currencyController.calculatePrice222(widget.productModel)}${currencyController.appCurrency.value}',
                                           style: AppStyles.appFontBook.copyWith(
                                             fontSize: 12,
                                             color: AppStyles.pinkColor,

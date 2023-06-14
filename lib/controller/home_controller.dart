@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:amazy_app/model/HomePage/HomePageModel.dart';
 import 'package:amazy_app/network/config.dart';
 import 'package:dio/dio.dart';
@@ -24,16 +26,12 @@ class HomeController extends GetxController {
     try {
       isHomePageLoading(true);
       print(URLs.HOME_PAGE);
-      await _dio
-          .get(
-        URLs.HOME_PAGE,
-      )
-          .then((value) {
+      await _dio.get(URLs.HOME_PAGE,).then((value) {
         try {
           final data = new Map<String, dynamic>.from(value.data);
+          // log("data::: ${value.data['sliders']}");
           homePageModel.value = HomePageModel.fromJson(data);
-          homePageModel.value.newUserZone.allProducts
-              .removeWhere((element) => element == null);
+          homePageModel.value.newUserZone.allProducts.removeWhere((element) => element == null);
           print('home top ticked: ${homePageModel.value.topPicks.length}');
           print(
               'home top ticked: ${homePageModel.value.flashDeal.allProducts.length}');

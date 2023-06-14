@@ -611,6 +611,11 @@ class Coupon {
         "minimum_shopping": minimumShopping,
         "maximum_discount": maximumDiscount,
       };
+
+  @override
+  String toString() {
+    return 'Coupon{id: $id, title: $title, couponCode: $couponCode, startDate: $startDate, endDate: $endDate, discount: $discount, discountType: $discountType, minimumShopping: $minimumShopping, maximumDiscount: $maximumDiscount}';
+  }
 }
 
 class HomePageSlider {
@@ -629,9 +634,9 @@ class HomePageSlider {
   int id;
   String name;
   SliderDataType dataType;
-  int dataId;
+  dynamic dataId;
   String sliderImage;
-  int position;
+  dynamic position;
   CategoryBrand category;
   CategoryBrand brand;
   CategoryBrand tag;
@@ -663,6 +668,11 @@ class HomePageSlider {
         "brand": brand == null ? null : brand.toJson(),
         "tag": tag == null ? null : tag.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'HomePageSlider{id: $id, name: $name, dataType: $dataType, dataId: $dataId, sliderImage: $sliderImage, position: $position, category: $category, brand: $brand, tag: $tag}';
+  }
 }
 
 enum SliderDataType { PRODUCT, CATEGORY, BRAND, TAG }

@@ -54,7 +54,7 @@ class Currency {
         name: json["name"],
         code: json["code"],
         status: json["status"],
-        convertRate: json["convert_rate"].toDouble(),
+        convertRate: json["convert_rate"],
         symbol: json["symbol"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),

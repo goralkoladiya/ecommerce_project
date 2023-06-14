@@ -95,7 +95,7 @@ class GeneralSettingsController extends GetxController {
         if (response.statusCode == 200) {
           var data = new Map<String, dynamic>.from(response.data);
           log("object... ");
-          // log("object... $data  <<<");
+          log("object... $data  <<<");
           settingsModel.value = GeneralSettingsModel.fromJson(data);
           log("hey: ${settingsModel.value}");
           print("object...1");
@@ -106,7 +106,7 @@ class GeneralSettingsController extends GetxController {
             currenciesList.value = settingsModel.value.currencies;
             currency.value = settingsModel.value.currencies.where((element) => element.code == generalCurrencyCode.value).first;
             appCurrency.value = currency.value.symbol.toString();
-            conversionRate.value = currency.value.convertRate.toPrecision(2);
+            conversionRate.value = double.parse(currency.value.convertRate).toPrecision(2);
 
             print(" conversionRate.value :: ${ conversionRate.value}");
             currencyName.value = currency.value.name;

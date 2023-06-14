@@ -322,22 +322,18 @@ class _SettingsPageState extends State<SettingsPage> {
                                                 elevation: 1,
                                                 isExpanded: true,
                                                 underline: Container(),
-                                                value: currencyController
-                                                    .currency.value,
-                                                items: currencyController
-                                                    .currenciesList
-                                                    .map((e) {
-                                                  return DropdownMenuItem<
-                                                      Currency>(
-                                                    child: Text(
-                                                        '${e.name} (${e.symbol.toString()})'),
+                                                value: currencyController.currency.value,
+                                                items: currencyController.currenciesList.map((e) {
+                                                  return DropdownMenuItem<Currency>(
+                                                    child: Text('${e.name.toString()} (${e.symbol.toString()})'),
                                                     value: e,
                                                   );
                                                 }).toList(),
                                                 onChanged: (Currency value) {
+                                                  print("hey: ${value}");
+                                                  print("h1${currencyController.currenciesList}");
                                                   setState(() {
-                                                    currencyController
-                                                        .currency.value = value;
+                                                    currencyController.currency.value = value;
                                                   });
                                                 },
                                               );
@@ -368,26 +364,12 @@ class _SettingsPageState extends State<SettingsPage> {
                                                   height: 40,
                                                   width: 130,
                                                   btnOnTap: () async {
-                                                    currencyController
-                                                            .appCurrency.value =
-                                                        currencyController
-                                                            .currency
-                                                            .value
-                                                            .symbol;
-                                                    currencyController
-                                                            .conversionRate
-                                                            .value =
-                                                        currencyController
-                                                            .currency
-                                                            .value
-                                                            .convertRate;
-                                                    currencyController
-                                                            .currencyName
-                                                            .value =
-                                                        currencyController
-                                                            .currency
-                                                            .value
-                                                            .name;
+                                                    currencyController.appCurrency.value =
+                                                        currencyController.currency.value.symbol;
+                                                    // currencyController.conversionRate.value =
+                                                    //     currencyController.currency.value.convertRate;
+                                                    currencyController.currencyName.value =
+                                                        currencyController.currency.value.name;
                                                     SnackBars().snackBarSuccess(
                                                         "Currency changed to"
                                                                 .tr +

@@ -112,9 +112,8 @@ class _AddAddressState extends State<AddAddress> {
 
   @override
   void initState() {
-    _buildDropDown();
-
     super.initState();
+    _buildDropDown();
   }
 
   _buildDropDown() {
@@ -209,6 +208,7 @@ class _AddAddressState extends State<AddAddress> {
                 FutureBuilder<CountryList>(
                   future: allCountry,
                   builder: (context, snapshot) {
+                    print("data4: ${snapshot.hasData}");
                     if (snapshot.hasData) {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,

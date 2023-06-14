@@ -72,6 +72,11 @@ class GeneralSettingsModel {
             Map.from(modules).map((k, v) => MapEntry<String, dynamic>(k, v)),
         "msg": msg,
       };
+
+  @override
+  String toString() {
+    return 'GeneralSettingsModel{settings: $settings, currencies: $currencies, vendorType: $vendorType, otpConfiguration: $otpConfiguration, modules: $modules, pickupLocations: $pickupLocations, freeShipping: $freeShipping, msg: $msg}';
+  }
 }
 
 class Setting {
@@ -97,7 +102,7 @@ class Setting {
   String siteTitle;
   String companyName;
   String countryName;
-  String zipCode;
+  String zipCode;//
   String address;
   String phone;
   String email;
@@ -107,9 +112,9 @@ class Setting {
   String currencyCode;
   String copyrightText;
   String languageCode;
-  int countryId;
-  int stateId;
-  int cityId;
+  dynamic countryId;
+  dynamic stateId;
+  dynamic cityId;
 
   factory Setting.fromJson(Map<String, dynamic> json) => Setting(
         siteTitle: json["site_title"],
@@ -148,6 +153,11 @@ class Setting {
         "state_id": stateId,
         "city_id": cityId,
       };
+
+  @override
+  String toString() {
+    return 'Setting{siteTitle: $siteTitle, companyName: $companyName, countryName: $countryName, zipCode: $zipCode, address: $address, phone: $phone, email: $email, currencySymbol: $currencySymbol, logo: $logo, favicon: $favicon, currencyCode: $currencyCode, copyrightText: $copyrightText, languageCode: $languageCode, countryId: $countryId, stateId: $stateId, cityId: $cityId}';
+  }
 }
 
 class OtpConfiguration {
@@ -188,19 +198,19 @@ class PickupLocation {
     this.isDefault,
   });
 
-  int id;
+  dynamic id;
   String pickupLocation;
   String name;
   String email;
   String phone;
   String address;
   dynamic address2;
-  int cityId;
-  int stateId;
-  int countryId;
-  int pinCode;
-  int status;
-  int isDefault;
+  dynamic cityId;
+  dynamic stateId;
+  dynamic countryId;
+  dynamic pinCode;
+  dynamic status;
+  dynamic isDefault;
 
   factory PickupLocation.fromJson(Map<String, dynamic> json) => PickupLocation(
         id: json["id"],
@@ -233,4 +243,9 @@ class PickupLocation {
         "status": status,
         "is_default": isDefault,
       };
+
+  @override
+  String toString() {
+    return 'PickupLocation{id: $id, pickupLocation: $pickupLocation, name: $name, email: $email, phone: $phone, address: $address, address2: $address2, cityId: $cityId, stateId: $stateId, countryId: $countryId, pinCode: $pinCode, status: $status, isDefault: $isDefault}';
+  }
 }

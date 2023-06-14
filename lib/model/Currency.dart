@@ -43,8 +43,8 @@ class Currency {
   int id;
   String name;
   String code;
-  int status;
-  double convertRate;
+  String status;
+  dynamic convertRate;
   String symbol;
   DateTime createdAt;
   DateTime updatedAt;
@@ -70,4 +70,9 @@ class Currency {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
+
+  @override
+  String toString() {
+    return 'Currency{id: $id, name: $name, code: $code, status: $status, convertRate: $convertRate, symbol: $symbol, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }

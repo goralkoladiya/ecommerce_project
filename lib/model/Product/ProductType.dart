@@ -15,4 +15,9 @@ class EnumValues<T> {
     }
     return reverseMap;
   }
+
+  @override
+  String toString() {
+    return 'EnumValues{map: $map, reverseMap: $reverseMap}';
+  }
 }

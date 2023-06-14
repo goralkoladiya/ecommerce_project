@@ -1533,11 +1533,7 @@ class _HomeState extends State<Home> {
 
                   LoadingMoreSliverList<ProductModel>(
                     SliverListConfig<ProductModel>(
-                      padding: EdgeInsets.only(
-                        left: 10.0,
-                        right: 10.0,
-                        bottom: 50,
-                      ),
+                      padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 50,),
                       indicatorBuilder: BuildIndicatorBuilder(
                         source: source,
                         isSliver: true,

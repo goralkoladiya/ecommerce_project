@@ -40,4 +40,9 @@ class HasDeal {
         "status": status,
         "flash_deal": flashDeal == null ? null : flashDeal.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'HasDeal{id: $id, flashDealId: $flashDealId, sellerProductId: $sellerProductId, discount: $discount, discountType: $discountType, status: $status, flashDeal: $flashDeal}';
+  }
 }

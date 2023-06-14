@@ -80,4 +80,9 @@ class SellerData {
         "seller_account": sellerAccount.toJson(),
         "seller_business_information": sellerBusinessInformation.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'SellerData{id: $id, firstName: $firstName, lastName: $lastName, username: $username, photo: $photo, avatar: $avatar, slug: $slug, phone: $phone, description: $description, name: $name, sellerProductsApi: $sellerProductsApi, sellerReviews: $sellerReviews, sellerAccount: $sellerAccount, sellerBusinessInformation: $sellerBusinessInformation}';
+  }
 }

@@ -106,21 +106,18 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                   "${AppConfig.assetPath}/${widget.productModel.giftCardThumbnailImage}",
                               boxFit: BoxFit.contain,
                               errorWidget: FancyShimmerImage(
-                                imageUrl:
-                                    "${AppConfig.assetPath}/backend/img/default.png",
+                                imageUrl: "${AppConfig.assetPath}/backend/img/default.png",
                                 boxFit: BoxFit.contain,
                               ),
                             ),
                     ),
                     widget.productModel.productType == ProductType.GIFT_CARD
                         ? Positioned(
-                            top: 0,
-                            left: 0,
+                            top: 0, left: 0,
                             child: Align(
                               alignment: Alignment.topRight,
                               child: widget.productModel.giftCardEndDate
-                                          .compareTo(DateTime.now()) >
-                                      0
+                                          .compareTo(DateTime.now()) > 0
                                   ? Container(
                                       padding: EdgeInsets.all(4),
                                       alignment: Alignment.center,
@@ -130,11 +127,8 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                         color: AppStyles.pinkColor,
                                       ),
                                       child: Text(
-                                        widget.productModel.discountType ==
-                                                    "0" ||
-                                                widget.productModel
-                                                        .discountType ==
-                                                    0
+                                        widget.productModel.discountType == "0" ||
+                                                widget.productModel.discountType == 0
                                             ? '-${widget.productModel.discount.toString()}% '
                                             : '${(widget.productModel.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                                         textAlign: TextAlign.center,
@@ -163,9 +157,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                             color: AppStyles.pinkColor,
                                           ),
                                           child: Text(
-                                            widget.productModel.hasDeal
-                                                        .discountType ==
-                                                    0
+                                            widget.productModel.hasDeal.discountType == 0
                                                 ? '${widget.productModel.hasDeal.discount.toString()}% '
                                                 : '${(widget.productModel.hasDeal.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                                             textAlign: TextAlign.center,
@@ -229,9 +221,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                 color: AppStyles.pinkColor,
                                 size: 10,
                               ),
-                        SizedBox(
-                          width: 2,
-                        ),
+                        SizedBox(width: 2,),
                         widget.productModel.avgRating !="0"
                             ? Text(
                                 '(${widget.productModel.avgRating.toString()})',
@@ -290,9 +280,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                                 color: AppStyles.pinkColor,
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: 3,
-                                            ),
+                                            SizedBox(width: 3,),
                                             Text(
                                               '${currencyController.calculateMainPrice(widget.productModel)}',
                                               overflow: TextOverflow.ellipsis,
@@ -358,9 +346,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
+                        SizedBox(width: 5,),
                         CartIcon(widget.productModel),
                       ],
                     ),

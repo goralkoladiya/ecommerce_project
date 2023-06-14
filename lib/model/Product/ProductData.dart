@@ -211,4 +211,9 @@ class Product {
             ? null
             : List<dynamic>.from(relatedProducts.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    return 'Product{id: $id, productName: $productName, productType: $productType, unitTypeId: $unitTypeId, brandId: $brandId, categoryId: $categoryId, thumbnailImageSource: $thumbnailImageSource, barcodeType: $barcodeType, modelNumber: $modelNumber, shippingType: $shippingType, shippingCost: $shippingCost, discountType: $discountType, discount: $discount, taxType: $taxType, tax: $tax, pdf: $pdf, videoProvider: $videoProvider, videoLink: $videoLink, description: $description, specification: $specification, minimumOrderQty: $minimumOrderQty, maxOrderQty: $maxOrderQty, metaTitle: $metaTitle, metaDescription: $metaDescription, metaImage: $metaImage, isPhysical: $isPhysical, isApproved: $isApproved, status: $status, displayInDetails: $displayInDetails, requestedBy: $requestedBy, createdBy: $createdBy, skus: $skus, brand: $brand, categories: $categories, tags: $tags, gallaryImages: $gallaryImages, relatedProducts: $relatedProducts, upSalesProducts: $upSalesProducts, crossSalesProducts: $crossSalesProducts, gstGroup: $gstGroup}';
+  }
 }

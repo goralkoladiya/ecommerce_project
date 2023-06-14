@@ -480,7 +480,7 @@ class _SearchPageMainState extends State<SearchPageMain> {
                                               child: InkWell(
                                                 onTap: () async {
                                                   Get.to(() => ProductDetails(
-                                                      productID: product.id));
+                                                      productID: product.id.toString()));
                                                 },
                                                 child: Container(
                                                   width: context.width,

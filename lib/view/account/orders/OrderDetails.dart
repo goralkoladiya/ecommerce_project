@@ -415,7 +415,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                                     .products[productIndex]
                                                     .sellerProductSku
                                                     .product
-                                                    .id,
+                                                    .id.toString(),
                                               ));
                                         },
                                         child: Container(

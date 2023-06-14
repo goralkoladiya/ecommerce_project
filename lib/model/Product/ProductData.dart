@@ -73,7 +73,7 @@ class Product {
   String videoLink;
   String description;
   String specification;
-  dynamic minimumOrderQty;
+  String minimumOrderQty;
   dynamic maxOrderQty;
   String metaTitle;
   String metaDescription;

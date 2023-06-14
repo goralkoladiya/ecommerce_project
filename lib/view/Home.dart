@@ -1008,7 +1008,7 @@ class _HomeState extends State<Home> {
                                                                   .allProducts[
                                                               index]
                                                                   .product
-                                                                  .id));
+                                                                  .id.toString()));
                                                         },
                                                         child: Padding(
                                                           padding:
@@ -1485,7 +1485,7 @@ class _HomeState extends State<Home> {
                                     },
                                     showDeal: false,
                                   ),
-                                  _homeController.homePageModel.value.topPicks.length!=0?Container(
+                                  _homeController.homePageModel.value.topPicks.length!=0 ? Container(
                                     height: 220,
                                     child: ListView.separated(
                                         itemCount: _homeController.homePageModel.value.topPicks.take(8).length,
@@ -1500,7 +1500,7 @@ class _HomeState extends State<Home> {
                                         },
                                         itemBuilder: (context, topPickIndex) {
                                           ProductModel prod = _homeController.homePageModel.value.topPicks[topPickIndex];
-                                          print(prod);
+                                          // print(prod);
                                           return HorizontalProductWidget(
                                             productModel: prod,
                                           );

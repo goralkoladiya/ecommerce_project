@@ -66,9 +66,9 @@ class _CartIconState extends State<CartIcon> {
           if (loginController.loggedIn.value) {
             if (widget.productModel.variantDetails.length == 0) {
               if (widget.productModel.stockManage == 1) {
-                if (widget.productModel.skus.first.productStock > 0) {
-                  if (widget.productModel.product.minimumOrderQty >
-                      widget.productModel.skus.first.productStock) {
+                if (int.parse(widget.productModel.skus.first.productStock) > 0) {
+                  if (int.parse(widget.productModel.product.minimumOrderQty) >
+                      int.parse(widget.productModel.skus.first.productStock)) {
                     SnackBars().snackBarWarning('No more stock'.tr);
                   } else {
                     Map data = {
@@ -120,7 +120,7 @@ class _CartIconState extends State<CartIcon> {
               setState(() {
                 _isAddingToCart = false;
               });
-              Get.to(() => ProductDetails(productID: widget.productModel.id),
+              Get.to(() => ProductDetails(productID: widget.productModel.id.toString()),
                   preventDuplicates: false);
             }
           } else {

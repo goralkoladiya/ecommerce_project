@@ -266,7 +266,7 @@ class _RefundDetailsState extends State<RefundDetails> {
                                                   .refundProducts[productIndex]
                                                   .sellerProductSku
                                                   .product
-                                                  .id,
+                                                  .id.toString(),
                                             ));
                                       },
                                       child: Container(

@@ -23,4 +23,9 @@ class ProductDetailsModel {
   Map<String, dynamic> toJson() => {
         "data": data.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'ProductDetailsModel{data: $data}';
+  }
 }

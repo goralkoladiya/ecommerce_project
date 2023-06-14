@@ -410,12 +410,12 @@ class GeneralSettingsController extends GetxController {
             }
             priceText = '$priceA';
 
-            print("priceText8:: $priceText");
+            // print("priceText8:: $priceText");
           }
         }
       }
     // }
-    print("priceText9::${priceText}");
+    // print("priceText9::${priceText}");
     return priceText;
   }
 

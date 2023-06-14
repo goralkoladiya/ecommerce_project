@@ -62,7 +62,7 @@ class _HorizontalProductWidgetState extends State<HorizontalProductWidget> {
     return GestureDetector(
       onTap: () async {
         if (widget.productModel.productType == ProductType.PRODUCT) {
-          Get.to(() => ProductDetails(productID: widget.productModel.id),
+          Get.to(() => ProductDetails(productID: widget.productModel.id.toString()),
               preventDuplicates: false);
         }
       },

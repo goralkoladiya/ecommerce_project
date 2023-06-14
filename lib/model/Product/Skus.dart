@@ -13,11 +13,11 @@ class Skus {
     this.productVariations,
   });
 
-  int id;
+  dynamic id;
   dynamic userId;
   dynamic productId;
   String productSkuId;
-  dynamic productStock;
+  String productStock;
   dynamic purchasePrice;
   dynamic sellingPrice;
   dynamic status;

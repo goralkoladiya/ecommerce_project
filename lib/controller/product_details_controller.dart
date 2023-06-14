@@ -19,7 +19,7 @@ class ProductDetailsController extends GetxController {
 
   var isLoading = false.obs;
 
-  var productId = 0.obs;
+  var productId = "0".obs;
 
   // ignore: deprecated_member_use
   var productReviews = List<Review>().obs;
@@ -41,16 +41,16 @@ class ProductDetailsController extends GetxController {
 
   var itemQuantity = 1.obs;
 
-  var minOrder = 1.obs;
-  var maxOrder = 1.obs;
+  var minOrder = "1".obs;
+  var maxOrder = "1".obs;
 
-  var productSkuID = 0.obs;
+  var productSkuID = "0".obs;
 
   var shippingID = 0.obs;
 
   Map getSKU = {};
 
-  var stockManage = 0.obs;
+  var stockManage = "0".obs;
   var stockCount = 0.obs;
   var isCartLoading = false.obs;
 
@@ -85,6 +85,7 @@ class ProductDetailsController extends GetxController {
       isCartLoading(true);
       var data = await fetchProductDetails(id);
       if (data != null) {
+        print("fetch=$data");
         products.value = data;
         productReviews.value = data.data.reviews
             .where((element) => element.type == ProductType.PRODUCT)
@@ -108,16 +109,16 @@ class ProductDetailsController extends GetxController {
         minOrder.value = products.value.data.product.minimumOrderQty;
         maxOrder.value = products.value.data.product.maxOrderQty;
 
-        itemQuantity.value = products.value.data.product.minimumOrderQty;
+        itemQuantity.value = int.parse(products.value.data.product.minimumOrderQty);
 
         if (products.value.data.variantDetails.length > 0) {
           await skuGet();
         } else {
           stockManage.value = products.value.data.stockManage;
-          stockCount.value = products.value.data.skus.first.productStock;
+          stockCount.value = int.parse(products.value.data.skus.first.productStock);
           visibleSKU.value = products.value.data.product.skus.first;
         }
-        productSkuID.value = products.value.data.skus.first.id;
+        productSkuID.value = products.value.data.skus.first.productSkuId;
       } else {
         products.value = ProductDetailsModel();
       }
@@ -169,7 +170,7 @@ class ProductDetailsController extends GetxController {
       if (response.data == "0") {
         SnackBars().snackBarWarning('Product not available');
         getProductDetails2(data['product_id']).then((value) {
-          itemQuantity.value = products.value.data.product.minimumOrderQty;
+          itemQuantity.value = int.parse(products.value.data.product.minimumOrderQty);
           productId.value = data['product_id'];
         });
       } else {
@@ -180,8 +181,8 @@ class ProductDetailsController extends GetxController {
         productSKU.value = SkuData.fromJson(returnData['data']);
         productSkuID.value = returnData['data']['id'];
         stockManage.value = products.value.data.stockManage;
-        stockCount.value = productSKU.value.productStock;
-        itemQuantity.value = products.value.data.product.minimumOrderQty;
+        stockCount.value = int.parse(productSKU.value.productStock);
+        itemQuantity.value = int.parse(products.value.data.product.minimumOrderQty);
         calculatePriceAfterSku();
       }
     } catch (e) {
@@ -278,7 +279,7 @@ class ProductDetailsController extends GetxController {
 
   void cartIncrease() {
     if (maxOrder.value != null) {
-      if (itemQuantity.value < maxOrder.value) {
+      if (itemQuantity.value < int.parse(maxOrder.value)) {
         itemQuantity.value++;
       }
     } else {
@@ -289,7 +290,7 @@ class ProductDetailsController extends GetxController {
   }
 
   void cartDecrease() {
-    if (itemQuantity.value > minOrder.value) {
+    if (itemQuantity.value > int.parse(minOrder.value)) {
       itemQuantity.value--;
       finalPrice.value = productPrice * itemQuantity.value;
     }

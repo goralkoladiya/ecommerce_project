@@ -252,7 +252,7 @@ class _WishListState extends State<WishList> {
                                             Get.to(
                                               () => ProductDetails(
                                                 productID:
-                                                    value[prodIndex].product.id,
+                                                    value[prodIndex].product.id.toString(),
                                               ),
                                             );
                                           }

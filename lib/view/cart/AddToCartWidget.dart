@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddToCartWidget extends StatefulWidget {
-  final int productID;
+  final String productID;
 
   AddToCartWidget(this.productID);
 
@@ -41,8 +41,7 @@ class _AddToCartWidgetState extends State<AddToCartWidget> {
 
   Future getProductDetails() async {
     await controller.getProductDetails2(widget.productID).then((value) {
-      controller.itemQuantity.value =
-          controller.products.value.data.product.minimumOrderQty;
+      controller.itemQuantity.value = int.parse(controller.products.value.data.product.minimumOrderQty);
       controller.productId.value = widget.productID;
 
       controller.products.value.data.variantDetails.forEach((element) {
@@ -594,7 +593,7 @@ class _AddToCartWidgetState extends State<AddToCartWidget> {
                                     ),
                                     onTap: () {
                                       if (controller.itemQuantity.value <=
-                                          controller.minOrder.value) {
+                                          int.parse(controller.minOrder.value)) {
                                         SnackBars().snackBarWarning(
                                             'Can\'t add less than'.tr +
                                                 ' ${controller.minOrder.value} ' +
@@ -645,7 +644,7 @@ class _AddToCartWidgetState extends State<AddToCartWidget> {
                                           controller.cartIncrease();
                                         } else {
                                           if (controller.itemQuantity.value >=
-                                              controller.maxOrder.value) {
+                                              int.parse(controller.maxOrder.value)) {
                                             SnackBars().snackBarWarning(
                                                 'Can\'t add more than'.tr +
                                                     ' ${controller.maxOrder.value} ' +
@@ -689,7 +688,7 @@ class _AddToCartWidgetState extends State<AddToCartWidget> {
                                         btnText: 'Add to Cart'.tr,
                                         btnOnTap: () async {
                                           if (controller.stockCount.value > 0) {
-                                            if (controller.minOrder.value >
+                                            if (int.parse(controller.minOrder.value) >
                                                 controller.stockCount.value) {
                                               SnackBars().snackBarWarning(
                                                   'No more stock'.tr);
@@ -749,8 +748,7 @@ class _AddToCartWidgetState extends State<AddToCartWidget> {
                                                   controller.productPrice.value,
                                               'seller_id': controller
                                                   .products.value.data.userId,
-                                              'shipping_method_id':
-                                                  controller.shippingID.value,
+                                              'shipping_method_id': controller.shippingID.value,
                                               'product_type': 'product',
                                               'checked': true,
                                             };

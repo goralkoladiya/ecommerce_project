@@ -51,7 +51,7 @@ class ProductModel {
       this.giftCardDescription,
       this.giftCardGalleryImages});
 
-  dynamic id;
+  int id;
   dynamic userId;
   dynamic productId;
   dynamic tax;
@@ -64,9 +64,9 @@ class ProductModel {
   String slug;
   dynamic thumImg;
   dynamic status;
-  dynamic stockManage;
+  String stockManage;
   dynamic isApproved;
-  dynamic minSellPrice;
+  String minSellPrice;
   dynamic maxSellPrice;
   dynamic totalSale;
   dynamic avgRating;

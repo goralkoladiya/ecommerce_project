@@ -1,8 +1,8 @@
 class AllState {
   int id;
   String name;
-  int countryId;
-  int status;
+  dynamic countryId;
+  dynamic status;
   dynamic createdAt;
   dynamic updatedAt;
 

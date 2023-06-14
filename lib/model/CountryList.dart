@@ -3,7 +3,7 @@ class Country {
   String code;
   String name;
   String phonecode;
-  int status;
+  dynamic status;
   dynamic createdAt;
   dynamic updatedAt;
 

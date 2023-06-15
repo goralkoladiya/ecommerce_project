@@ -235,12 +235,12 @@ class _HomeState extends State<Home> {
                                     } else if (slider.dataType ==
                                         SliderDataType.CATEGORY) {
                                       Get.to(() => ProductsByCategory(
-                                        categoryId: slider.dataId,
+                                        categoryId: int.parse(slider.dataId),
                                       ));
                                     } else if (slider.dataType ==
                                         SliderDataType.BRAND) {
                                       Get.to(() => ProductsByBrands(
-                                        brandId: slider.dataId,
+                                        brandId: int.parse(slider.dataId),
                                       ));
                                     } else if (slider.dataType ==
                                         SliderDataType.TAG) {

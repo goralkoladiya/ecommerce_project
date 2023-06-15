@@ -652,8 +652,7 @@ class _CategoryFilterDrawerState extends State<CategoryFilterDrawer> {
 
                         setState(() {});
 
-                        controller
-                            .dataFilterCat.value.filterDataFromCat.filterType
+                        controller.dataFilterCat.value.filterDataFromCat.filterType
                             .forEach((element) {
                           if (element.filterTypeId == 'price_range') {
                             element.filterTypeValue.clear();

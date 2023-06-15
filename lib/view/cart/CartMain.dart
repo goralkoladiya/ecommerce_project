@@ -72,9 +72,11 @@ class _CartMainState extends State<CartMain> {
 
   double totalPrice() {
     var count = 0.0;
+
     cartController.cartListModel.value.carts.forEach((key, value) {
       value.forEach((element) {
         if (element.isSelect == 1) {
+          print("element.totalPrice : ${element.totalPrice}");
           count += element.totalPrice * currencyController.conversionRate.value;
         }
       });
@@ -445,10 +447,7 @@ class _CartMainState extends State<CartMain> {
                                                                           .productType ==
                                                                       ProductType
                                                                           .PRODUCT
-                                                                  ? cartItems[prodIndex]
-                                                                              .product
-                                                                              .product
-                                                                              .avgRating >
+                                                                  ? double.parse(cartItems[prodIndex].product.product.avgRating )>
                                                                           0
                                                                       ? StarCounterWidget(
                                                                           value: cartItems[prodIndex]
@@ -504,7 +503,7 @@ class _CartMainState extends State<CartMain> {
                                                                             .productType ==
                                                                         ProductType
                                                                             .PRODUCT
-                                                                    ? cartItems[prodIndex].product.product.avgRating >
+                                                                    ? double.parse(cartItems[prodIndex].product.product.avgRating )>
                                                                             0
                                                                         ? Text(
                                                                             '(${cartItems[prodIndex].product.product.avgRating.toString()})',
@@ -559,14 +558,9 @@ class _CartMainState extends State<CartMain> {
                                                             runSpacing: 5,
                                                             children: [
                                                               Text(
-                                                                currencyController
-                                                                        .appCurrency
-                                                                        .value +
-                                                                    (cartItems[prodIndex].totalPrice *
-                                                                            currencyController
-                                                                                .conversionRate.value)
-                                                                        .toStringAsFixed(
-                                                                            2),
+                                                                currencyController.appCurrency.value +
+                                                                    (double.parse(cartItems[prodIndex].totalPrice )*
+                                                                            currencyController.conversionRate.value).toStringAsFixed(2),
                                                                 style: AppStyles
                                                                     .appFontBold
                                                                     .copyWith(

@@ -634,7 +634,7 @@ class HomePageSlider {
   int id;
   String name;
   SliderDataType dataType;
-  dynamic dataId;
+  String dataId;
   String sliderImage;
   dynamic position;
   CategoryBrand category;

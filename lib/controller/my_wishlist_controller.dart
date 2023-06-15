@@ -37,6 +37,7 @@ class MyWishListController extends GetxController {
     );
     
     var jsonString = jsonDecode(response.body);
+    print("responseprint==$jsonString");
     if (jsonString['message'] == 'success') {
       return MyWishListModel.fromJson(jsonString);
     } else {

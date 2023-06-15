@@ -70,9 +70,13 @@ class ProductModel {
   dynamic maxSellPrice;
   dynamic totalSale;
   dynamic avgRating;
+  // dynamic maxSellingPrice;
+  // double maxSellingPrice;
   dynamic maxSellingPrice;
   dynamic rating;
   HasDeal hasDeal;
+  // String hasDiscount;
+  // String hasDiscount;
   dynamic hasDiscount;
   Product product;
   List<Skus> skus;
@@ -81,7 +85,9 @@ class ProductModel {
   HasDeal flashDeal;
   SellerData seller;
   ProductType productType;
+  // dynamic giftCardSellingPrice;
   dynamic giftCardSellingPrice;
+  // double giftCardSellingPrice;
   String giftCardThumbnailImage;
   DateTime giftCardStartDate;
   DateTime giftCardEndDate;

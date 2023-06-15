@@ -172,6 +172,13 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                       : Container()
                                   : widget.productModel.discountStartDate != null &&
                                           currencyController.endDate.millisecondsSinceEpoch < DateTime.now().millisecondsSinceEpoch
+                                  || widget.productModel.discountStartDate !=
+                                              null &&
+                                              // null &&  // this & sign giving error
+                                          currencyController.endDate
+                                                  .millisecondsSinceEpoch <
+                                              DateTime.now()
+                                                  .millisecondsSinceEpoch
                                       ? Container()
                                       : widget.productModel.discount != "0"
                                           ? Container(

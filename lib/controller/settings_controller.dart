@@ -514,9 +514,10 @@ class GeneralSettingsController extends GetxController {
         amountText = double.parse((productModel.maxSellingPrice * conversionRate.value).toString()).toStringAsFixed(2) +
             appCurrency.value;
       } else {
-        amountText = double.parse((productModel.minSellPrice * conversionRate.value).toString()).toStringAsFixed(2) +
+        double conversion= conversionRate.value;
+        amountText = double.parse((productModel.minSellPrice * conversion.toInt()).toString()).toStringAsFixed(2) +
             appCurrency.value + ' - ' +
-            double.parse((productModel.maxSellingPrice * conversionRate.value).toString()).toStringAsFixed(2) + appCurrency.value;
+            double.parse((productModel.maxSellingPrice * conversion).toString()).toStringAsFixed(2) + appCurrency.value;
       }
     } else {
       amountText = '';

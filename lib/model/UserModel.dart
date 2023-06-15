@@ -155,7 +155,7 @@ class CustomerAddress {
   });
 
   int id;
-  int customerId;
+  String customerId;
   String name;
   String email;
   String phone;

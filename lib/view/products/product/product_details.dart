@@ -208,10 +208,12 @@ class _ProductDetailsState extends State<ProductDetails> {
             '(-${(productModel.hasDeal.discount * _settingsController.conversionRate.value).toStringAsFixed(2)}${_settingsController.appCurrency.value})';
       }
     } else {
-      if (productModel.discount > 0) {
+      if (int.parse(productModel.discount) > 0) {
         if (productModel.discountType == '0') {
-          discountType = '(-${productModel.discount.toStringAsFixed(2)}%)';
+          discountType = '(-${productModel.discount.toString()}%)';
         } else {
+          print("productModel.discount : ${productModel.discount}");
+          print("_settingsController.conversionRate.value : ${_settingsController.conversionRate.value}");
           discountType =
               '(-${(productModel.discount * _settingsController.conversionRate.value).toStringAsFixed(2)}${_settingsController.appCurrency.value})';
         }
@@ -817,9 +819,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
+                                          // Text("${controller.finalPrice.value}"),
                                           Obx(() {
                                             return Text(
-                                              '${double.parse((controller.finalPrice.value * _settingsController.conversionRate.value).toStringAsFixed(2))}${_settingsController.appCurrency.value}',
+                                              '${double.parse((controller.finalPrice.value * _settingsController.conversionRate.value).toString())}${_settingsController.appCurrency.value}',
                                               style: AppStyles.appFontBold
                                                   .copyWith(
                                                 height: 1,
@@ -852,9 +855,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 width: 5,
                                               ),
                                               Text(
-                                                getDiscountType(
-                                                    _productDetailsModel
-                                                        .data),
+                                                getDiscountType(_productDetailsModel.data),
                                                 textHeightBehavior:
                                                 ui.TextHeightBehavior(
                                                   applyHeightToFirstAscent:
@@ -1161,10 +1162,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 buttonValues: variant.attrValId,
                                                 radioButtonValue:
                                                     (value, index) async {
-                                                  addValueToMap(
-                                                      getSKU,
-                                                      'id[$variantIndex]',
-                                                      '$value-${variant.attrId}');
+                                                  addValueToMap(getSKU, 'id[$variantIndex]', '$value-${variant.attrId}');
                                                   Map data = {
                                                     'product_id': controller
                                                         .products.value.data.id,

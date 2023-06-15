@@ -151,6 +151,7 @@ class _AddToCartGiftCardState extends State<AddToCartGiftCard> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
+                                        // Text("${productPrice.toString()}"),
                                         Obx(() {
                                           return Text(
                                             '${(double.parse((giftCardController.finalPrice.value * currencyController.conversionRate.value).toString()).toPrecision(2))}${currencyController.appCurrency.value}',

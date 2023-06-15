@@ -173,7 +173,7 @@ class CheckoutController extends GetxController {
     var qty = 0;
     checkoutModel.value.packages.forEach((key, value) {
       value.items.forEach((value2) {
-        qty += value2.qty;
+        qty += int.parse(value2.qty);
       });
     });
     totalQty.value = qty;
@@ -187,9 +187,9 @@ class CheckoutController extends GetxController {
       value.items.forEach((value2) {
         if (value2.productType == ProductType.PRODUCT) {
           productIds.add(value2);
-          sub += value2.product.sellingPrice * value2.qty;
+          sub += double.parse(value2.product.sellingPrice) * int.parse(value2.qty);
         } else {
-          sub += value2.giftCard.sellingPrice * value2.qty;
+          sub += double.parse(value2.giftCard.sellingPrice.toString()) * int.parse(value2.qty);
         }
       });
     });
@@ -210,15 +210,15 @@ class CheckoutController extends GetxController {
             if (selectedShipping[i].costBasedOn == 'Price') {
               if (itemEl.price > 0) {
                 totalShipping = (itemEl.price / 100) * selectedShipping[i].cost;
-                additionalCost += itemEl.product.sku.additionalShipping;
+                additionalCost += double.parse(itemEl.product.sku.additionalShipping);
               }
             } else if (value.shipping.first.costBasedOn == 'Weight') {
               totalShipping = (double.parse(itemEl.product.sku.weight) / 100) *
-                  selectedShipping[i].cost;
-              additionalCost += itemEl.product.sku.additionalShipping;
+                  double.parse(selectedShipping[i].cost);
+              additionalCost += double.parse(itemEl.product.sku.additionalShipping);
             } else {
-              totalShipping = selectedShipping[i].cost;
-              additionalCost += itemEl.product.sku.additionalShipping;
+              totalShipping = double.parse(selectedShipping[i].cost);
+              additionalCost += double.parse(itemEl.product.sku.additionalShipping);
             }
           }
         });
@@ -258,45 +258,45 @@ class CheckoutController extends GetxController {
           if (element.productType == ProductType.PRODUCT) {
             if (element.product.product.hasDeal != null) {
               if (element.product.product.hasDeal.discountType == 0) {
-                dis += (element.product.sellingPrice.toDouble() -
-                        (element.product.sellingPrice.toDouble() -
+                dis += (double.parse(element.product.sellingPrice) -
+                        (double.parse(element.product.sellingPrice) -
                             ((element.product.product.hasDeal.discount
                                         .toDouble() /
                                     100) *
                                 element.product.sellingPrice.toDouble()))) *
-                    element.qty;
+                    int.parse(element.qty);
               } else {
-                dis += (element.product.sellingPrice.toDouble() -
-                        (element.product.sellingPrice.toDouble() -
+                dis += (double.parse(element.product.sellingPrice) -
+                        (double.parse(element.product.sellingPrice) -
                             element.product.product.hasDeal.discount
                                 .toDouble())) *
-                    element.qty;
+                    int.parse(element.qty);
               }
             } else {
               if (element.product.product.hasDiscount == 'yes') {
                 if (element.product.product.discountType == "0") {
                   dis += ((double.parse(element.product.product.discount) / 100) *
-                          element.product.sellingPrice) *
-                      element.qty;
+                          double.parse(element.product.sellingPrice)) *
+                      int.parse(element.qty);
                 } else {
-                  dis += double.parse(element.product.product.discount) * element.qty;
+                  dis += double.parse(element.product.product.discount) * int.parse(element.qty);
                 }
               } else {
-                dis += 0 * element.qty;
+                dis += 0 * int.parse(element.qty);
               }
             }
           } else {
             if (element.giftCard.endDate.millisecondsSinceEpoch <
                 DateTime.now().millisecondsSinceEpoch) {
-              dis += 0 * element.qty;
+              dis += 0 * int.parse(element.qty);
             } else {
               if (element.giftCard.discountType == "0" ||
                   element.giftCard.discountType == 0) {
                 dis += ((element.giftCard.discount / 100) *
                         element.giftCard.sellingPrice) *
-                    element.qty;
+                    int.parse(element.qty);
               } else {
-                dis += element.giftCard.discount * element.qty;
+                dis += element.giftCard.discount * int.parse(element.qty);
               }
             }
           }
@@ -318,7 +318,7 @@ class CheckoutController extends GetxController {
               tax +=
                   (((element.product.product.tax / 100) * element.totalPrice));
             } else {
-              tax += (element.product.product.tax * element.qty);
+              tax += (element.product.product.tax * int.parse(element.qty));
             }
           }
         }
@@ -346,7 +346,7 @@ class CheckoutController extends GetxController {
                   });
                 } else {
                   checkoutModel.value.differantStateGstList.forEach((diffGST) {
-                    gst += (element.totalPrice * diffGST.taxPercentage) / 100;
+                    gst += (double.parse(element.totalPrice) * double.parse(diffGST.taxPercentage)) / 100;
                   });
                 }
               } else {
@@ -489,7 +489,7 @@ class CheckoutController extends GetxController {
           });
         }
 
-        tot += (element.price) * element.qty;
+        tot += double.parse(element.price) * int.parse(element.qty);
       });
     });
     sub.value = tot;

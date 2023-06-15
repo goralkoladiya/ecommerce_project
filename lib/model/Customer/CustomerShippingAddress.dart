@@ -15,7 +15,7 @@ class CustomerShippingAddress {
   });
 
   int id;
-  int customerId;
+  String customerId;
   String name;
   String email;
   String phone;
@@ -24,8 +24,8 @@ class CustomerShippingAddress {
   String state;
   String country;
   String postalCode;
-  int isShippingDefault;
-  int isBillingDefault;
+  String isShippingDefault;
+  String isBillingDefault;
 
   factory CustomerShippingAddress.fromJson(Map<String, dynamic> json) =>
       CustomerShippingAddress(

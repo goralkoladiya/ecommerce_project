@@ -1062,17 +1062,17 @@ class _ShippingDropDownState extends State<ShippingDropDown> {
 
     if (widget.shippingValue.costBasedOn == 'Price') {
       if (widget.price > 0) {
-        shippingCost2 = (widget.price / 100) * widget.shippingValue.cost +
+        shippingCost2 = (widget.price / 100) * double.parse( widget.shippingValue.cost) +
             additionalShipping;
       }
     } else if (widget.shippingValue.costBasedOn == 'Weight') {
       if (widget.totalWeight > 0) {
-        shippingCost2 = (widget.totalWeight / 100) * widget.shippingValue.cost +
+        shippingCost2 = (widget.totalWeight / 100) * double.parse(widget.shippingValue.cost )+
             additionalShipping;
       }
     } else {
-      if (widget.shippingValue.cost > 0) {
-        shippingCost2 = widget.shippingValue.cost + additionalShipping;
+      if (double.parse(widget.shippingValue.cost ) > 0) {
+        shippingCost2 = double.parse(widget.shippingValue.cost ) + additionalShipping;
       }
     }
 
@@ -1127,16 +1127,16 @@ class _ShippingDropDownState extends State<ShippingDropDown> {
           if (e.costBasedOn == 'Price') {
             if (widget.price > 0) {
               shippingCost =
-                  ((widget.price / 100) * e.cost) + additionalShipping;
+                  ((widget.price / 100) * double.parse(e.cost)) + additionalShipping;
             }
           } else if (e.costBasedOn == 'Weight') {
             if (widget.totalWeight > 0) {
               shippingCost =
-                  ((widget.totalWeight / 100) * e.cost) + additionalShipping;
+                  ((widget.totalWeight / 100) * double.parse(e.cost)) + additionalShipping;
             }
           } else {
-            if (e.cost > 0) {
-              shippingCost = e.cost + additionalShipping;
+            if (double.parse(e.cost) > 0) {
+              shippingCost = double.parse(e.cost) + additionalShipping;
             }
           }
 
@@ -1174,7 +1174,7 @@ class _ShippingDropDownState extends State<ShippingDropDown> {
                       ? Container(
                           margin: EdgeInsets.only(top: 5),
                           child: Text(
-                            "Minimum shopping amount (without shipping cost): ${double.parse("${e.minimumShopping * currencyController.conversionRate.value}").toStringAsFixed(2)}${currencyController.appCurrency.value}",
+                            "Minimum shopping amount (without shipping cost): ${double.parse("${double.parse(e.minimumShopping) * currencyController.conversionRate.value}").toStringAsFixed(2)}${currencyController.appCurrency.value}",
                             style:
                                 AppStyles.kFontBlack14w5.copyWith(fontSize: 12),
                           ),
@@ -1188,7 +1188,7 @@ class _ShippingDropDownState extends State<ShippingDropDown> {
         }).toList(),
         onChanged: (Shipping value) {
           if (currencyController.vendorType.value == "single") {
-            if (!(value.minimumShopping >= checkoutController.subTotal.value)) {
+            if (!(double.parse(value.minimumShopping) >= checkoutController.subTotal.value)) {
               setState(() {
                 widget.shippingValue = value;
 
@@ -1200,19 +1200,19 @@ class _ShippingDropDownState extends State<ShippingDropDown> {
                 if (widget.shippingValue.costBasedOn == 'Price') {
                   if (widget.price > 0) {
                     shippingCost =
-                        (widget.price / 100) * widget.shippingValue.cost +
+                        (widget.price / 100) * double.parse( widget.shippingValue.cost) +
                             additionalShipping;
                   }
                 } else if (widget.shippingValue.costBasedOn == 'Weight') {
                   if (widget.totalWeight > 0) {
                     shippingCost =
-                        (widget.totalWeight / 100) * widget.shippingValue.cost +
+                        (widget.totalWeight / 100) * double.parse( widget.shippingValue.cost) +
                             additionalShipping;
                   }
                 } else {
-                  if (widget.shippingValue.cost > 0) {
+                  if (double.parse( widget.shippingValue.cost) > 0) {
                     shippingCost =
-                        widget.shippingValue.cost + additionalShipping;
+                        double.parse( widget.shippingValue.cost) + additionalShipping;
                   }
                 }
 
@@ -1263,18 +1263,18 @@ class _ShippingDropDownState extends State<ShippingDropDown> {
               if (widget.shippingValue.costBasedOn == 'Price') {
                 if (widget.price > 0) {
                   shippingCost =
-                      (widget.price / 100) * widget.shippingValue.cost +
+                      (widget.price / 100) * double.parse( widget.shippingValue.cost)+
                           additionalShipping;
                 }
               } else if (widget.shippingValue.costBasedOn == 'Weight') {
                 if (widget.totalWeight > 0) {
                   shippingCost =
-                      (widget.totalWeight / 100) * widget.shippingValue.cost +
+                      (widget.totalWeight / 100) * double.parse(widget.shippingValue.cost) +
                           additionalShipping;
                 }
               } else {
-                if (widget.shippingValue.cost > 0) {
-                  shippingCost = widget.shippingValue.cost + additionalShipping;
+                if (double.parse( widget.shippingValue.cost) > 0) {
+                  shippingCost = double.parse(widget.shippingValue.cost) + additionalShipping;
                 }
               }
 

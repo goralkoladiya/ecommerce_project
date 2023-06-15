@@ -233,14 +233,10 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                                     currencyController.vendorType.value == "single"
                                         ? RadioGroup<String>.builder(
                                             direction: Axis.horizontal,
-                                            horizontalAlignment:
-                                                MainAxisAlignment.start,
-                                            groupValue: _checkoutController
-                                                .verticalGroupValue.value,
+                                            horizontalAlignment: MainAxisAlignment.start,
+                                            groupValue: _checkoutController.verticalGroupValue.value,
                                             onChanged: (value) => setState(() {
-                                              _checkoutController
-                                                  .verticalGroupValue
-                                                  .value = value;
+                                              _checkoutController.verticalGroupValue.value = value;
 
                                               if (_checkoutController
                                                       .verticalGroupValue
@@ -381,22 +377,11 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                                                             (PickupLocation
                                                                 value) {
                                                           setState(() {
-                                                            _checkoutController
-                                                                .selectedPickupValue
-                                                                .value = value;
+                                                            _checkoutController.selectedPickupValue.value = value;
                                                           });
 
-                                                          _checkoutController
-                                                                  .deliveryType
-                                                                  .value =
-                                                              "pickup_location";
-                                                          _checkoutController
-                                                                  .pickupId
-                                                                  .value =
-                                                              _checkoutController
-                                                                  .selectedPickupValue
-                                                                  .value
-                                                                  .id;
+                                                          _checkoutController.deliveryType.value = "pickup_location";
+                                                          _checkoutController.pickupId.value = _checkoutController.selectedPickupValue.value.id;
                                                         },
                                                       )),
                                                   SizedBox(
@@ -633,8 +618,7 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                                               ),
                                             ],
                                           )
-                                        : _checkoutController
-                                                    .verticalGroupValue.value ==
+                                        : _checkoutController.verticalGroupValue.value ==
                                                 "Home Delivery"
                                             ? ListTile(
                                                 contentPadding: EdgeInsets.zero,
@@ -656,10 +640,8 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                                                   ),
                                                 ),
                                                 subtitle: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.start,
                                                   children: [
                                                     Image.asset(
                                                       'assets/images/location_ico.png',
@@ -678,7 +660,7 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                                                                 .start,
                                                         children: [
                                                           Text(
-                                                            _addressController.shippingAddress.value.name.capitalizeFirst,
+                                                            _addressController.shippingAddress.value.name.capitalizeFirst ?? "Please Provide Your Address",
                                                             style: AppStyles.kFontBlack14w5.copyWith(
                                                               fontWeight: FontWeight.w600,),
                                                           ),
@@ -759,62 +741,35 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Container(
-                                                      padding:
-                                                          EdgeInsets.all(2),
+                                                      padding: EdgeInsets.all(2),
                                                       child: Image.asset(
                                                         'assets/images/icon_delivery-parcel.png',
-                                                        color: AppStyles
-                                                            .darkBlueColor,
-                                                        width: 15,
-                                                        height: 15,
+                                                        color: AppStyles.darkBlueColor,
+                                                        width: 15, height: 15,
                                                       ),
                                                     ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizedBox(width: 5,),
                                                     Flexible(
                                                       child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          Text(
-                                                            _addressController
-                                                                .billingAddress
-                                                                .value
-                                                                .name
-                                                                .capitalizeFirst,
-                                                            style: AppStyles
-                                                                .kFontBlack14w5
-                                                                .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
+                                                          Text(_addressController.billingAddress.value.name.capitalizeFirst ?? "Please Provide Address",
+                                                            style: AppStyles.kFontBlack14w5.copyWith(
+                                                              fontWeight: FontWeight.bold,
                                                             ),
                                                           ),
                                                           SizedBox(height: 8),
                                                           RichText(
                                                             text: TextSpan(
-                                                              text:
-                                                                  'Address'.tr +
-                                                                      ': ',
-                                                              style: AppStyles
-                                                                  .kFontGrey14w5
-                                                                  .copyWith(
-                                                                color: AppStyles
-                                                                    .darkBlueColor,
+                                                              text: 'Address'.tr + ': ',
+                                                              style: AppStyles.kFontGrey14w5.copyWith(
+                                                                color: AppStyles.darkBlueColor,
                                                                 fontSize: 13,
                                                               ),
-                                                              children: <
-                                                                  TextSpan>[
+                                                              children: <TextSpan>[
                                                                 TextSpan(
-                                                                  text:
-                                                                      '${_addressController.billingAddress.value.address}',
-                                                                  style: AppStyles
-                                                                      .kFontGrey14w5
-                                                                      .copyWith(
-                                                                    fontSize:
-                                                                        13,
+                                                                  text: '${_addressController.billingAddress.value.address}',
+                                                                  style: AppStyles.kFontGrey14w5.copyWith(fontSize: 13,
                                                                   ),
                                                                 ),
                                                               ],
@@ -886,8 +841,7 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                                       ),
                                       height: 45,
                                       width: Get.width,
-                                      child: _addressController
-                                              .countryLoading.value
+                                      child: _addressController.countryLoading.value
                                           ? CupertinoActivityIndicator()
                                           : DropdownButton<Country>(
                                               elevation: 1,

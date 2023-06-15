@@ -272,22 +272,12 @@ class AddressBook extends StatelessWidget {
                                               )
                                             : GestureDetector(
                                                 onTap: () async {
-                                                  await controller
-                                                      .setDefaultBilling(
-                                                          controller
-                                                              .address
-                                                              .value
-                                                              .addresses[index]
-                                                              .id)
-                                                      .then((value) {
+                                                  await controller.setDefaultBilling(
+                                                          controller.address.value.addresses[index].id).then((value) {
                                                     if (value) {
-                                                      SnackBars().snackBarSuccess(
-                                                          'Set to default billing address'
-                                                              .tr);
+                                                      SnackBars().snackBarSuccess('Set to default billing address'.tr);
                                                     } else {
-                                                      SnackBars().snackBarError(
-                                                          'Address not found'
-                                                              .tr);
+                                                      SnackBars().snackBarError('Address not found'.tr);
                                                     }
                                                   });
                                                 },
@@ -352,22 +342,12 @@ class AddressBook extends StatelessWidget {
                                               )
                                             : GestureDetector(
                                                 onTap: () async {
-                                                  await controller
-                                                      .setDefaultShipping(
-                                                          controller
-                                                              .address
-                                                              .value
-                                                              .addresses[index]
-                                                              .id)
-                                                      .then((value) {
+                                                  await controller.setDefaultShipping(controller.address.value.addresses[index].id).then((value) {
                                                     if (value) {
-                                                      SnackBars().snackBarSuccess(
-                                                          'Set to default Shipping address'
-                                                              .tr);
+                                                      print(value);
+                                                      SnackBars().snackBarSuccess('Set to default Shipping address'.tr);
                                                     } else {
-                                                      SnackBars().snackBarError(
-                                                          'Address not found'
-                                                              .tr);
+                                                      SnackBars().snackBarError('Address not found'.tr);
                                                     }
                                                   });
                                                 },
@@ -375,12 +355,9 @@ class AddressBook extends StatelessWidget {
                                                   padding: EdgeInsets.all(5),
                                                   decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  20)),
+                                                          BorderRadius.all(Radius.circular(20)),
                                                       border: Border.all(
-                                                          color: AppStyles
-                                                              .pinkColor)),
+                                                          color: AppStyles.pinkColor)),
                                                   child: Text(
                                                     'Set Default Shipping'.tr,
                                                     textAlign: TextAlign.center,

@@ -22,7 +22,7 @@ class FlatGst {
   factory FlatGst.fromJson(Map<String, dynamic> json) => FlatGst(
         id: json["id"],
         name: json["name"],
-        taxPercentage: json["tax_percentage"].toDouble(),
+        taxPercentage: json["tax_percentage"],
         isActive: json["is_active"],
         createdBy: json["created_by"],
         updatedBy: json["updated_by"] == null ? null : json["updated_by"],

@@ -30,6 +30,11 @@ class CustomerAddress {
         "addresses": List<dynamic>.from(addresses.map((x) => x.toJson())),
         "message": message,
       };
+
+  @override
+  String toString() {
+    return 'CustomerAddress{addresses: $addresses, message: $message}';
+  }
 }
 
 class Address {
@@ -116,6 +121,11 @@ class Address {
         "get_state": getState.toJson(),
         "get_city": getCity.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'Address{id: $id, customerId: $customerId, name: $name, email: $email, phone: $phone, address: $address, city: $city, state: $state, country: $country, postalCode: $postalCode, isShippingDefault: $isShippingDefault, isBillingDefault: $isBillingDefault, createdAt: $createdAt, updatedAt: $updatedAt, getCountry: $getCountry, getState: $getState, getCity: $getCity}';
+  }
 }
 
 class GetStateOrCity {
@@ -156,6 +166,11 @@ class GetStateOrCity {
         "updated_at": updatedAt,
         "country_id": countryId == null ? null : countryId,
       };
+
+  @override
+  String toString() {
+    return 'GetStateOrCity{id: $id, name: $name, stateId: $stateId, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, countryId: $countryId}';
+  }
 }
 
 class GetCountry {
@@ -196,4 +211,9 @@ class GetCountry {
         "created_at": createdAt,
         "updated_at": updatedAt,
       };
+
+  @override
+  String toString() {
+    return 'GetCountry{id: $id, code: $code, name: $name, phonecode: $phonecode, status: $status, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }

@@ -44,7 +44,7 @@ class Gateway {
   int id;
   String method;
   String type;
-  int activeStatus;
+  String activeStatus;
   int moduleStatus;
   String logo;
   int createdBy;

@@ -51,16 +51,16 @@ class Shipping {
 
   int id;
   String methodName;
-  int carrierId;
+  String carrierId;
   String costBasedOn;
   dynamic logo;
   String phone;
   String shipmentTime;
-  double cost;
-  double minimumShopping;
-  int isActive;
-  int requestByUser;
-  int isApproved;
+  String cost;
+  String minimumShopping;
+  String isActive;
+  String requestByUser;
+  String isApproved;
   Carrier carrier;
 
   factory Shipping.fromJson(Map<String, dynamic> json) => Shipping(
@@ -71,8 +71,8 @@ class Shipping {
         logo: json["logo"],
         phone: json["phone"] == null ? null : json["phone"],
         shipmentTime: json["shipment_time"],
-        cost: json["cost"].toDouble(),
-        minimumShopping: json["minimum_shopping"].toDouble(),
+        cost: json["cost"],
+        minimumShopping: json["minimum_shopping"],
         isActive: json["is_active"],
         requestByUser: json["request_by_user"],
         isApproved: json["is_approved"],
@@ -113,7 +113,7 @@ class Carrier {
   String type;
   String slug;
   dynamic trackingUrl;
-  int status;
+  String status;
 
   factory Carrier.fromJson(Map<String, dynamic> json) => Carrier(
         id: json["id"],

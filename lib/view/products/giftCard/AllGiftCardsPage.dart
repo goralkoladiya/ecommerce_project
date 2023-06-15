@@ -64,7 +64,7 @@ class _AllGiftCardPageState extends State<AllGiftCardPage> {
     } else {
       if (prod.discountType == 0) {
         priceText = ((prod.giftCardSellingPrice -
-                    ((prod.discount / 100) * prod.giftCardSellingPrice)) *
+                    ((double.parse(prod.discount) / 100) * prod.giftCardSellingPrice)) *
                 currencyController.conversionRate.value)
             .toString();
       } else {
@@ -79,7 +79,7 @@ class _AllGiftCardPageState extends State<AllGiftCardPage> {
   String calculateMainPrice(ProductModel productModel) {
     String amountText;
 
-    if (productModel.discount > 0) {
+    if (double.parse(productModel.discount) > 0) {
       amountText = (productModel.giftCardSellingPrice *
               currencyController.conversionRate.value)
           .toString();

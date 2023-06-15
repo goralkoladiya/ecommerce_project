@@ -74,4 +74,9 @@ class Review {
         "updated_at": createdAt == null ? null : updatedAt.toIso8601String(),
         "customer": customer == null ? null : customer.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'Review{id: $id, customerId: $customerId, sellerId: $sellerId, productId: $productId, orderId: $orderId, packageId: $packageId, type: $type, review: $review, rating: $rating, isAnonymous: $isAnonymous, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, customer: $customer}';
+  }
 }

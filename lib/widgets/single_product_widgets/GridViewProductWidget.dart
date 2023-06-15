@@ -42,7 +42,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
       if (widget.productModel.discountType == 0 ||
           widget.productModel.discountType == "0") {
         productPrice = (widget.productModel.giftCardSellingPrice -
-            ((widget.productModel.discount / 100) *
+            ((double.parse(widget.productModel.discount)/ 100) *
                 widget.productModel.giftCardSellingPrice));
       } else {
         productPrice = (widget.productModel.giftCardSellingPrice -
@@ -131,7 +131,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                         widget.productModel.discountType == "0" ||
                                                 widget.productModel.discountType == 0
                                             ? '-${widget.productModel.discount.toString()}% '
-                                            : '${(widget.productModel.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
+                                            : '${(double.parse(widget.productModel.discount) * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                                         textAlign: TextAlign.center,
                                         style: AppStyles.appFontBook.copyWith(
                                           color: Colors.white,

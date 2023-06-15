@@ -595,7 +595,7 @@ class GeneralSettingsController extends GetxController {
 
           } else {
             priceA = singlePrice(double.parse(prod.skus.first.sellingPrice)).toStringAsFixed(2);
-            priceB = singlePrice(prod.skus.last.sellingPrice).toStringAsFixed(2);
+            priceB = singlePrice(double.parse(prod.skus.last.sellingPrice)).toStringAsFixed(2);
 
             print("priceText19:: $priceA");
             print("priceText20:: $priceB");

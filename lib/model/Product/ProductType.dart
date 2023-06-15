@@ -20,4 +20,5 @@ class EnumValues<T> {
   String toString() {
     return 'EnumValues{map: $map, reverseMap: $reverseMap}';
   }
+
 }

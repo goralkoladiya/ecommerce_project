@@ -143,7 +143,7 @@ class _HorizontalProductWidgetState extends State<HorizontalProductWidget> {
                                                           .discountType ==
                                                       0
                                               ? '-${widget.productModel.discount.toString()}% '
-                                              : '${(widget.productModel.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
+                                              : '${(double.parse(widget.productModel.discount) * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                                           textAlign: TextAlign.center,
                                           style: AppStyles.appFontBook.copyWith(
                                             color: Colors.white,

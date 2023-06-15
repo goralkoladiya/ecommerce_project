@@ -29,4 +29,9 @@ class ProductVariantDetail {
         "name": name,
         "attr_id": attrId,
       };
+
+  @override
+  String toString() {
+    return 'ProductVariantDetail{value: $value, code: $code, attrValId: $attrValId, name: $name, attrId: $attrId}';
+  }
 }

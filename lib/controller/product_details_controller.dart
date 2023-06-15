@@ -36,8 +36,8 @@ class ProductDetailsController extends GetxController {
   var finalPrice = 0.0.obs;
   var productPrice = 0.0.obs;
 
-  dynamic discount;
-  dynamic discountType;
+  double discount;
+  String discountType;
 
   var itemQuantity = 1.obs;
 
@@ -100,10 +100,10 @@ class ProductDetailsController extends GetxController {
               DateTime.now().millisecondsSinceEpoch) {
             discount = 0;
           } else {
-            discount = products.value.data.discount;
+            discount = double.parse(products.value.data.discount);
           }
         } else {
-          discount = products.value.data.discount;
+          discount = double.parse(products.value.data.discount);
         }
         discountType = products.value.data.discountType;
         minOrder.value = products.value.data.product.minimumOrderQty;
@@ -119,7 +119,8 @@ class ProductDetailsController extends GetxController {
           visibleSKU.value = products.value.data.product.skus.first;
         }
         productSkuID.value = products.value.data.skus.first.productSkuId;
-      } else {
+      }
+      else {
         products.value = ProductDetailsModel();
       }
       calculatePrice();
@@ -175,7 +176,7 @@ class ProductDetailsController extends GetxController {
         });
       } else {
         final returnData = new Map<String, dynamic>.from(response.data);
-        discount = returnData['data']['product']['discount'];
+        discount = double.parse(returnData['data']['product']['discount']);
         discountType = returnData['data']['product']['discount_type'];
         // visibleSKU.value = ProductSkus.fromJson(returnData['data']['sku']);
         productSKU.value = SkuData.fromJson(returnData['data']);
@@ -193,45 +194,51 @@ class ProductDetailsController extends GetxController {
     }
   }
 
-  void calculatePrice() {
-    if (products.value.data.hasDeal != null) {
+   void calculatePrice() {
+
+     print("Discount : $discount \t ${discount.runtimeType}");
+     // log("Discount : ${products.value}");
+    if (products.value.data.hasDeal != null)
+    {
       if (products.value.data.hasDeal.discountType == 0) {
-        finalPrice.value = products.value.data.skus.first.sellingPrice -
-            ((products.value.data.hasDeal.discount / 100) *
-                products.value.data.skus.first.sellingPrice);
-        productPrice.value = products.value.data.skus.first.sellingPrice -
-            ((products.value.data.hasDeal.discount / 100) *
-                products.value.data.skus.first.sellingPrice);
+        finalPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
+            ((products.value.data.hasDeal.discount / 100) * double.parse(products.value.data.skus.first.sellingPrice));
+        productPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
+            ((products.value.data.hasDeal.discount / 100) * double.parse(products.value.data.skus.first.sellingPrice));
+
+        print("finalPrice.value1 : ${finalPrice.value}");
       } else {
-        finalPrice.value = products.value.data.skus.first.sellingPrice -
+        finalPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
             products.value.data.hasDeal.discount;
-        productPrice.value = products.value.data.skus.first.sellingPrice -
+        productPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
             products.value.data.hasDeal.discount;
+        print("finalPrice.value2 : ${finalPrice.value}");
       }
-    } else {
+    }
+    else {
       if (discount > 0) {
-        ///percentage - type
+        print(finalPrice.value);
         if (discountType == "0" || discountType == 0) {
           ///has variant
           ///
-          finalPrice.value = products.value.data.skus.first.sellingPrice -
-              ((discount / 100) * products.value.data.skus.first.sellingPrice);
-          productPrice.value = products.value.data.skus.first.sellingPrice -
-              ((discount / 100) * products.value.data.skus.first.sellingPrice);
+
+          finalPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
+              ((discount / 100) * double.parse(products.value.data.skus.first.sellingPrice));
+          print(finalPrice.value);
+          productPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
+              ((discount / 100) * double.parse(products.value.data.skus.first.sellingPrice));
+          print("finalPrice.valu3 : ${finalPrice.value}");
         } else {
           ///has variant
-          finalPrice.value =
-              products.value.data.skus.first.sellingPrice - discount;
-          productPrice.value =
-              products.value.data.skus.first.sellingPrice - discount;
+          finalPrice.value = double.parse(products.value.data.skus.first.sellingPrice) - discount;
+          productPrice.value = double.parse(products.value.data.skus.first.sellingPrice) - discount;
+          print("finalPrice.valu4 : ${finalPrice.value}");
         }
       } else {
-        ///
-        ///no discount
-        ///
-        ///has variant
-        finalPrice.value = products.value.data.skus.first.sellingPrice;
-        productPrice.value = products.value.data.skus.first.sellingPrice;
+
+        finalPrice.value = double.parse(products.value.data.skus.first.sellingPrice);
+        productPrice.value = double.parse(products.value.data.skus.first.sellingPrice);
+        print("finalPrice.value4a : ${finalPrice.value}");
       }
     }
   }
@@ -245,11 +252,13 @@ class ProductDetailsController extends GetxController {
         productPrice.value = productSKU.value.sellingPrice -
             ((products.value.data.hasDeal.discount / 100) *
                 productSKU.value.sellingPrice);
+        print("finalPrice.value5 : ${finalPrice.value}");
       } else {
         finalPrice.value = productSKU.value.sellingPrice -
             products.value.data.hasDeal.discount;
         productPrice.value = productSKU.value.sellingPrice -
             products.value.data.hasDeal.discount;
+        print("finalPrice.value6 : ${finalPrice.value}");
       }
     } else {
       if (discount > 0) {
@@ -261,10 +270,12 @@ class ProductDetailsController extends GetxController {
               ((discount / 100) * productSKU.value.sellingPrice);
           productPrice.value = productSKU.value.sellingPrice -
               ((discount / 100) * productSKU.value.sellingPrice);
+          print("finalPrice.value7 : ${finalPrice.value}");
         } else {
           ///has variant
           finalPrice.value = productSKU.value.sellingPrice - discount;
           productPrice.value = productSKU.value.sellingPrice - discount;
+          print("finalPrice.value8 : ${finalPrice.value}");
         }
       } else {
         ///
@@ -273,6 +284,7 @@ class ProductDetailsController extends GetxController {
         ///has variant
         finalPrice.value = productSKU.value.sellingPrice;
         productPrice.value = productSKU.value.sellingPrice;
+        print("finalPrice.value9 : ${finalPrice.value}");
       }
     }
   }
@@ -287,12 +299,14 @@ class ProductDetailsController extends GetxController {
     }
 
     finalPrice.value = productPrice.roundToDouble() * itemQuantity.value;
+    print("finalPrice.value10 : ${finalPrice.value}");
   }
 
   void cartDecrease() {
     if (itemQuantity.value > int.parse(minOrder.value)) {
       itemQuantity.value--;
       finalPrice.value = productPrice * itemQuantity.value;
+      print("finalPrice.value11 : ${finalPrice.value}");
     }
   }
 

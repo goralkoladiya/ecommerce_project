@@ -73,4 +73,9 @@ class CategoryData {
             ? null
             : List<dynamic>.from(subCategories.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    return 'CategoryData{id: $id, name: $name, slug: $slug, parentId: $parentId, depthLevel: $depthLevel, icon: $icon, searchable: $searchable, status: $status, allProducts: $allProducts, categoryImage: $categoryImage, parentCategory: $parentCategory, subCategories: $subCategories}';
+  }
 }

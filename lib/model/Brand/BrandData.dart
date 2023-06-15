@@ -69,4 +69,9 @@ class BrandData {
         "slug": slug,
         "AllProducts": allProducts == null ? null : allProducts.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'BrandData{id: $id, name: $name, logo: $logo, description: $description, link: $link, status: $status, featured: $featured, metaTitle: $metaTitle, metaDescription: $metaDescription, sortId: $sortId, totalSale: $totalSale, avgRating: $avgRating, slug: $slug, allProducts: $allProducts}';
+  }
 }

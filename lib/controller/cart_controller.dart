@@ -41,6 +41,7 @@ class CartController extends GetxController {
       },
     );
     var jsonString = jsonDecode(response.body);
+    print("jsonstring====$jsonString");
     if (jsonString['message'] == 'success') {
       return MyCartModel.fromJson(jsonString);
     } else {
@@ -51,21 +52,25 @@ class CartController extends GetxController {
   }
 
   Future<MyCartModel> getCartList() async {
-    cartItemDelete.clear();
+    // cartItemDelete.clear();
     try {
       isCartLoading(true);
       var cartList = await getCart();
       if (cartList != null) {
         cartListModel.value = cartList;
+        print("cartlist=${cartList.toString()}");
         var count = 0;
         var selectedCount = 0;
         cartListModel.value.carts.values.forEach((element) {
           element.forEach((element) {
             if (element.isSelect == 1) {
               selectedCount += int.parse(element.qty);
+              print("quantity===$selectedCount");
             }
-            count += int.parse(element.qty);
-          });
+            else {
+              count += int.parse(element.qty);
+            }
+            });
         });
         cartListCount.value = 0;
         cartListCount.value = count;

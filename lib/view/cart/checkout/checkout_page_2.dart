@@ -122,14 +122,14 @@ class _CheckoutPageTwoState extends State<CheckoutPageTwo> {
                               .elementAt(index)
                               .items
                               .forEach((element) {
-                            qty += element.qty;
+                            qty += int.parse(element.qty);
                           });
                           _checkoutController
                               .checkoutModel.value.packages.values
                               .elementAt(index)
                               .items
                               .forEach((element) {
-                            price += element.totalPrice;
+                            price += double.parse(element.totalPrice);
                           });
 
                           _checkoutController
@@ -236,7 +236,7 @@ class _CheckoutPageTwoState extends State<CheckoutPageTwo> {
                                           .differantStateGstList
                                           .forEach((diff) {
                                         gst = double.parse(
-                                                ((price * diff.taxPercentage) /
+                                                ((price * double.parse(diff.taxPercentage)) /
                                                         100)
                                                     .toString())
                                             .toPrecision(2);
@@ -1055,7 +1055,7 @@ class _ShippingDropDownState extends State<ShippingDropDown> {
     checkoutController.checkoutModel.value.packages.forEach((key, value) {
       value.items.forEach((CheckoutItem itemEl) {
         if (itemEl.productType == ProductType.PRODUCT) {
-          additionalShipping += itemEl.product.sku.additionalShipping;
+          additionalShipping += double.parse(itemEl.product.sku.additionalShipping);
         }
       });
     });

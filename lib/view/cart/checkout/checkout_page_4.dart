@@ -679,8 +679,7 @@ class _CheckoutPageFourState extends State<CheckoutPageFour> {
                                   child: FadeInImage(
                                     image: NetworkImage(AppConfig.assetPath +
                                         '/' +
-                                        _checkoutController
-                                            .orderData['payment_method_logo']),
+                                        _checkoutController.orderData['payment_method_logo']),
                                     placeholder:
                                         AssetImage("${AppConfig.appBanner}"),
                                     fit: BoxFit.fitWidth,

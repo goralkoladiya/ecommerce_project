@@ -45,10 +45,10 @@ class Gateway {
   String method;
   String type;
   String activeStatus;
-  int moduleStatus;
+  String moduleStatus;
   String logo;
-  int createdBy;
-  int updatedBy;
+  String createdBy;
+  String updatedBy;
   DateTime createdAt;
   DateTime updatedAt;
 

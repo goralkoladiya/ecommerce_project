@@ -151,7 +151,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                           height: 10,
                         ),
                         widget.productModel.hasDeal != null
-                            ? widget.productModel.hasDeal.discount > 0
+                            ? double.parse(widget.productModel.hasDeal.discount.toString()) > 0
                                 ? Wrap(
                                     crossAxisAlignment:
                                         WrapCrossAlignment.center,
@@ -236,7 +236,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              widget.productModel.avgRating > 0
+                              double.parse(widget.productModel.avgRating) > 0
                                   ? StarCounterWidget(
                                       value: widget.productModel.avgRating
                                           .toDouble(),
@@ -251,7 +251,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                               SizedBox(
                                 width: 2,
                               ),
-                              widget.productModel.avgRating > 0
+                              double.parse(widget.productModel.avgRating) > 0
                                   ? Text(
                                       '(${widget.productModel.avgRating.toString()})',
                                       overflow: TextOverflow.ellipsis,
@@ -323,7 +323,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                 top: 5,
                 left: 0,
                 child: widget.productModel.hasDeal != null
-                    ? widget.productModel.hasDeal.discount > 0
+                    ? double.parse( widget.productModel.hasDeal.discount.toString()) > 0
                         ? Container(
                             padding: EdgeInsets.all(4),
                             alignment: Alignment.center,
@@ -348,7 +348,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                             currencyController.endDate.millisecondsSinceEpoch <
                                 DateTime.now().millisecondsSinceEpoch
                         ? Container()
-                        : widget.productModel.discount > 0
+                        : double.parse(widget.productModel.discount) > 0
                             ? Container(
                                 padding: EdgeInsets.all(4),
                                 alignment: Alignment.center,
@@ -360,7 +360,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                                 child: Text(
                                   widget.productModel.discountType == "0"
                                       ? '-${widget.productModel.discount.toString()}% '
-                                      : '${(widget.productModel.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
+                                      : '${(double.parse(widget.productModel.discount) * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                                   textAlign: TextAlign.center,
                                   style: AppStyles.appFontBook.copyWith(
                                     color: Colors.white,
@@ -368,7 +368,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                                   ),
                                 ),
                               )
-                            : Container(),
+                             : Container(),
               ),
       ],
     );

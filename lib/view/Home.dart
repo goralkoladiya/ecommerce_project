@@ -1485,7 +1485,7 @@ class _HomeState extends State<Home> {
                                     },
                                     showDeal: false,
                                   ),
-                                  _homeController.homePageModel.value.topPicks.length!=0 ? Container(
+                                  _homeController.homePageModel.value.topPicks.length!=0?Container(
                                     height: 220,
                                     child: ListView.separated(
                                         itemCount: _homeController.homePageModel.value.topPicks.take(8).length,

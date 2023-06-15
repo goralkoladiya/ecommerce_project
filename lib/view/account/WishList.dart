@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:amazy_app/AppConfig/app_config.dart';
 import 'package:amazy_app/controller/settings_controller.dart';
 import 'package:amazy_app/controller/home_controller.dart';
@@ -400,40 +402,17 @@ class _WishListState extends State<WishList> {
                                                             SizedBox(
                                                               width: 5,
                                                             ),
+
                                                             Text(
-                                                              value[prodIndex]
-                                                                          .type ==
-                                                                      ProductType
-                                                                          .PRODUCT
-                                                                  ? value[prodIndex]
-                                                                              .product
-                                                                              .discount >
-                                                                          0
-                                                                      ? '(' +
-                                                                          'Price dropped'
-                                                                              .tr +
-                                                                          ')'
-                                                                      : ''
-                                                                  : value[prodIndex]
-                                                                              .giftcard
-                                                                              .discount >
-                                                                          0
-                                                                      ? '(' +
-                                                                          'Price dropped'
-                                                                              .tr +
-                                                                          ')'
-                                                                      : '',
+                                                              value[prodIndex].type == ProductType.PRODUCT
+                                                                  ? double.parse(value[prodIndex].product.discount) > 0
+                                                                  ? '(' +
+                                                                          'Price dropped'.tr + ')' : ''
+                                                                  : value[
+                                                                    prodIndex].giftcard.discount > 0
+                                                                  ? '(' + 'Price dropped'.tr + ')' : '',
                                                               style: AppStyles
-                                                                  .appFontMedium
-                                                                  .copyWith(
-                                                                color: Color(
-                                                                    0xff5C7185),
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                            ),
+                                                                  .appFontMedium.copyWith(color: Color(0xff5C7185), fontSize: 14, fontWeight: FontWeight.w500,),),
                                                           ],
                                                         ),
                                                         Text(

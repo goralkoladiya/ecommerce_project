@@ -31,7 +31,7 @@ class HomeController extends GetxController {
           final data = new Map<String, dynamic>.from(value.data);
           // log("data::: ${value.data['sliders']}");
           homePageModel.value = HomePageModel.fromJson(data);
-          homePageModel.value.newUserZone.allProducts.removeWhere((element) => element == null);
+          homePageModel.value.newUserZone.allProducts.removeWhere((element) => element != null);
           print('home top ticked: ${homePageModel.value.topPicks.length}');
           print(
               'home top ticked: ${homePageModel.value.flashDeal.allProducts.length}');

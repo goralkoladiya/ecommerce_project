@@ -62,9 +62,9 @@ class CartController extends GetxController {
         cartListModel.value.carts.values.forEach((element) {
           element.forEach((element) {
             if (element.isSelect == 1) {
-              selectedCount += element.qty;
+              selectedCount += int.parse(element.qty);
             }
-            count += element.qty;
+            count += int.parse(element.qty);
           });
         });
         cartListCount.value = 0;

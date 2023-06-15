@@ -27,7 +27,7 @@ class AllProducts {
   dynamic perPage;
   dynamic prevPageUrl;
   dynamic to;
-  dynamic total;
+  int total;
 
   factory AllProducts.fromJson(Map<String, dynamic> json) => AllProducts(
         currentPage: json["current_page"],
@@ -59,4 +59,9 @@ class AllProducts {
         "to": to,
         "total": total,
       };
+
+  @override
+  String toString() {
+    return 'AllProducts{currentPage: $currentPage, data: $data, firstPageUrl: $firstPageUrl, from: $from, lastPage: $lastPage, lastPageUrl: $lastPageUrl, nextPageUrl: $nextPageUrl, path: $path, perPage: $perPage, prevPageUrl: $prevPageUrl, to: $to, total: $total}';
+  }
 }

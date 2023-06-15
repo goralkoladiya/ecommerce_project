@@ -25,8 +25,8 @@ class SingleCategory {
   List<FilterAttributeElement> attributes;
   FilterColor color;
   List<BrandData> brands;
-  dynamic lowestPrice;
-  dynamic heightPrice;
+  String lowestPrice;
+  String heightPrice;
 
   factory SingleCategory.fromJson(Map<String, dynamic> json) => SingleCategory(
         data: CategoryData.fromJson(json["data"]),

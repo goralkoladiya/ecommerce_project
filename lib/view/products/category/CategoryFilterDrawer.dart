@@ -43,12 +43,11 @@ class _CategoryFilterDrawerState extends State<CategoryFilterDrawer> {
   void initState() {
     controller = Get.put(CategoryController(widget.categoryID));
     if (controller.catAllData.value.lowestPrice != null &&
-        (controller.catAllData.value.lowestPrice <
-            controller.catAllData.value.heightPrice)) {
+        (double.parse(controller.catAllData.value.lowestPrice) < double.parse(controller.catAllData.value.heightPrice))) {
       showRange = true;
 
-      _lowerValue = controller.catAllData.value.lowestPrice.toDouble();
-      _upperValue = controller.catAllData.value.heightPrice.toDouble();
+      _lowerValue = double.parse(controller.catAllData.value.lowestPrice);
+      _upperValue = double.parse(controller.catAllData.value.heightPrice);
 
       print('LOW PRICE $_lowerValue');
       print('HIGH PRICE $_upperValue');
@@ -639,8 +638,8 @@ class _CategoryFilterDrawerState extends State<CategoryFilterDrawer> {
                       hatchMark: FlutterSliderHatchMark(
                         disabled: true,
                       ),
-                      min: controller.catAllData.value.lowestPrice.toDouble(),
-                      max: controller.catAllData.value.heightPrice.toDouble(),
+                      min: double.parse(controller.catAllData.value.lowestPrice),
+                      max: double.parse(controller.catAllData.value.heightPrice),
                       onDragCompleted:
                           (handlerIndex, lowerValue, upperValue) async {
                         print('UPPER $lowerValue LOWER $upperValue');

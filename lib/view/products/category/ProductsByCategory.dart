@@ -42,9 +42,7 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
       Get.put(GeneralSettingsController());
 
   var _scaffoldKey = GlobalKey<ScaffoldState>();
-
   Sorting _selectedSort;
-
   bool filterSelected = false;
 
   Future<void> onRefresh() async {
@@ -55,9 +53,7 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
   }
 
   CategoryProductsLoadMore source;
-
   final ScrollController scrollController = ScrollController();
-
   bool isScrolling = false;
 
   @override
@@ -73,7 +69,6 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
   @override
   void dispose() {
     source.dispose();
-
     super.dispose();
   }
 
@@ -81,6 +76,7 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
 
   @override
   Widget build(BuildContext context) {
+    // print("Mtotal : ${controller.category.value.allProducts.total}");
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: CategoryFilterDrawer(

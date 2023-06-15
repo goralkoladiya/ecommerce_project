@@ -299,10 +299,7 @@ class GeneralSettingsController extends GetxController {
     String amountText;
 
     if (productModel.productType == ProductType.GIFT_CARD) {
-      amountText = double.parse(
-                  (productModel.giftCardSellingPrice * conversionRate.value)
-                      .toString())
-              .toStringAsFixed(2) +
+      amountText = double.parse((productModel.giftCardSellingPrice * conversionRate.value).toString()).toStringAsFixed(2) +
           appCurrency.value;
     } else {
       if (productModel.hasDiscount == 'yes' || productModel.hasDeal != null) {
@@ -515,8 +512,8 @@ class GeneralSettingsController extends GetxController {
             appCurrency.value;
       } else {
         double conversion= conversionRate.value;
-        amountText = double.parse((productModel.minSellPrice * conversion.toInt()).toString()).toStringAsFixed(2) +
-            appCurrency.value + ' - ' +
+        amountText = /*double.parse((productModel.minSellPrice * conversion.toInt()).toString()).toStringAsFixed(2) +
+            appCurrency.value + ' - ' +*/
             double.parse((productModel.maxSellingPrice * conversion).toString()).toStringAsFixed(2) + appCurrency.value;
       }
     } else {

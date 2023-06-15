@@ -64,9 +64,9 @@ class MyCart {
   dynamic sellerId;
   ProductType productType;
   dynamic productId;
-  dynamic qty;
+  String qty;
   dynamic price;
-  double totalPrice;
+  dynamic totalPrice;
   dynamic isSelect;
   dynamic shippingMethodId;
   SellerData seller;
@@ -82,7 +82,7 @@ class MyCart {
         productId: json["product_id"],
         qty: json["qty"],
         price: json["price"],
-        totalPrice: json["total_price"].toDouble(),
+        totalPrice: json["total_price"],
         isSelect: json["is_select"],
         shippingMethodId: json["shipping_method_id"],
         seller: SellerData.fromJson(json["seller"]),

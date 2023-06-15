@@ -837,21 +837,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 ),
                                               ),
                                               SizedBox(width: 5,),
-                                              Expanded(
-                                                child: Text(
-                                                  getDiscountType(_productDetailsModel.data),
-                                                  textHeightBehavior:
-                                                  ui.TextHeightBehavior(
-                                                    applyHeightToFirstAscent: false,
-                                                    applyHeightToLastDescent: false,
-                                                  ),
-                                                  style: AppStyles
-                                                      .appFontBook
-                                                      .copyWith(
-                                                    height: 1,
-                                                    color:
-                                                    Color(0xff5c7185),
-                                                  ),
+                                              Text(
+                                                getDiscountType(_productDetailsModel.data),
+                                                textHeightBehavior:
+                                                ui.TextHeightBehavior(
+                                                  applyHeightToFirstAscent: false,
+                                                  applyHeightToLastDescent: false,
+                                                ),
+                                                style: AppStyles
+                                                    .appFontBook
+                                                    .copyWith(
+                                                  height: 1,
+                                                  color:
+                                                  Color(0xff5c7185),
                                                 ),
                                               ),
                                             ],
@@ -873,14 +871,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           children: [
                                             InkWell(
                                               onTap: () {
-                                                if (controller
-                                                    .itemQuantity.value <=
+                                                if (controller.itemQuantity.value <=
                                                     int.parse(controller.minOrder.value)) {
                                                   SnackBars().snackBarWarning(
-                                                      'Can\'t add less than'
-                                                          .tr +
-                                                          ' ${controller.minOrder.value} ' +
-                                                          'products'.tr);
+                                                      'Can\'t add less than'.tr + ' ${controller.minOrder.value} ' + 'products'.tr);
                                                 } else {
                                                   controller.cartDecrease();
                                                 }
@@ -892,7 +886,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                               ),
                                             ),
                                             SizedBox(
-                                              width: 40,
+                                              width: 20,
                                             ),
                                             Text(
                                               "${controller.itemQuantity.value.toString()}",
@@ -903,20 +897,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                                               ),
                                             ),
                                             SizedBox(
-                                              width: 40,
+                                              width: 20,
                                             ),
                                             InkWell(
                                               onTap: () {
-                                                if (controller
-                                                    .stockManage.value ==
-                                                    1) {
-                                                  if (controller
-                                                      .itemQuantity.value >=
-                                                      controller
-                                                          .stockCount.value) {
-                                                    SnackBars().snackBarWarning(
-                                                        'Stock not available.'
-                                                            .tr);
+                                                if (controller.stockManage.value == 1) {
+                                                  if (controller.itemQuantity.value >=
+                                                      controller.stockCount.value) {
+                                                    SnackBars().snackBarWarning('Stock not available.'.tr);
                                                   } else {
                                                     controller.cartIncrease();
                                                   }

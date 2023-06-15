@@ -15,8 +15,8 @@ class ParentCategory {
   int id;
   String name;
   String slug;
-  int parentId;
-  int depthLevel;
+  String parentId;
+  String depthLevel;
   String icon;
   CategoryImage categoryImage;
   List<ParentCategory> subCategories;
@@ -49,4 +49,9 @@ class ParentCategory {
             ? null
             : List<dynamic>.from(subCategories.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    return 'ParentCategory{id: $id, name: $name, slug: $slug, parentId: $parentId, depthLevel: $depthLevel, icon: $icon, categoryImage: $categoryImage, subCategories: $subCategories}';
+  }
 }

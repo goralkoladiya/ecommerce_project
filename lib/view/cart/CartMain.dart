@@ -693,7 +693,7 @@ class _CartMainState extends State<CartMain> {
                                                                             Map data =
                                                                                 {
                                                                               "id": cartItems[prodIndex].id,
-                                                                              "qty": qty + 1,
+                                                                              "qty": int.parse(qty) + 1,
                                                                               "p_id": cartItems[prodIndex].productId,
                                                                             };
 
@@ -731,7 +731,7 @@ class _CartMainState extends State<CartMain> {
                                                                             Map data =
                                                                                 {
                                                                               "id": cartItems[prodIndex].id,
-                                                                              "qty": qty + 1,
+                                                                              "qty": int.parse(qty) + 1,
                                                                               "p_id": cartItems[prodIndex].productId,
                                                                             };
 
@@ -749,8 +749,7 @@ class _CartMainState extends State<CartMain> {
                                                                               prodIndex]
                                                                           .id,
                                                                       "qty":
-                                                                          qty +
-                                                                              1,
+                                                                      int.parse(qty) + 1,
                                                                       "p_id": cartItems[
                                                                               prodIndex]
                                                                           .productId,
@@ -824,7 +823,7 @@ class _CartMainState extends State<CartMain> {
                                                                             "id":
                                                                                 cartItems[prodIndex].id,
                                                                             "qty":
-                                                                                qty - 1,
+                                                                            int.parse(qty) - 1,
                                                                             "p_id":
                                                                                 cartItems[prodIndex].productId,
                                                                           };
@@ -843,7 +842,7 @@ class _CartMainState extends State<CartMain> {
                                                                         "id": cartItems[prodIndex]
                                                                             .id,
                                                                         "qty":
-                                                                            qty -
+                                                                        int.parse(qty) -
                                                                                 1,
                                                                         "p_id":
                                                                             cartItems[prodIndex].productId,

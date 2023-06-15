@@ -73,15 +73,29 @@ class _CartMainState extends State<CartMain> {
   double totalPrice() {
     var count = 0.0;
 
+    print("cartController.cartListModel.value.carts : ${cartController.cartListModel.value.carts}");
     cartController.cartListModel.value.carts.forEach((key, value) {
+      print("value : $value");
       value.forEach((element) {
+        print("element : ${element}");
+        if(element.isSelect == 1)
+          {
+            print("element.totalPrice : ${element.totalPrice}");
+          }
+        else
+          {
+            print("element.totalPrice : ${element.totalPrice.runtimeType} \t ${element.totalPrice}");
+            print("currencyController.conversionRate.value : ${currencyController.conversionRate.value.runtimeType}");
+            count += double.parse(element.totalPrice) * currencyController.conversionRate.value;
+            print("count1 : $count");
+          }
         if (element.isSelect == 1) {
           print("element.totalPrice : ${element.totalPrice}");
-          count += element.totalPrice * currencyController.conversionRate.value;
+          count += double.parse(element.totalPrice) * currencyController.conversionRate.value;
         }
       });
     });
-    // print(count);
+     print("count : $count");
     return count;
   }
 
@@ -203,8 +217,7 @@ class _CartMainState extends State<CartMain> {
                               return Container(
                                 child: Column(
                                   children: [
-                                    currencyController.vendorType.value !=
-                                            "single"
+                                    currencyController.vendorType.value != "single"
                                         ? Row(
                                             children: [
                                               SizedBox(
@@ -258,9 +271,7 @@ class _CartMainState extends State<CartMain> {
                                               ),
                                             ],
                                           )
-                                        : SizedBox(
-                                            height: 10,
-                                          ),
+                                        : SizedBox(height: 10),
                                     Column(
                                       children: List.generate(cartItems.length,
                                           (prodIndex) {
@@ -278,12 +289,9 @@ class _CartMainState extends State<CartMain> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: [
-                                                    cartController
-                                                            .deleteSelected
-                                                            .value
+                                                    cartController.deleteSelected.value
                                                         ? Container(
-                                                            margin:
-                                                                EdgeInsets.only(
+                                                            margin: EdgeInsets.only(
                                                               top: 20,
                                                               bottom: 20,
                                                               right: 10,
@@ -292,18 +300,10 @@ class _CartMainState extends State<CartMain> {
                                                               onTap: () {
                                                                 if (cartController
                                                                     .cartItemDelete
-                                                                    .contains(
-                                                                        cartItems[
-                                                                            prodIndex])) {
-                                                                  cartController
-                                                                      .cartItemDelete
-                                                                      .remove(cartItems[
-                                                                          prodIndex]);
+                                                                    .contains(cartItems[prodIndex])) {
+                                                                  cartController.cartItemDelete.remove(cartItems[prodIndex]);
                                                                 } else {
-                                                                  cartController
-                                                                      .cartItemDelete
-                                                                      .add(cartItems[
-                                                                          prodIndex]);
+                                                                  cartController.cartItemDelete.add(cartItems[prodIndex]);
                                                                 }
                                                               },
                                                               child: Icon(
@@ -322,92 +322,51 @@ class _CartMainState extends State<CartMain> {
                                                           )
                                                         : SizedBox.shrink(),
                                                     ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  5)),
+                                                      borderRadius: BorderRadius.all(Radius.circular(5)),
                                                       clipBehavior:
                                                           Clip.antiAlias,
                                                       child: Container(
                                                         height: 60,
                                                         width: 90,
-                                                        padding:
-                                                            EdgeInsets.all(5),
-                                                        color:
-                                                            Color(0xffF1F1F1),
-                                                        child: cartItems[
-                                                                        prodIndex]
-                                                                    .productType ==
-                                                                ProductType
-                                                                    .GIFT_CARD
+                                                        padding: EdgeInsets.all(5),
+                                                        color: Color(0xffF1F1F1),
+                                                        child: cartItems[prodIndex].productType == ProductType.GIFT_CARD
                                                             ? FancyShimmerImage(
-                                                                imageUrl: AppConfig
-                                                                        .assetPath +
-                                                                    '/' +
-                                                                    cartItems[
-                                                                            prodIndex]
-                                                                        .giftCard
-                                                                        .thumbnailImage,
-                                                                boxFit: BoxFit
-                                                                    .contain,
-                                                                errorWidget:
-                                                                    FancyShimmerImage(
-                                                                  imageUrl:
-                                                                      "${AppConfig.assetPath}/backend/img/default.png",
-                                                                  boxFit: BoxFit
-                                                                      .contain,
+                                                                imageUrl: AppConfig.assetPath + '/' + cartItems[prodIndex].giftCard.thumbnailImage,
+                                                                boxFit: BoxFit.contain,
+                                                                errorWidget: FancyShimmerImage(
+                                                                  imageUrl: "${AppConfig.assetPath}/backend/img/default.png",
+                                                                  boxFit: BoxFit.contain,
                                                                 ),
                                                               )
                                                             : GestureDetector(
                                                                 onTap: () {
                                                                   Get.to(
                                                                       () => ProductDetails(
-                                                                          productID: cartItems[prodIndex]
-                                                                              .product
-                                                                              .productId),
-                                                                      preventDuplicates:
-                                                                          false);
+                                                                          productID: cartItems[prodIndex].product.productId),
+                                                                      preventDuplicates: false);
                                                                 },
-                                                                child:
-                                                                    FancyShimmerImage(
-                                                                  imageUrl: AppConfig
-                                                                          .assetPath +
-                                                                      '/' +
-                                                                      (cartItems[prodIndex].product.sku.variantImage ==
-                                                                              null
+                                                                child: FancyShimmerImage(
+                                                                  imageUrl: AppConfig.assetPath + '/' +
+                                                                      (cartItems[prodIndex].product.sku.variantImage == null
                                                                           ? cartItems[prodIndex]
-                                                                              .product
-                                                                              .product
-                                                                              .product
-                                                                              .thumbnailImageSource
-                                                                          : cartItems[prodIndex]
-                                                                              .product
-                                                                              .sku
-                                                                              .variantImage),
-                                                                  boxFit: BoxFit
-                                                                      .contain,
+                                                                              .product.product.product.thumbnailImageSource
+                                                                          : cartItems[prodIndex].product.sku.variantImage),
+                                                                  boxFit: BoxFit.contain,
                                                                   errorWidget:
                                                                       FancyShimmerImage(
-                                                                    imageUrl:
-                                                                        "${AppConfig.assetPath}/backend/img/default.png",
-                                                                    boxFit: BoxFit
-                                                                        .contain,
+                                                                    imageUrl: "${AppConfig.assetPath}/backend/img/default.png",
+                                                                    boxFit: BoxFit.contain,
                                                                   ),
                                                                 ),
                                                               ),
                                                       ),
                                                     ),
-                                                    SizedBox(
-                                                      width: 10,
-                                                    ),
+                                                    SizedBox(width: 10,),
                                                     Expanded(
                                                       child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(
                                                             cartItems[prodIndex]

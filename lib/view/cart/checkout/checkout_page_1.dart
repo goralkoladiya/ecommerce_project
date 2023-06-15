@@ -200,9 +200,7 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                         fontSize: 15,
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
+                    SizedBox(height: 5,),
                     Container(
                       child: TextFormField(
                         controller: _phoneNumberController,
@@ -223,22 +221,16 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                       if (_addressController.isLoading.value) {
                         return Center(child: CustomLoadingWidget());
                       } else {
-                        customerEmailCtrl.text =
-                            _addressController.shippingAddress.value.email;
-                        customerPhoneCtrl.text =
-                            _addressController.shippingAddress.value.phone;
+                        customerEmailCtrl.text = _addressController.shippingAddress.value.email;
+                        customerPhoneCtrl.text = _addressController.shippingAddress.value.phone;
                         return _addressController.addressCount.value > 0
                             ? Container(
                                 child: Column(
                                   children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-
+                                    SizedBox(height: 10,),
                                     //** HOME DELIVERY / PICKUP */
 
-                                    currencyController.vendorType.value ==
-                                            "single"
+                                    currencyController.vendorType.value == "single"
                                         ? RadioGroup<String>.builder(
                                             direction: Axis.horizontal,
                                             horizontalAlignment:
@@ -686,18 +678,9 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                                                                 .start,
                                                         children: [
                                                           Text(
-                                                            _addressController
-                                                                .shippingAddress
-                                                                .value
-                                                                .name
-                                                                .capitalizeFirst,
-                                                            style: AppStyles
-                                                                .kFontBlack14w5
-                                                                .copyWith(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                            ),
+                                                            _addressController.shippingAddress.value.name.capitalizeFirst,
+                                                            style: AppStyles.kFontBlack14w5.copyWith(
+                                                              fontWeight: FontWeight.w600,),
                                                           ),
                                                           SizedBox(height: 8),
                                                           RichText(
@@ -1127,9 +1110,8 @@ class _CheckoutPageOneState extends State<CheckoutPageOne> {
                               );
                       }
                     }),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    SizedBox(height: 20,),
+
                     Obx(() {
                       if (_addressController.isLoading.value) {
                         return SizedBox.shrink();

@@ -113,4 +113,9 @@ class MyCart {
         "gift_card": giftCard == null ? null : giftCard.toJson(),
         "product": product.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'MyCart{id: $id, userId: $userId, sellerId: $sellerId, productType: $productType, productId: $productId, qty: $qty, price: $price, totalPrice: $totalPrice, isSelect: $isSelect, shippingMethodId: $shippingMethodId, seller: $seller, customer: $customer, giftCard: $giftCard, product: $product}';
+  }
 }

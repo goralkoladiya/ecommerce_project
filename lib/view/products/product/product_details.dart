@@ -885,9 +885,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 color: Color(0xff5c7185),
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: 20,
-                                            ),
+                                            SizedBox(width: 20,),
                                             Text(
                                               "${controller.itemQuantity.value.toString()}",
                                               style: AppStyles.appFontBold
@@ -896,9 +894,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 color: AppStyles.pinkColor,
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: 20,
-                                            ),
+                                            SizedBox(width: 20,),
                                             InkWell(
                                               onTap: () {
                                                 if (controller.stockManage.value == 1) {

@@ -78,12 +78,12 @@ class _GiftcardDetailsState extends State<GiftcardDetails> {
             '(-${(productModel.hasDeal.discount * settingsController.conversionRate.value).toStringAsFixed(2)}${settingsController.appCurrency.value})';
       }
     } else {
-      if (productModel.discount > 0) {
+      if (double.parse(productModel.discount) > 0) {
         if (productModel.discountType == '0') {
-          discountType = '(-${productModel.discount.toStringAsFixed(2)}%)';
+          discountType = '(-${double.parse(productModel.discount).toStringAsFixed(2)}%)';
         } else {
           discountType =
-              '(-${(productModel.discount * settingsController.conversionRate.value).toStringAsFixed(2)}${settingsController.appCurrency.value})';
+              '(-${(double.parse(productModel.discount) * settingsController.conversionRate.value).toStringAsFixed(2)}${settingsController.appCurrency.value})';
         }
       } else {
         discountType = '';

@@ -215,7 +215,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           print("productModel.discount : ${productModel.discount}");
           print("_settingsController.conversionRate.value : ${_settingsController.conversionRate.value}");
           discountType =
-              '(-${(productModel.discount * _settingsController.conversionRate.value).toStringAsFixed(2)}${_settingsController.appCurrency.value})';
+              '(-${(double.parse(productModel.discount) * _settingsController.conversionRate.value).toStringAsFixed(2)}${_settingsController.appCurrency.value})';
         }
       } else {
         discountType = '';
@@ -819,56 +819,39 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          // Text("${controller.finalPrice.value}"),
                                           Obx(() {
                                             return Text(
-                                              '${double.parse((controller.finalPrice.value * _settingsController.conversionRate.value).toString())}${_settingsController.appCurrency.value}',
-                                              style: AppStyles.appFontBold
-                                                  .copyWith(
-                                                height: 1,
-                                                fontSize: 26,
-                                              ),
+                                              '${double.parse((controller.finalPrice.value * _settingsController.conversionRate.value).toString())} ${_settingsController.appCurrency.value}',
+                                              style: AppStyles.appFontBold.copyWith(height: 1, fontSize: 26,),
                                             );
                                           }),
-                                          _settingsController
-                                              .calculateMainPriceWithVariant(_productDetailsModel.data) !=
-                                              ""
+                                          _settingsController.calculateMainPriceWithVariant(_productDetailsModel.data) != ""
                                               ? Row(
                                             children: [
                                               Text(
-                                                _settingsController
-                                                    .calculateMainPriceWithVariant(
-                                                    _productDetailsModel
-                                                        .data),
-                                                style: AppStyles
-                                                    .appFontBook
-                                                    .copyWith(
+                                                _settingsController.calculateMainPriceWithVariant(_productDetailsModel.data),
+                                                style: AppStyles.appFontBook.copyWith(
                                                   height: 1,
-                                                  color: AppStyles
-                                                      .greyColorBook,
-                                                  decoration:
-                                                  TextDecoration
-                                                      .lineThrough,
+                                                  color: AppStyles.greyColorBook,
+                                                  decoration: TextDecoration.lineThrough,
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                getDiscountType(_productDetailsModel.data),
-                                                textHeightBehavior:
-                                                ui.TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false,
-                                                  applyHeightToLastDescent:
-                                                  false,
-                                                ),
-                                                style: AppStyles
-                                                    .appFontBook
-                                                    .copyWith(
-                                                  height: 1,
-                                                  color:
-                                                  Color(0xff5c7185),
+                                              SizedBox(width: 5,),
+                                              Expanded(
+                                                child: Text(
+                                                  getDiscountType(_productDetailsModel.data),
+                                                  textHeightBehavior:
+                                                  ui.TextHeightBehavior(
+                                                    applyHeightToFirstAscent: false,
+                                                    applyHeightToLastDescent: false,
+                                                  ),
+                                                  style: AppStyles
+                                                      .appFontBook
+                                                      .copyWith(
+                                                    height: 1,
+                                                    color:
+                                                    Color(0xff5c7185),
+                                                  ),
                                                 ),
                                               ),
                                             ],

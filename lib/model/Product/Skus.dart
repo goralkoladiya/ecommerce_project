@@ -19,7 +19,7 @@ class Skus {
   String productSkuId;
   String productStock;
   dynamic purchasePrice;
-  dynamic sellingPrice;
+  String sellingPrice;
   dynamic status;
   List<ProductVariation> productVariations;
 
@@ -49,4 +49,9 @@ class Skus {
         "product_variations":
             List<dynamic>.from(productVariations.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    return 'Skus{id: $id, userId: $userId, productId: $productId, productSkuId: $productSkuId, productStock: $productStock, purchasePrice: $purchasePrice, sellingPrice: $sellingPrice, status: $status, productVariations: $productVariations}';
+  }
 }

@@ -67,4 +67,9 @@ class ProductSku {
         "breadth": breadth,
         "height": height,
       };
+
+  @override
+  String toString() {
+    return 'ProductSku{id: $id, productId: $productId, sku: $sku, purchasePrice: $purchasePrice, sellingPrice: $sellingPrice, additionalShipping: $additionalShipping, variantImage: $variantImage, status: $status, productStock: $productStock, trackSku: $trackSku, weight: $weight, length: $length, breadth: $breadth, height: $height}';
+  }
 }

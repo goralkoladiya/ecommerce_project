@@ -44,7 +44,7 @@ class _CartIconState extends State<CartIcon> {
       if (widget.productModel.discountType == 0 ||
           widget.productModel.discountType == "0") {
         productPrice = (widget.productModel.giftCardSellingPrice -
-            ((widget.productModel.discount / 100) *
+            ((double.parse(widget.productModel.discount) / 100) *
                 widget.productModel.giftCardSellingPrice));
       } else {
         productPrice = (widget.productModel.giftCardSellingPrice -

@@ -1527,7 +1527,7 @@ class _CartCheckoutState extends State<CartCheckout> {
                                                                                         ),
                                                                                       ],
                                                                                     )
-                                                                                  : checkoutItem[productIndex].product.product.discount > 0
+                                                                                  : double.parse(checkoutItem[productIndex].product.product.discount) > 0
                                                                                       ? Row(
                                                                                           children: [
                                                                                             Container(
@@ -1537,7 +1537,7 @@ class _CartCheckoutState extends State<CartCheckout> {
                                                                                                 borderRadius: BorderRadius.circular(2),
                                                                                               ),
                                                                                               child: Text(
-                                                                                                checkoutItem[productIndex].product.product.discountType == "0" ? '-${checkoutItem[productIndex].product.product.discount}%' : '-${double.parse((checkoutItem[productIndex].product.product.discount * currencyController.conversionRate.value).toString()).toStringAsFixed(2)}${currencyController.appCurrency.value}',
+                                                                                                checkoutItem[productIndex].product.product.discountType == "0" ? '-${checkoutItem[productIndex].product.product.discount}%' : '-${double.parse((double.parse(checkoutItem[productIndex].product.product.discount) * currencyController.conversionRate.value).toString()).toStringAsFixed(2)}${currencyController.appCurrency.value}',
                                                                                                 style: AppStyles.kFontWhite12w5,
                                                                                               ),
                                                                                             ),

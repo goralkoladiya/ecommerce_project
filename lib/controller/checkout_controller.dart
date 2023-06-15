@@ -275,11 +275,11 @@ class CheckoutController extends GetxController {
             } else {
               if (element.product.product.hasDiscount == 'yes') {
                 if (element.product.product.discountType == "0") {
-                  dis += ((element.product.product.discount / 100) *
+                  dis += ((double.parse(element.product.product.discount) / 100) *
                           element.product.sellingPrice) *
                       element.qty;
                 } else {
-                  dis += element.product.product.discount * element.qty;
+                  dis += double.parse(element.product.product.discount) * element.qty;
                 }
               } else {
                 dis += 0 * element.qty;

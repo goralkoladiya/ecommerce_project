@@ -405,9 +405,7 @@ class _WishListState extends State<WishList> {
                                                                           .type ==
                                                                       ProductType
                                                                           .PRODUCT
-                                                                  ? value[prodIndex]
-                                                                              .product
-                                                                              .discount >
+                                                                  ? double.parse(value[prodIndex].product.discount) >
                                                                           0
                                                                       ? '(' +
                                                                           'Price dropped'

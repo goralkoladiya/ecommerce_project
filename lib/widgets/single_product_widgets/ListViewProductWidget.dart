@@ -42,7 +42,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
       if (widget.productModel.discountType == 0 ||
           widget.productModel.discountType == "0") {
         productPrice = (widget.productModel.giftCardSellingPrice -
-            ((widget.productModel.discount / 100) *
+            ((double.parse(widget.productModel.discount) / 100) *
                 widget.productModel.giftCardSellingPrice));
       } else {
         productPrice = (widget.productModel.giftCardSellingPrice -
@@ -308,7 +308,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                             widget.productModel.discountType == "0" ||
                                     widget.productModel.discountType == 0
                                 ? '-${widget.productModel.discount.toString()}% '
-                                : '${(widget.productModel.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
+                                : '${(double.parse(widget.productModel.discount) * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                             textAlign: TextAlign.center,
                             style: AppStyles.appFontBook.copyWith(
                               color: Colors.white,
@@ -348,7 +348,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                             currencyController.endDate.millisecondsSinceEpoch <
                                 DateTime.now().millisecondsSinceEpoch
                         ? Container()
-                        : widget.productModel.discount > 0
+                        : double.parse(widget.productModel.discount) > 0
                             ? Container(
                                 padding: EdgeInsets.all(4),
                                 alignment: Alignment.center,
@@ -360,7 +360,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                                 child: Text(
                                   widget.productModel.discountType == "0"
                                       ? '-${widget.productModel.discount.toString()}% '
-                                      : '${(widget.productModel.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
+                                      : '${(double.parse(widget.productModel.discount) * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                                   textAlign: TextAlign.center,
                                   style: AppStyles.appFontBook.copyWith(
                                     color: Colors.white,

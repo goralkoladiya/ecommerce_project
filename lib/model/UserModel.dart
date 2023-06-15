@@ -164,8 +164,8 @@ class CustomerAddress {
   String state;
   String country;
   String postalCode;
-  int isShippingDefault;
-  int isBillingDefault;
+  String isShippingDefault;
+  String isBillingDefault;
   DateTime createdAt;
   DateTime updatedAt;
 

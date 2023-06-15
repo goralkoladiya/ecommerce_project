@@ -402,7 +402,6 @@ class _WishListState extends State<WishList> {
                                                             SizedBox(
                                                               width: 5,
                                                             ),
-
                                                             Text(
                                                               value[prodIndex].type == ProductType.PRODUCT
                                                                   ? double.parse(value[prodIndex].product.discount) > 0

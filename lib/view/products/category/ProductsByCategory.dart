@@ -302,6 +302,7 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
                       } else {
                         return Container(
                           color: Colors.white,
+
                           padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 15),
                           child: Row(
@@ -322,7 +323,8 @@ class _ProductsByCategoryState extends State<ProductsByCategory> {
                               ),
                               Container(
                                 child: Text(
-                                  "${controller.category.value.allProducts.total} " +
+
+                                  "id : ${controller.category.value.allProducts.total} " +
                                       "Products found".tr,
                                   style: AppStyles.appFontMedium.copyWith(
                                     fontSize: 13,

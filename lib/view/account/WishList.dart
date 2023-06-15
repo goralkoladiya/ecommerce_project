@@ -185,7 +185,7 @@ class _WishListState extends State<WishList> {
                     ),
                   );
                 } else {
-                  return ListView.builder(
+                  return Obx(() => ListView.builder(
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
                       itemCount: wishListController
@@ -202,287 +202,284 @@ class _WishListState extends State<WishList> {
                               child: Column(
                                 children: [
                                   _currencyController.vendorType.value ==
-                                          "single"
+                                      "single"
                                       ? SizedBox.shrink()
                                       : InkWell(
-                                          onTap: () {
-                                            print(
-                                                'Seller id: ${value[0].seller.id}');
-                                            Get.to(() => StoreHome(
-                                                  sellerId: value[0].seller.id,
-                                                ));
-                                          },
-                                          child: Container(
-                                            height: 40,
-                                            child: Row(
-                                              children: [
-                                                Flexible(
-                                                  child: Text(
-                                                    value[0].seller.firstName,
-                                                    style: AppStyles
-                                                        .appFontMedium
-                                                        .copyWith(
-                                                      color:
-                                                          AppStyles.blackColor,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                SizedBox(
-                                                  height: 70,
-                                                  child: Icon(
-                                                    Icons.arrow_forward_ios,
-                                                    size: 12,
-                                                  ),
-                                                ),
-                                              ],
+                                    onTap: () {
+                                      print(
+                                          'Seller id: ${value[0].seller.id}');
+                                      Get.to(() => StoreHome(
+                                        sellerId: value[0].seller.id,
+                                      ));
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      child: Row(
+                                        children: [
+                                          Flexible(
+                                            child: Text(
+                                              value[0].seller.firstName,
+                                              style: AppStyles
+                                                  .appFontMedium
+                                                  .copyWith(
+                                                color:
+                                                AppStyles.blackColor,
+                                                fontSize: 14,
+                                                fontWeight:
+                                                FontWeight.w500,
+                                              ),
                                             ),
                                           ),
-                                        ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          SizedBox(
+                                            height: 70,
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              size: 12,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                   Column(
                                     children: List.generate(value.length,
-                                        (prodIndex) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          if (value[prodIndex].type ==
-                                              ProductType.PRODUCT) {
-                                            Get.to(
-                                              () => ProductDetails(
-                                                productID:
+                                            (prodIndex) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              if (value[prodIndex].type ==
+                                                  ProductType.PRODUCT) {
+                                                Get.to(
+                                                      () => ProductDetails(
+                                                    productID:
                                                     value[prodIndex].product.id.toString(),
-                                              ),
-                                            );
-                                          }
-                                        },
-                                        child: Column(
-                                          children: [
-                                            prodIndex == 0
-                                                ? Padding(
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                            child: Column(
+                                              children: [
+                                                prodIndex == 0
+                                                    ? Padding(
                                                     padding: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         vertical: 8.0),
                                                     child: Container())
-                                                : Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 8.0),
-                                                    child: Divider(
-                                                      color: AppStyles
-                                                          .appBackgroundColor,
-                                                      thickness: 2,
-                                                      height: 0,
-                                                    ),
+                                                    : Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      vertical: 8.0),
+                                                  child: Divider(
+                                                    color: AppStyles
+                                                        .appBackgroundColor,
+                                                    thickness: 2,
+                                                    height: 0,
                                                   ),
-                                            Row(
-                                              crossAxisAlignment:
+                                                ),
+                                                Row(
+                                                  crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius:
+                                                  children: [
+                                                    ClipRRect(
+                                                      borderRadius:
                                                       BorderRadius.all(
                                                           Radius.circular(5)),
-                                                  clipBehavior: Clip.antiAlias,
-                                                  child: Container(
-                                                    height: 60,
-                                                    width: 90,
-                                                    padding: EdgeInsets.all(5),
-                                                    color: Color(0xffF1F1F1),
-                                                    child: value[prodIndex]
-                                                                .type ==
+                                                      clipBehavior: Clip.antiAlias,
+                                                      child: Container(
+                                                        height: 60,
+                                                        width: 90,
+                                                        padding: EdgeInsets.all(5),
+                                                        color: Color(0xffF1F1F1),
+                                                        child: value[prodIndex]
+                                                            .type ==
                                                             ProductType.PRODUCT
-                                                        ? FancyShimmerImage(
-                                                            imageUrl: AppConfig
-                                                                    .assetPath +
-                                                                '/' +
-                                                                value[prodIndex]
-                                                                    .product
-                                                                    .product
-                                                                    .thumbnailImageSource,
-                                                            boxFit:
-                                                                BoxFit.contain,
-                                                            errorWidget:
-                                                                FancyShimmerImage(
-                                                              imageUrl:
-                                                                  "${AppConfig.assetPath}/backend/img/default.png",
-                                                              boxFit: BoxFit
-                                                                  .contain,
-                                                            ),
-                                                          )
-                                                        : FancyShimmerImage(
-                                                            imageUrl: AppConfig
-                                                                    .assetPath +
-                                                                '/' +
-                                                                value[prodIndex]
-                                                                    .giftcard
-                                                                    .thumbnailImage,
-                                                            boxFit:
-                                                                BoxFit.contain,
-                                                            errorWidget:
-                                                                FancyShimmerImage(
-                                                              imageUrl:
-                                                                  "${AppConfig.assetPath}/backend/img/default.png",
-                                                              boxFit: BoxFit
-                                                                  .contain,
-                                                            ),
+                                                            ? FancyShimmerImage(
+                                                          imageUrl: AppConfig
+                                                              .assetPath +
+                                                              '/' +
+                                                              value[prodIndex]
+                                                                  .product
+                                                                  .product
+                                                                  .thumbnailImageSource,
+                                                          boxFit:
+                                                          BoxFit.contain,
+                                                          errorWidget:
+                                                          FancyShimmerImage(
+                                                            imageUrl:
+                                                            "${AppConfig.assetPath}/backend/img/default.png",
+                                                            boxFit: BoxFit
+                                                                .contain,
                                                           ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 15,
-                                                ),
-                                                Expanded(
-                                                  child: Container(
-                                                    child: Column(
-                                                      mainAxisAlignment:
+                                                        )
+                                                            : FancyShimmerImage(
+                                                          imageUrl: AppConfig
+                                                              .assetPath +
+                                                              '/' +
+                                                              value[prodIndex]
+                                                                  .giftcard
+                                                                  .thumbnailImage,
+                                                          boxFit:
+                                                          BoxFit.contain,
+                                                          errorWidget:
+                                                          FancyShimmerImage(
+                                                            imageUrl:
+                                                            "${AppConfig.assetPath}/backend/img/default.png",
+                                                            boxFit: BoxFit
+                                                                .contain,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 15,
+                                                    ),
+
+                                                    // product discription
+                                                    Expanded(
+                                                      child: Container(
+                                                        child: Column(
+                                                          mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .start,
-                                                      crossAxisAlignment:
+                                                          crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .start,
-                                                      children: [
-                                                        Text(
-                                                          value[prodIndex]
-                                                                      .type ==
-                                                                  ProductType
-                                                                      .PRODUCT
-                                                              ? value[prodIndex]
-                                                                  .product
-                                                                  .productName
-                                                                  .capitalizeFirst
-                                                              : value[prodIndex]
-                                                                  .giftcard
-                                                                  .name
-                                                                  .capitalizeFirst,
-                                                          style: AppStyles
-                                                              .appFontMedium
-                                                              .copyWith(
-                                                            color: AppStyles
-                                                                .blackColor,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                        SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                        Row(
                                                           children: [
                                                             Text(
                                                               value[prodIndex]
-                                                                          .type ==
-                                                                      ProductType
-                                                                          .PRODUCT
-                                                                  ? _currencyController
-                                                                      .calculatePrice(
-                                                                          value[prodIndex]
-                                                                              .product)
-                                                                  : calculateGiftCardPrice(
-                                                                      value[
-                                                                          prodIndex]),
+                                                                  .type ==
+                                                                  ProductType
+                                                                      .PRODUCT
+                                                                  ? value[prodIndex]
+                                                                  .product
+                                                                  .productName
+                                                                  .capitalizeFirst
+                                                                  : value[prodIndex]
+                                                                  .giftcard
+                                                                  .name
+                                                                  .capitalizeFirst,
                                                               style: AppStyles
                                                                   .appFontMedium
                                                                   .copyWith(
                                                                 color: AppStyles
-                                                                    .pinkColor,
+                                                                    .blackColor,
                                                                 fontSize: 14,
                                                                 fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
+                                                                FontWeight.w400,
                                                               ),
                                                             ),
                                                             SizedBox(
-                                                              width: 5,
+                                                              height: 5,
+                                                            ),
+                                                            SizedBox(
+                                                              height: 5,
+                                                            ),
+                                                            Row(
+                                                              children: [
+                                                                Text(
+                                                                  value[prodIndex]
+                                                                      .type ==
+                                                                      ProductType
+                                                                          .PRODUCT
+                                                                      ? _currencyController
+                                                                      .calculatePrice(
+                                                                      value[prodIndex]
+                                                                          .product)
+                                                                      : calculateGiftCardPrice(
+                                                                      value[
+                                                                      prodIndex]),
+                                                                  style: AppStyles
+                                                                      .appFontMedium
+                                                                      .copyWith(
+                                                                    color: AppStyles
+                                                                        .pinkColor,
+                                                                    fontSize: 14,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 5,
+                                                                ),
+                                                                Text(
+                                                                  value[prodIndex].type == ProductType.PRODUCT
+                                                                      ? double.parse(value[prodIndex].product.discount) > 0
+                                                                      ? '(' +
+                                                                      'Price dropped'.tr + ')' : ''
+                                                                      : value[
+                                                                  prodIndex].giftcard.discount > 0
+                                                                      ? '(' + 'Price dropped'.tr + ')' : '',
+                                                                  style: AppStyles
+                                                                      .appFontMedium.copyWith(color: Color(0xff5C7185), fontSize: 14, fontWeight: FontWeight.w500,),),
+                                                              ],
                                                             ),
                                                             Text(
                                                               value[prodIndex].type == ProductType.PRODUCT
-                                                                  ? double.parse(value[prodIndex].product.discount) > 0
-                                                                  ? '(' +
-                                                                          'Price dropped'.tr + ')' : ''
-                                                                  : value[
-                                                                    prodIndex].giftcard.discount > 0
-                                                                  ? '(' + 'Price dropped'.tr + ')' : '',
-                                                              style: AppStyles
-                                                                  .appFontMedium.copyWith(color: Color(0xff5C7185), fontSize: 14, fontWeight: FontWeight.w500,),),
-                                                          ],
-                                                        ),
-                                                        Text(
-                                                          value[prodIndex].type == ProductType.PRODUCT
-                                                              ? _currencyController.calculateMainPrice(value[prodIndex].product)
-                                                              : _currencyController
+                                                                  ? _currencyController.calculateMainPrice(value[prodIndex].product)
+                                                                  : _currencyController
                                                                   .calculateWishListGiftcardPrice(value[prodIndex].giftcard),
-                                                          style: AppStyles
-                                                              .appFontMedium
-                                                              .copyWith(
-                                                            color: AppStyles
-                                                                .greyColorDark,
-                                                            fontSize: 14,
-                                                            fontWeight:
+                                                              style: AppStyles
+                                                                  .appFontMedium
+                                                                  .copyWith(
+                                                                color: AppStyles
+                                                                    .greyColorDark,
+                                                                fontSize: 14,
+                                                                fontWeight:
                                                                 FontWeight.w500,
-                                                            decoration:
+                                                                decoration:
                                                                 TextDecoration
                                                                     .lineThrough,
-                                                            decorationColor:
+                                                                decorationColor:
                                                                 AppStyles
                                                                     .pinkColor,
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 20,
-                                                        ),
-                                                        Container(
-                                                          child: Row(
-                                                            crossAxisAlignment:
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 20,
+                                                            ),
+
+                                                            // delete
+                                                            Container(
+                                                              child: Row(
+                                                                crossAxisAlignment:
                                                                 CrossAxisAlignment
                                                                     .center,
-                                                            mainAxisAlignment:
+                                                                mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .spaceBetween,
-                                                            children: [
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  print(value[
-                                                                          prodIndex]
-                                                                      .id);
-                                                                  wishListController
-                                                                      .deleteWishListProduct(
-                                                                          value[prodIndex]
-                                                                              .id);
-                                                                },
-                                                                child: Container(
-                                                                    height: 20,
-                                                                    width: 20,
-                                                                    child: Image
-                                                                        .asset(
+                                                                children: [
+                                                                  InkWell(
+                                                                    onTap: () {
+                                                                      print("idd: ${value[prodIndex].id}");
+                                                                      wishListController.deleteWishListProduct(value[prodIndex].id);
+                                                                    },
+                                                                    child: Container(
+                                                                        height: 20,
+                                                                        width: 20,
+                                                                        child: Image
+                                                                            .asset(
                                                                             'assets/images/wishlist_delete.png')),
+                                                                  ),
+                                                                  CartIcon(value[prodIndex].product),
+                                                                ],
                                                               ),
-                                                              CartIcon(value[
-                                                                      prodIndex]
-                                                                  .product),
-                                                            ],
-                                                          ),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 5,
+                                                            ),
+                                                          ],
                                                         ),
-                                                        SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
-                                          ],
-                                        ),
-                                      );
-                                    }),
+                                          );
+                                        }),
                                   ),
                                 ],
                               ),
@@ -492,7 +489,7 @@ class _WishListState extends State<WishList> {
                             ),
                           ],
                         );
-                      });
+                      }));
                 }
               }
             }),

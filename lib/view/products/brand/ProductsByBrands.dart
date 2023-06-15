@@ -127,7 +127,7 @@ class _ProductsByBrandsState extends State<ProductsByBrands> {
                       return SliverToBoxAdapter(child: Container());
                     } else {
                       if (_brandController.brandAllData.value.data.allProducts
-                              .data.length ==
+                          .data.length ==
                           0) {
                         return SliverToBoxAdapter(child: Container());
                       } else {
@@ -159,80 +159,77 @@ class _ProductsByBrandsState extends State<ProductsByBrands> {
                                 Expanded(
                                   child: !filterSelected
                                       ? DropdownButton(
-                                          isExpanded: false,
-                                          isDense: false,
-                                          hint: Text(
-                                            'Sort'.tr,
-                                            style: AppStyles.appFontMedium
-                                                .copyWith(fontSize: 13),
-                                          ),
-                                          underline: SizedBox(),
-                                          value: _selectedSort,
+                                    isExpanded: false,
+                                    isDense: false, hint: Text(
+                                      'Sort'.tr, style: AppStyles.appFontMedium
+                                          .copyWith(fontSize: 13),
+                                    ),
+                                    underline: SizedBox(),
+                                    value: _selectedSort,
+                                    style: AppStyles.appFontMedium
+                                        .copyWith(fontSize: 13),
+                                    onChanged: (newValue) async {
+                                      setState(() {
+                                        _selectedSort = newValue;
+                                        setState(() {
+                                          source.sortKey = newValue.sortKey;
+                                          source.isSorted = true;
+                                          source.isFilter = false;
+                                          source.refresh(true);
+                                        });
+                                      });
+                                    },
+                                    items:
+                                    Sorting.sortingData.map((sort) {
+                                      return DropdownMenuItem(
+                                        child: Text(
+                                          sort.sortName,
                                           style: AppStyles.appFontMedium
                                               .copyWith(fontSize: 13),
-                                          onChanged: (newValue) async {
-                                            setState(() {
-                                              _selectedSort = newValue;
-                                              setState(() {
-                                                source.sortKey =
-                                                    newValue.sortKey;
-                                                source.isSorted = true;
-                                                source.isFilter = false;
-                                                source.refresh(true);
-                                              });
-                                            });
-                                          },
-                                          items:
-                                              Sorting.sortingData.map((sort) {
-                                            return DropdownMenuItem(
-                                              child: Text(
-                                                sort.sortName,
-                                                style: AppStyles.appFontMedium
-                                                    .copyWith(fontSize: 13),
-                                              ),
-                                              value: sort,
-                                            );
-                                          }).toList(),
-                                        )
-                                      : DropdownButton(
-                                          hint: Text(
-                                            'Sort'.tr,
-                                            style: AppStyles.appFontMedium
-                                                .copyWith(fontSize: 13),
-                                          ),
-                                          underline: Container(),
-                                          value: _selectedSort,
-                                          style: AppStyles.appFontMedium
-                                              .copyWith(fontSize: 13),
-                                          onChanged: (newValue) async {
-                                            print('SORT AFTER FILTER');
-                                            print('SORT AFTER FILTER');
-                                            setState(() {
-                                              _selectedSort = newValue;
-                                              setState(() {
-                                                source.isSorted = true;
-                                                source.isFilter = true;
-                                                _brandController
-                                                        .filterSortKey.value =
-                                                    _selectedSort.sortKey;
-                                                source.refresh(true);
-                                              });
-                                            });
-                                          },
-                                          items:
-                                              Sorting.sortingData.map((sort) {
-                                            return DropdownMenuItem(
-                                              child: Text(sort.sortName),
-                                              value: sort,
-                                            );
-                                          }).toList(),
                                         ),
+                                        value: sort,
+                                      );
+                                    }).toList(),
+                                  )
+                                      : DropdownButton(
+                                    hint: Text(
+                                      'Sort'.tr,
+                                      style: AppStyles.appFontMedium
+                                          .copyWith(fontSize: 13),
+                                    ),
+                                    underline: Container(),
+                                    value: _selectedSort,
+                                    style: AppStyles.appFontMedium
+                                        .copyWith(fontSize: 13),
+                                    onChanged: (newValue) async {
+                                      print('SORT AFTER FILTER');
+                                      print('SORT AFTER FILTER');
+                                      setState(() {
+                                        _selectedSort = newValue;
+                                        setState(() {
+                                          source.isSorted = true;
+                                          source.isFilter = true;
+                                          _brandController
+                                              .filterSortKey.value =
+                                              _selectedSort.sortKey;
+                                          source.refresh(true);
+                                        });
+                                      });
+                                    },
+                                    items:
+                                    Sorting.sortingData.map((sort) {
+                                      return DropdownMenuItem(
+                                        child: Text(sort.sortName),
+                                        value: sort,
+                                      );
+                                    }).toList(),
+                                  ),
                                 ),
                                 Expanded(
                                   child: Container(
                                     alignment: Alignment.centerRight,
                                     padding:
-                                        EdgeInsets.symmetric(horizontal: 10),
+                                    EdgeInsets.symmetric(horizontal: 10),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
@@ -257,11 +254,9 @@ class _ProductsByBrandsState extends State<ProductsByBrands> {
                                           onTap: () {
                                             setState(() {
                                               filterSelected = true;
-                                              _selectedSort =
-                                                  Sorting.sortingData.first;
+                                              _selectedSort = Sorting.sortingData.first;
                                             });
-                                            _scaffoldKey.currentState
-                                                .openEndDrawer();
+                                            _scaffoldKey.currentState.openDrawer();
                                           },
                                           child: Row(
                                             children: [
@@ -295,7 +290,7 @@ class _ProductsByBrandsState extends State<ProductsByBrands> {
                     decoration: BoxDecoration(
                       border: Border(
                         bottom:
-                            BorderSide(width: 1.0, color: Color(0xffEFEFEF)),
+                        BorderSide(width: 1.0, color: Color(0xffEFEFEF)),
                       ),
                     ),
                   ),
@@ -313,69 +308,69 @@ class _ProductsByBrandsState extends State<ProductsByBrands> {
                           _brandController.brandImage.value == null
                               ? Container()
                               : Container(
-                                  color: Colors.white,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 15),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.centerLeft,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          clipBehavior: Clip.antiAlias,
-                                          child: FancyShimmerImage(
-                                            imageUrl: AppConfig.assetPath +
-                                                "/" +
-                                                _brandController
-                                                    .brandImage.value,
-                                            height: 50,
-                                            width: 50,
-                                            boxFit: BoxFit.contain,
-                                            errorWidget: FancyShimmerImage(
-                                              imageUrl:
-                                                  "${AppConfig.assetPath}/backend/img/default.png",
-                                              boxFit: BoxFit.contain,
-                                            ),
-                                          ),
-                                        ),
+                            color: Colors.white,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(5)),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(5)),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: FancyShimmerImage(
+                                      imageUrl: AppConfig.assetPath +
+                                          "/" +
+                                          _brandController
+                                              .brandImage.value,
+                                      height: 50,
+                                      width: 50,
+                                      boxFit: BoxFit.contain,
+                                      errorWidget: FancyShimmerImage(
+                                        imageUrl:
+                                        "${AppConfig.assetPath}/backend/img/default.png",
+                                        boxFit: BoxFit.contain,
                                       ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        _brandController.brandTitle.value,
-                                        style: AppStyles.appFontMedium.copyWith(
-                                          fontSize: 18,
-                                          color: Color(0xff5C7185),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Container(),
-                                      ),
-                                      Container(
-                                        child: Text(
-                                          "${_brandController.brandAllData.value.data.allProducts.total} " +
-                                              "Products found".tr,
-                                          style:
-                                              AppStyles.appFontMedium.copyWith(
-                                            fontSize: 13,
-                                            color: Color(0xffC5C5C5),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  _brandController.brandTitle.value,
+                                  style: AppStyles.appFontMedium.copyWith(
+                                    fontSize: 18,
+                                    color: Color(0xff5C7185),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(),
+                                ),
+                                Container(
+                                  child: Text(
+                                    "${_brandController.brandAllData.value.data.allProducts.total} " +
+                                        "Products found".tr,
+                                    style:
+                                    AppStyles.appFontMedium.copyWith(
+                                      fontSize: 13,
+                                      color: Color(0xffC5C5C5),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     );
@@ -383,51 +378,53 @@ class _ProductsByBrandsState extends State<ProductsByBrands> {
                 }),
                 !_isList
                     ? LoadingMoreSliverList<ProductModel>(
-                        SliverListConfig<ProductModel>(
-                          indicatorBuilder: BuildIndicatorBuilder(
-                            source: source,
-                            isSliver: true,
-                            name: 'Products'.tr,
-                          ).buildIndicator,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 10),
-                          extendedListDelegate:
-                              SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 5,
-                            mainAxisSpacing: 5,
-                          ),
-                          itemBuilder:
-                              (BuildContext c, ProductModel prod, int index) {
-                            return GridViewProductWidget(
-                              productModel: prod,
-                            );
-                          },
-                          sourceList: source,
-                        ),
-                      )
+                  SliverListConfig<ProductModel>(
+                    indicatorBuilder: BuildIndicatorBuilder(
+                      source: source,
+                      isSliver: true,
+                      name: 'Products'.tr,
+                    ).buildIndicator,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 10),
+                    extendedListDelegate:
+                    SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5,
+                    ),
+                    itemBuilder:
+                        (BuildContext c, ProductModel prod, int index) {
+                      return GridViewProductWidget(
+                        productModel: prod,
+                      );
+                    },
+                    sourceList: source,
+                  ),
+                )
                     : LoadingMoreSliverList<ProductModel>(
-                        SliverListConfig<ProductModel>(
-                          indicatorBuilder: BuildIndicatorBuilder(
-                            source: source,
-                            isSliver: true,
-                            name: 'Products'.tr,
-                          ).buildIndicator,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                          itemBuilder:
-                              (BuildContext c, ProductModel prod, int index) {
-                            return ListViewProductWidget(
-                              productModel: prod,
-                            );
-                          },
-                          sourceList: source,
-                        ),
-                      ),
+                  SliverListConfig<ProductModel>(
+                    indicatorBuilder: BuildIndicatorBuilder(
+
+                      source: source,
+                      isSliver: true,
+                      name: 'Products'.tr,
+                    ).buildIndicator,
+                    padding:
+                    EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    itemBuilder:
+                        (BuildContext c, ProductModel prod, int index) {
+                      return ListViewProductWidget(
+                        productModel: prod,
+                      );
+                    },
+                    sourceList: source,
+                  ),
+                ),
               ],
             ),
           ),
-        ));
+        )
+    );
   }
 }
 

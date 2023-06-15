@@ -59,6 +59,11 @@ class HomePageModel {
         "top_picks": List<dynamic>.from(topPicks.map((x) => x.toJson())),
         "msg": msg,
       };
+
+  @override
+  String toString() {
+    return 'HomePageModel{topCategories: $topCategories, featuredBrands: $featuredBrands, sliders: $sliders, newUserZone: $newUserZone, flashDeal: $flashDeal, topPicks: $topPicks, msg: $msg}';
+  }
 }
 
 class CategoryBrand {
@@ -95,6 +100,11 @@ class CategoryBrand {
         "icon": icon == null ? null : icon,
         "image": image == null ? null : image,
       };
+
+  @override
+  String toString() {
+    return 'CategoryBrand{id: $id, name: $name, logo: $logo, slug: $slug, icon: $icon, image: $image}';
+  }
 }
 
 class HomePageModelFlashDeal {
@@ -151,6 +161,11 @@ class HomePageModelFlashDeal {
         "is_featured": isFeatured,
         "AllProducts": List<dynamic>.from(allProducts.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    return 'HomePageModelFlashDeal{id: $id, title: $title, backgroundColor: $backgroundColor, textColor: $textColor, startDate: $startDate, endDate: $endDate, slug: $slug, bannerImage: $bannerImage, isFeatured: $isFeatured, allProducts: $allProducts}';
+  }
 }
 
 class FlashDealAllProduct {
@@ -203,6 +218,11 @@ class FlashDealAllProduct {
         "updated_at": updatedAt.toIso8601String(),
         "product": product == null ? null : product.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'FlashDealAllProduct{id: $id, flashDealId: $flashDealId, sellerProductId: $sellerProductId, discount: $discount, discountType: $discountType, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, product: $product}';
+  }
 }
 
 class NewUserZone {
@@ -561,6 +581,11 @@ class NewUserZoneAllProduct {
         "updated_at": updatedAt.toIso8601String(),
         "product": product.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'NewUserZoneAllProduct{id: $id, newUserZoneId: $newUserZoneId, sellerProductId: $sellerProductId, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, product: $product}';
+  }
 }
 
 class Coupon {

@@ -95,4 +95,9 @@ class WishListProduct {
         "giftcard": giftcard == null ? null : giftcard.toJson(),
         "product": product == null ? null : product.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'WishListProduct{id: $id, userId: $userId, sellerId: $sellerId, type: $type, sellerProductId: $sellerProductId, createdAt: $createdAt, updatedAt: $updatedAt, seller: $seller, giftcard: $giftcard, product: $product}';
+  }
 }

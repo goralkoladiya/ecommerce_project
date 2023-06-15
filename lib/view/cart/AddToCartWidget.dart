@@ -712,9 +712,7 @@ class _AddToCartWidgetState extends State<AddToCartWidget> {
                                               final CartController
                                                   cartController =
                                                   Get.put(CartController());
-                                              await cartController
-                                                  .addToCart(data)
-                                                  .then((value) {
+                                              await cartController.addToCart(data).then((value) {
                                                 if (value) {
                                                   Future.delayed(
                                                       Duration(seconds: 4), () {

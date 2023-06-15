@@ -18,7 +18,7 @@ class MyWishListController extends GetxController {
   GetStorage userToken = GetStorage();
   var tokenKey = 'token';
 
-  var wishListCount = 0.obs;
+  dynamic wishListCount = 0.obs;
 
   RxList<WishListLocal> wishListProducts = <WishListLocal>[].obs;
 
@@ -38,6 +38,7 @@ class MyWishListController extends GetxController {
     
     var jsonString = jsonDecode(response.body);
     print("responseprint==$jsonString");
+    print("ppp: ${response.body}");
     if (jsonString['message'] == 'success') {
       return MyWishListModel.fromJson(jsonString);
     } else {
@@ -49,7 +50,9 @@ class MyWishListController extends GetxController {
   Future<MyWishListModel> getAllWishList() async {
     wishListProducts.clear();
     try {
+      print("try");
       isLoading(true);
+      print("wishlist: ${getWishlists()}");
       var wishlist = await getWishlists();
       if (wishlist != null) {
         wishListModel.value = wishlist;
@@ -79,7 +82,10 @@ class MyWishListController extends GetxController {
         wishListModel.value = MyWishListModel();
       }
       return wishlist;
+
     } catch (e) {
+
+      print("vatch");
       throw e.toString();
     } finally {
       isLoading(false);
@@ -113,16 +119,22 @@ class MyWishListController extends GetxController {
     
     var jsonString = jsonDecode(response.body);
     if (response.statusCode == 202) {
+      SnackBars().snackBarSuccessBottom(jsonString['message'].toString().capitalizeFirst);
+
       EasyLoading.dismiss();
-      SnackBars()
-          .snackBarSuccess(jsonString['message'].toString().capitalizeFirst);
+      SnackBars().snackBarSuccess(jsonString['message'].toString().capitalizeFirst);
       wishListModel.value = MyWishListModel();
       wishListCount.value = 0;
       await getAllWishList();
+      return true;
+      print("1111: ${response.statusCode}");
+
     } else {
+      print("2222: ${response.statusCode}");
+
       EasyLoading.dismiss();
-      SnackBars()
-          .snackBarError(jsonString['message'].toString().capitalizeFirst);
+      SnackBars().snackBarError(jsonString['message'].toString().capitalizeFirst);
+      return false;
     }
   }
 

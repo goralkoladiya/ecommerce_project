@@ -77,7 +77,7 @@ class PaymentGatewayController extends GetxController {
         gateway.value = gateways;
 
         gatewayList.value = gateways.data
-            .where((element) => element.activeStatus == 1)
+            .where((element) => element.activeStatus == "1")
             .toList();
 
         checkoutController.checkoutModel.value.packages.forEach((key, value) {
@@ -87,6 +87,7 @@ class PaymentGatewayController extends GetxController {
             }
           });
         });
+        print("gg: ${gatewayList}");
         selectedGateway.value = gatewayList.first;
       } else {
         gateway.value = PaymentGatewayModel();

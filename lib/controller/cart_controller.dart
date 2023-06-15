@@ -63,7 +63,7 @@ class CartController extends GetxController {
         var selectedCount = 0;
         cartListModel.value.carts.values.forEach((element) {
           element.forEach((element) {
-            if (element.isSelect == 1) {
+            if (element.isSelect != null) {
               selectedCount += int.parse(element.qty);
               print("quantity===$selectedCount");
             }
@@ -106,15 +106,13 @@ class CartController extends GetxController {
 
     if (response.statusCode == 201) {
       isCartAdding(false);
-      SnackBars().snackBarSuccessBottom(
-          jsonString['message'].toString().capitalizeFirst);
+      SnackBars().snackBarSuccessBottom(jsonString['message'].toString().capitalizeFirst);
       await getCartList();
       return true;
     } else {
       isCartAdding(false);
       EasyLoading.dismiss();
-      SnackBars()
-          .snackBarError(jsonString['message'].toString().capitalizeFirst);
+      SnackBars().snackBarError(jsonString['message'].toString().capitalizeFirst);
       return false;
     }
   }

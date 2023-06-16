@@ -7,6 +7,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Stack(
           children: [
@@ -33,20 +34,21 @@ class SplashScreen extends StatelessWidget {
                     infinite: true,
                     child: Image.asset(
                       "${AppConfig.appLogo}",
-                      height: 60,
-                      width: 60,
+                      color: Colors.white,
+                      height: 100,
+                      width: 300,
                     ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    "${AppConfig.appName}",
-                    style: AppStyles.appFontBold.copyWith(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
+                  // Text(
+                  //   "${AppConfig.appName}",
+                  //   style: AppStyles.appFontBold.copyWith(
+                  //     color: Colors.white,
+                  //     fontSize: 20,
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -55,7 +57,7 @@ class SplashScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  "${AppConfig.appName} Online Ecommerce",
+                  "${AppConfig.appName} Ecommerce Platform",
                   style: AppStyles.appFontBook.copyWith(
                     color: Colors.white,
                     fontSize: 14,
@@ -69,16 +71,16 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return CustomSplash(
-  //     imagePath: '${AppConfig.splashScreenLogo}',
-  //     animationEffect: 'elastic-in',
-  //     logoSize: 60,
-  //     home: SplashScreen(),
-  //     duration: 20000,
-  //     bgPath: AppConfig.loginBackgroundImage,
-  //     type: CustomSplashType.StaticDuration,
-  //   );
-  // }
+// @override
+// Widget build(BuildContext context) {
+//   return CustomSplash(
+//     imagePath: '${AppConfig.splashScreenLogo}',
+//     animationEffect: 'elastic-in',
+//     logoSize: 60,
+//     home: SplashScreen(),
+//     duration: 20000,
+//     bgPath: AppConfig.loginBackgroundImage,
+//     type: CustomSplashType.StaticDuration,
+//   );
+// }
 }

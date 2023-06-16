@@ -33,8 +33,8 @@ class _CustomLoadingWidgetState extends State<CustomLoadingWidget>
       child: Container(
         child: Image.asset(
           AppConfig.appLogo,
-          width: 30,
-          height: 30,
+          width: 200,
+          height: 50,
         ),
       ),
     );

@@ -523,8 +523,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                         if (value) {
                                           SnackBars().snackBarSuccess(
                                               'profile updated successfully');
-                                          await loginController
-                                              .getProfileData();
+                                          await loginController.getProfileData();
+                                          Get.back();
                                         }
                                       });
                                     }

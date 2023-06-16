@@ -26,7 +26,7 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
 
   double getPriceForCart() {
     return double.parse((widget.productModel.hasDeal != null
-            ? widget.productModel.hasDeal.discount > 0
+            ? double.parse(widget.productModel.hasDeal.discount) > 0
                 ? currencyController.calculatePrice(widget.productModel)
                 : currencyController.calculatePrice(widget.productModel)
             : currencyController.calculatePrice(widget.productModel))
@@ -334,8 +334,8 @@ class _ListViewProductWidgetState extends State<ListViewProductWidget> {
                             ),
                             child: Text(
                               widget.productModel.hasDeal.discountType == 0
-                                  ? '${widget.productModel.hasDeal.discount.toString()}% '
-                                  : '${(widget.productModel.hasDeal.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
+                                  ? '${double.parse(widget.productModel.hasDeal.discount).toString()}% '
+                                  : '${(double.parse(widget.productModel.hasDeal.discount) * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                               textAlign: TextAlign.center,
                               style: AppStyles.appFontBook.copyWith(
                                 color: Colors.white,

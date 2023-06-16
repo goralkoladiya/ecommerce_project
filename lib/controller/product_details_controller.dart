@@ -202,16 +202,16 @@ class ProductDetailsController extends GetxController {
     {
       if (products.value.data.hasDeal.discountType == 0) {
         finalPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
-            ((products.value.data.hasDeal.discount / 100) * double.parse(products.value.data.skus.first.sellingPrice));
+            ((double.parse(products.value.data.hasDeal.discount) / 100) * double.parse(products.value.data.skus.first.sellingPrice));
         productPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
-            ((products.value.data.hasDeal.discount / 100) * double.parse(products.value.data.skus.first.sellingPrice));
+            ((double.parse(products.value.data.hasDeal.discount) / 100) * double.parse(products.value.data.skus.first.sellingPrice));
 
         print("finalPrice.value1 : ${finalPrice.value}");
       } else {
         finalPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
-            products.value.data.hasDeal.discount;
+            double.parse(products.value.data.hasDeal.discount);
         productPrice.value = double.parse(products.value.data.skus.first.sellingPrice) -
-            products.value.data.hasDeal.discount;
+            double.parse(products.value.data.hasDeal.discount);
         print("finalPrice.value2 : ${finalPrice.value}");
       }
     }
@@ -247,10 +247,10 @@ class ProductDetailsController extends GetxController {
     if (products.value.data.hasDeal != null) {
       if (products.value.data.hasDeal.discountType == 0) {
         finalPrice.value = productSKU.value.sellingPrice -
-            ((products.value.data.hasDeal.discount / 100) *
+            ((double.parse(products.value.data.hasDeal.discount) / 100) *
                 productSKU.value.sellingPrice);
         productPrice.value = productSKU.value.sellingPrice -
-            ((products.value.data.hasDeal.discount / 100) *
+            ((double.parse(products.value.data.hasDeal.discount) / 100) *
                 productSKU.value.sellingPrice);
         print("finalPrice.value5 : ${finalPrice.value}");
       } else {

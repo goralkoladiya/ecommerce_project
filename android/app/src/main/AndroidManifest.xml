@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:name="${applicationName}"
-        android:label="Amazy"
+        android:label="MeghalayanAge"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

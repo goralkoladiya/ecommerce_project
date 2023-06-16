@@ -212,7 +212,7 @@ class _HomeState extends State<Home> {
                                     return FancyShimmerImage(
                                       imageUrl: AppConfig.assetPath +
                                           '/' + slider.sliderImage,
-                                      boxFit: BoxFit.cover,
+                                      // boxFit: BoxFit.f,
                                       width: Get.width,
                                       errorWidget: FancyShimmerImage(
                                         imageUrl:
@@ -394,8 +394,8 @@ class _HomeState extends State<Home> {
                           padding: const EdgeInsets.only(
                               left: 10.0, right: 10.0, top: 30.0),
                           child: Obx(() {
-                            if (!_homeController.isHomePageLoading.value && _homeController.homePageModel.value
-                                .topCategories.length > 0) {
+                            if (!_homeController.isHomePageLoading.value &&
+                                _homeController.homePageModel.value.topCategories.length > 0) {
                               return Container(
                                 height: 100,
                                 child: ListView.separated(
@@ -1485,7 +1485,7 @@ class _HomeState extends State<Home> {
                                     },
                                     showDeal: false,
                                   ),
-                                  _homeController.homePageModel.value.topPicks.length!=0?Container(
+                                  _homeController.homePageModel.value.topPicks.length !=0 ? Container(
                                     height: 220,
                                     child: ListView.separated(
                                         itemCount: _homeController.homePageModel.value.topPicks.take(8).length,

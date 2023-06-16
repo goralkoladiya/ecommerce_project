@@ -28,7 +28,7 @@ class _CartIconState extends State<CartIcon> {
 
   double getPriceForCart() {
     return double.parse((widget.productModel.hasDeal != null
-            ? widget.productModel.hasDeal.discount > 0
+            ?double.parse(widget.productModel.hasDeal.discount)> 0
                 ? currencyController.calculatePrice(widget.productModel)
                 : currencyController.calculatePrice(widget.productModel)
             : currencyController.calculatePrice(widget.productModel))

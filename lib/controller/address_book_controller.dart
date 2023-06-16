@@ -52,7 +52,7 @@ class AddressController extends GetxController {
         addressCount.value = products.addresses.length;
         print("length : ${addressCount.value}");
         billingAddress.value = products.addresses.where((element) => element.isBillingDefault == "1").single;
-        shippingAddress.value = products.addresses.where((element) => element.isShippingDefault == "1").toList()[0];
+        shippingAddress.value = products.addresses.where((element) => element.isShippingDefault == "1").single;
         print("billingAddress.value : ${billingAddress.value}");
         // checkoutController.getCheckoutList();
       } else {

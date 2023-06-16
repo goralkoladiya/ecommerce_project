@@ -1521,7 +1521,8 @@ class _CartCheckoutState extends State<CartCheckout> {
                                                                                             borderRadius: BorderRadius.circular(2),
                                                                                           ),
                                                                                           child: Text(
-                                                                                            checkoutItem[productIndex].product.product.hasDeal.discountType == 0 ? '-${checkoutItem[productIndex].product.product.hasDeal.discount}%' : '-${double.parse((checkoutItem[productIndex].product.product.hasDeal.discount * currencyController.conversionRate.value).toString()).toStringAsFixed(2)}${currencyController.appCurrency.value}',
+                                                                                            checkoutItem[productIndex].product.product.hasDeal.discountType == 0 ? '-${checkoutItem[productIndex].product.product.hasDeal.discount}%'
+                                                                                                : '-${double.parse((checkoutItem[productIndex].product.product.hasDeal.discount * int.parse(currencyController.conversionRate.value.toString())).toString()).toStringAsFixed(2)}${currencyController.appCurrency.value}',
                                                                                             style: AppStyles.kFontWhite12w5,
                                                                                           ),
                                                                                         ),

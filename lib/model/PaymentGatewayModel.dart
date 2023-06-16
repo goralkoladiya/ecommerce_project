@@ -77,4 +77,9 @@ class Gateway {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
+
+  @override
+  String toString() {
+    return 'Gateway{id: $id, method: $method, type: $type, activeStatus: $activeStatus, moduleStatus: $moduleStatus, logo: $logo, createdBy: $createdBy, updatedBy: $updatedBy, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }

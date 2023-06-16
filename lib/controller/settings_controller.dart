@@ -305,10 +305,10 @@ class GeneralSettingsController extends GetxController {
       if (productModel.hasDiscount == 'yes' || productModel.hasDeal != null) {
         if (productModel.product.productType == 1) {
           amountText = double.parse(
-                      (productModel.maxSellingPrice * conversionRate.value).toString()).toStringAsFixed(2) + appCurrency.value;
+                      (double.parse(productModel.maxSellingPrice) * conversionRate.value).toString()).toStringAsFixed(2) + appCurrency.value;
         } else {
           amountText = double.parse(
-                      (productModel.maxSellingPrice * conversionRate.value).toString()).toStringAsFixed(2) + appCurrency.value;
+                      (double.parse(productModel.maxSellingPrice) * conversionRate.value).toString()).toStringAsFixed(2) + appCurrency.value;
         }
       } else {
         amountText = '';
@@ -345,23 +345,23 @@ class GeneralSettingsController extends GetxController {
 
       if (prod.hasDeal != null) {
         if (prod.product.productType == 1) {
-          print("priceTex3:: ${singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice), prod.hasDeal.discountType, prod.hasDeal.discount))}");
-          print("prod.hasDeal.discount ${prod.hasDeal.discount.runtimeType}");
+          print("priceTex3:: ${singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))}");
+          print("prod.hasDeal.discount ${double.parse(prod.hasDeal.discount).runtimeType}");
           priceText = singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice),
-              prod.hasDeal.discountType,prod.hasDeal.discount)).toStringAsFixed(2);
+              prod.hasDeal.discountType,double.parse(prod.hasDeal.discount))).toStringAsFixed(2);
         } else {
-          if (sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, prod.hasDeal.discount) ==
-              sellingPrice(double.parse(prod.maxSellingPrice), prod.hasDeal.discountType, prod.hasDeal.discount)) {
-            print("priceText4:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, prod.hasDeal.discount))}");
+          if (sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)) ==
+              sellingPrice(double.parse(prod.maxSellingPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount))) {
+            print("priceText4:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))}");
             priceText = singlePrice(sellingPrice(double.parse(prod.minSellPrice),
-                prod.hasDeal.discountType, prod.hasDeal.discount))
+                prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))
                 .toStringAsFixed(2);
           } else {
             // print("${prod.productName} -- ${prod.product.productType} -- Max: ${prod.maxSellingPrice} -- Min: ${prod.minSellPrice}");
-            print("priceText5:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, prod.hasDeal.discount))}");
+            print("priceText5:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))}");
 
             priceText = singlePrice(sellingPrice(double.parse(prod.minSellPrice),
-                prod.hasDeal.discountType, prod.hasDeal.discount))
+                prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))
                 .toStringAsFixed(2);
           }
         }
@@ -434,22 +434,22 @@ class GeneralSettingsController extends GetxController {
     else {
       if (prod.hasDeal != null) {
         if (prod.product.productType == 1) {
-          print("priceTex3:: ${singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice), prod.hasDeal.discountType, prod.hasDeal.discount))}");
+          print("priceTex3:: ${singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))}");
           priceText = singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice),
-              prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2);
+              prod.hasDeal.discountType, double.parse(prod.hasDeal.discount))).toStringAsFixed(2);
         } else {
-          if (sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, prod.hasDeal.discount) ==
-              sellingPrice(double.parse(prod.maxSellingPrice), prod.hasDeal.discountType, prod.hasDeal.discount)) {
-            print("priceText4:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, prod.hasDeal.discount))}");
+          if (sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)) ==
+              sellingPrice(double.parse(prod.maxSellingPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount))) {
+            print("priceText4:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))}");
             priceText = singlePrice(sellingPrice(double.parse(prod.minSellPrice),
-                    prod.hasDeal.discountType, prod.hasDeal.discount))
+                    prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))
                 .toStringAsFixed(2);
           } else {
             // print("${prod.productName} -- ${prod.product.productType} -- Max: ${prod.maxSellingPrice} -- Min: ${prod.minSellPrice}");
-            print("priceText5:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, prod.hasDeal.discount))}");
+            print("priceText5:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))}");
 
             priceText = singlePrice(sellingPrice(double.parse(prod.minSellPrice),
-                    prod.hasDeal.discountType, prod.hasDeal.discount))
+                    prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))
                 .toStringAsFixed(2);
           }
         }
@@ -508,13 +508,13 @@ class GeneralSettingsController extends GetxController {
 
     if (productModel.hasDiscount == 'yes' || productModel.hasDeal != null) {
       if (productModel.product.productType == 1) {
-        amountText = double.parse((productModel.maxSellingPrice * conversionRate.value).toString()).toStringAsFixed(2) +
+        amountText = double.parse((double.parse(productModel.maxSellingPrice) * conversionRate.value).toString()).toStringAsFixed(2) +
             appCurrency.value;
       } else {
         double conversion= conversionRate.value;
         amountText = /*double.parse((productModel.minSellPrice * conversion.toInt()).toString()).toStringAsFixed(2) +
             appCurrency.value + ' - ' +*/
-            double.parse((productModel.maxSellingPrice * conversion).toString()).toStringAsFixed(2) + appCurrency.value;
+            (double.parse(productModel.maxSellingPrice) * conversion).toStringAsFixed(2) + appCurrency.value;
       }
     } else {
       amountText = '';
@@ -526,27 +526,27 @@ class GeneralSettingsController extends GetxController {
     if (prod.hasDeal != null) {
       if (prod.product.productType == 1) {
         print("priceText10:: ${singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice),
-            prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2)}");
+            prod.hasDeal.discountType, double.parse(prod.hasDeal.discount))).toStringAsFixed(2)}");
 
         priceText = singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice),
-                prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2);
+                prod.hasDeal.discountType, double.parse(prod.hasDeal.discount))).toStringAsFixed(2);
       } else {
         if (sellingPrice(double.parse(prod.minSellPrice), prod.hasDeal.discountType,
-                prod.hasDeal.discount) == sellingPrice(double.parse(prod.maxSellingPrice), prod.hasDeal.discountType,
-            prod.hasDeal.discount)) {
+                double.parse(prod.hasDeal.discount)) == sellingPrice(double.parse(prod.maxSellingPrice), prod.hasDeal.discountType,
+            double.parse(prod.hasDeal.discount))) {
 
           print("priceText11:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice),
-              prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2)}");
+              prod.hasDeal.discountType, double.parse(prod.hasDeal.discount))).toStringAsFixed(2)}");
           priceText = singlePrice(sellingPrice(double.parse(prod.minSellPrice),
-                  prod.hasDeal.discountType, prod.hasDeal.discount))
+                  prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))
               .toStringAsFixed(2);
         } else {
 
           print("priceText12:: ${singlePrice(sellingPrice(double.parse(prod.minSellPrice),
-              prod.hasDeal.discountType, prod.hasDeal.discount)).toStringAsFixed(2)}");
+              prod.hasDeal.discountType, double.parse(prod.hasDeal.discount))).toStringAsFixed(2)}");
 
           priceText = singlePrice(sellingPrice(double.parse(prod.minSellPrice),
-                  prod.hasDeal.discountType, prod.hasDeal.discount))
+                  prod.hasDeal.discountType, double.parse(prod.hasDeal.discount)))
               .toStringAsFixed(2);
         }
       }

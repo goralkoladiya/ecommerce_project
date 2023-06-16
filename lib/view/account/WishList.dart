@@ -66,7 +66,7 @@ class _WishListState extends State<WishList> {
 
   double getPriceForCart(ProductModel productModel) {
     return double.parse((productModel.hasDeal != null
-            ? productModel.hasDeal.discount > 0
+            ? double.parse(productModel.hasDeal.discount) > 0
                 ? _currencyController.calculatePrice(productModel)
                 : _currencyController.calculatePrice(productModel)
             : _currencyController.calculatePrice(productModel))

@@ -12,18 +12,18 @@ class HasDeal {
   });
 
   int id;
-  int flashDealId;
-  int sellerProductId;
-  double discount;
-  int discountType;
-  int status;
+  String flashDealId;
+  String sellerProductId;
+  String discount;
+  String discountType;
+  String status;
   FlashDeal flashDeal;
 
   factory HasDeal.fromJson(Map<String, dynamic> json) => HasDeal(
         id: json["id"],
         flashDealId: json["flash_deal_id"],
         sellerProductId: json["seller_product_id"],
-        discount: json["discount"].toDouble(),
+        discount: json["discount"],
         discountType: json["discount_type"],
         status: json["status"],
         flashDeal: json["flash_deal"] == null

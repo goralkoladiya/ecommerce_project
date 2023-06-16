@@ -34,6 +34,11 @@ class SupportTicketModel {
         "statuses": List<dynamic>.from(statuses.map((x) => x.toJson())),
         "msg": msg,
       };
+
+  @override
+  String toString() {
+    return 'SupportTicketModel{tickets: $tickets, statuses: $statuses, msg: $msg}';
+  }
 }
 
 class Status {
@@ -70,6 +75,11 @@ class Status {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
+
+  @override
+  String toString() {
+    return 'Status{id: $id, name: $name, isActive: $isActive, status: $status, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }
 
 class Tickets {
@@ -91,6 +101,11 @@ class Tickets {
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
         "total": total,
       };
+
+  @override
+  String toString() {
+    return 'Tickets{data: $data, total: $total}';
+  }
 }
 
 class TicketData {
@@ -154,6 +169,11 @@ class TicketData {
         "updated_at": updatedAt.toIso8601String(),
         "messages": List<dynamic>.from(messages.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    return 'TicketData{id: $id, referenceNo: $referenceNo, subject: $subject, description: $description, categoryId: $categoryId, priorityId: $priorityId, userId: $userId, referId: $referId, statusId: $statusId, createdAt: $createdAt, updatedAt: $updatedAt, messages: $messages}';
+  }
 }
 
 class Message {
@@ -204,6 +224,11 @@ class Message {
             List<dynamic>.from(attachMsgFile.map((x) => x.toJson())),
         "user": user.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'Message{id: $id, ticketId: $ticketId, text: $text, userId: $userId, type: $type, createdAt: $createdAt, updatedAt: $updatedAt, attachMsgFile: $attachMsgFile, user: $user}';
+  }
 }
 
 class User {
@@ -312,6 +337,11 @@ class User {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
+
+  @override
+  String toString() {
+    return 'User{id: $id, firstName: $firstName, lastName: $lastName, username: $username, photo: $photo, roleId: $roleId, mobileVerifiedAt: $mobileVerifiedAt, email: $email, isVerified: $isVerified, verifyCode: $verifyCode, emailVerifiedAt: $emailVerifiedAt, notificationPreference: $notificationPreference, isActive: $isActive, avatar: $avatar, slug: $slug, phone: $phone, dateOfBirth: $dateOfBirth, description: $description, secretLogin: $secretLogin, secretLoggedInByUser: $secretLoggedInByUser, langCode: $langCode, currencyId: $currencyId, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }
 
 class AttachMsgFile {
@@ -352,6 +382,11 @@ class AttachMsgFile {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
+
+  @override
+  String toString() {
+    return 'AttachMsgFile{id: $id, messageId: $messageId, url: $url, name: $name, type: $type, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }
 
 class Link {
@@ -436,6 +471,11 @@ class TicketCategory {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
+
+  @override
+  String toString() {
+    return 'TicketCategory{id: $id, name: $name, status: $status, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }
 
 TicketPriorities ticketPrioritiesFromJson(String str) =>
@@ -496,4 +536,9 @@ class TicketPriority {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
+
+  @override
+  String toString() {
+    return 'TicketPriority{id: $id, name: $name, status: $status, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }

@@ -63,18 +63,18 @@ class RegistrationPage extends GetView<LoginController> {
                     children: [
                       Image.asset(
                         AppConfig.appLogo,
-                        width: 33,
-                        height: 33,
+                        width: 200,
+                        height: 70,
                       ),
                       SizedBox(
                         width: 5,
                       ),
-                      Text(
-                        AppConfig.appName,
-                        style: AppStyles.appFontBold.copyWith(
-                          fontSize: 20,
-                        ),
-                      ),
+                      // Text(
+                      //   AppConfig.appName,
+                      //   style: AppStyles.appFontBold.copyWith(
+                      //     fontSize: 20,
+                      //   ),
+                      // ),
                     ],
                   ),
                   SizedBox(

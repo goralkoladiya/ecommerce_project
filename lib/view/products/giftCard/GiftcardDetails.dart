@@ -72,10 +72,10 @@ class _GiftcardDetailsState extends State<GiftcardDetails> {
     if (productModel.hasDeal != null) {
       if (productModel.hasDeal.discountType == 0) {
         discountType =
-            '(-${productModel.hasDeal.discount.toStringAsFixed(2)}%)';
+            '(-${double.parse(productModel.hasDeal.discount).toStringAsFixed(2)}%)';
       } else {
         discountType =
-            '(-${(productModel.hasDeal.discount * settingsController.conversionRate.value).toStringAsFixed(2)}${settingsController.appCurrency.value})';
+            '(-${(double.parse(productModel.hasDeal.discount) * settingsController.conversionRate.value).toStringAsFixed(2)}${settingsController.appCurrency.value})';
       }
     } else {
       if (double.parse(productModel.discount) > 0) {

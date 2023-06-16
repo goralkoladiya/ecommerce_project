@@ -20,8 +20,8 @@ class FlashDeal {
   DateTime endDate;
   String slug;
   String bannerImage;
-  int status;
-  int isFeatured;
+  String status;
+  String isFeatured;
 
   factory FlashDeal.fromJson(Map<String, dynamic> json) => FlashDeal(
         id: json["id"],

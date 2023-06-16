@@ -87,18 +87,18 @@ class LoginPage extends GetView<LoginController> {
                   children: [
                     Image.asset(
                       AppConfig.appLogo,
-                      width: 33,
-                      height: 33,
+                      width: 200,
+                      height: 70,
                     ),
                     SizedBox(
                       width: 5,
                     ),
-                    Text(
-                      AppConfig.appName,
-                      style: AppStyles.appFontBold.copyWith(
-                        fontSize: 20,
-                      ),
-                    ),
+                    // Text(
+                    //   AppConfig.appName,
+                    //   style: AppStyles.appFontBold.copyWith(
+                    //     fontSize: 20,
+                    //   ),
+                    // ),
                   ],
                 ),
                 SizedBox(
@@ -116,18 +116,18 @@ class LoginPage extends GetView<LoginController> {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    'Enter your email and password to access your account or create an account.'
-                        .tr,
-                    textAlign: TextAlign.center,
-                    style: AppStyles.appFontBook.copyWith(
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
+                // Container(
+                //   alignment: Alignment.center,
+                //   padding: EdgeInsets.symmetric(horizontal: 20),
+                //   child: Text(
+                //     'Enter your email and password to access your account or create an account.'
+                //         .tr,
+                //     textAlign: TextAlign.center,
+                //     style: AppStyles.appFontBook.copyWith(
+                //       fontSize: 16,
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
                   height: 30,
                 ),

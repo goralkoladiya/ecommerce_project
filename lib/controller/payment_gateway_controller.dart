@@ -87,7 +87,6 @@ class PaymentGatewayController extends GetxController {
             }
           });
         });
-        print("gg: ${gatewayList}");
         selectedGateway.value = gatewayList.first;
       } else {
         gateway.value = PaymentGatewayModel();

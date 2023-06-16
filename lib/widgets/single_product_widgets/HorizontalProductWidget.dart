@@ -23,7 +23,7 @@ class _HorizontalProductWidgetState extends State<HorizontalProductWidget> {
       Get.put(GeneralSettingsController());
 
   double getPriceForCart() {
-    return double.parse((widget.productModel.hasDeal != null ? widget.productModel.hasDeal.discount > 0
+    return double.parse((widget.productModel.hasDeal != null ? double.parse(widget.productModel.hasDeal.discount) > 0
                 ? currencyController.calculatePrice(widget.productModel)
                 : currencyController.calculatePrice(widget.productModel)
             : currencyController.calculatePrice(widget.productModel)).toString());
@@ -160,7 +160,7 @@ class _HorizontalProductWidgetState extends State<HorizontalProductWidget> {
                               child: Align(
                                 alignment: Alignment.topRight,
                                 child: widget.productModel.hasDeal != null
-                                    ? widget.productModel.hasDeal.discount > 0
+                                    ? double.parse(widget.productModel.hasDeal.discount) > 0
                                         ? Container(
                                             padding: EdgeInsets.all(4),
                                             alignment: Alignment.center,
@@ -173,8 +173,8 @@ class _HorizontalProductWidgetState extends State<HorizontalProductWidget> {
                                               widget.productModel.hasDeal
                                                           .discountType ==
                                                       0
-                                                  ? '${widget.productModel.hasDeal.discount.toString()}% '
-                                                  : '${(widget.productModel.hasDeal.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
+                                                  ? '${double.parse(widget.productModel.hasDeal.discount).toString()}% '
+                                                  : '${(double.parse(widget.productModel.hasDeal.discount) * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                                               textAlign: TextAlign.center,
                                               style: AppStyles.appFontBook
                                                   .copyWith(
@@ -290,7 +290,7 @@ class _HorizontalProductWidgetState extends State<HorizontalProductWidget> {
                               ),
                               SizedBox(height: 5),
                               widget.productModel.hasDeal != null
-                                  ? widget.productModel.hasDeal.discount > 0
+                                  ? double.parse(widget.productModel.hasDeal.discount) > 0
                                       ? Wrap(
                                           crossAxisAlignment:
                                               WrapCrossAlignment.center,

@@ -129,7 +129,7 @@ class HomePageModelFlashDeal {
   DateTime endDate;
   String slug;
   String bannerImage;
-  int isFeatured;
+  String isFeatured;
   List<FlashDealAllProduct> allProducts;
 
   factory HomePageModelFlashDeal.fromJson(Map<String, dynamic> json) =>
@@ -182,17 +182,17 @@ class FlashDealAllProduct {
   });
 
   int id;
-  int flashDealId;
-  int sellerProductId;
-  int discount;
-  int discountType;
-  int status;
+  String flashDealId;
+  String sellerProductId;
+  String discount;
+  String discountType;
+  String status;
   DateTime createdAt;
   DateTime updatedAt;
 
   ProductModel product;
 
-  factory FlashDealAllProduct.fromJson(Map<double, dynamic> json) =>
+  factory FlashDealAllProduct.fromJson(Map<String, dynamic> json) =>
       FlashDealAllProduct(
         id: json["id"],
         flashDealId: json["flash_deal_id"],

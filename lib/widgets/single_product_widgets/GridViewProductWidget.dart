@@ -25,7 +25,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
 
   double getPriceForCart() {
     return double.parse((widget.productModel.hasDeal != null
-            ? widget.productModel.hasDeal.discount > 0
+            ? double.parse(widget.productModel.hasDeal.discount)> 0
                 ? currencyController.calculatePrice(widget.productModel)
                 : currencyController.calculatePrice(widget.productModel)
             : currencyController.calculatePrice(widget.productModel))
@@ -148,7 +148,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                             child: Align(
                               alignment: Alignment.topRight,
                               child: widget.productModel.hasDeal != null
-                                  ? widget.productModel.hasDeal.discount > 0
+                                  ? double.parse(widget.productModel.hasDeal.discount) > 0
                                       ? Container(
                                           padding: EdgeInsets.all(4),
                                           alignment: Alignment.center,
@@ -159,8 +159,8 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                                           ),
                                           child: Text(
                                             widget.productModel.hasDeal.discountType == 0
-                                                ? '${widget.productModel.hasDeal.discount.toString()}% '
-                                                : '${(widget.productModel.hasDeal.discount * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
+                                                ? '${double.parse(widget.productModel.hasDeal.discount).toString()}% '
+                                                : '${(double.parse(widget.productModel.hasDeal.discount) * currencyController.conversionRate.value).toStringAsFixed(2)}${currencyController.appCurrency.value} ',
                                             textAlign: TextAlign.center,
                                             style:
                                                 AppStyles.appFontBook.copyWith(
@@ -270,7 +270,7 @@ class _GridViewProductWidgetState extends State<GridViewProductWidget> {
                               ),
                               SizedBox(height: 5),
                               widget.productModel.hasDeal != null
-                                  ? widget.productModel.hasDeal.discount > 0
+                                  ? double.parse(widget.productModel.hasDeal.discount) > 0
                                       ? Wrap(
                                           crossAxisAlignment:
                                               WrapCrossAlignment.center,

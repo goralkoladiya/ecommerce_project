@@ -80,8 +80,7 @@ class _SupportTicketsPageState extends State<SupportTicketsPage> {
               ),
             ),
             body: TabBarView(
-              children: List.generate(
-                  controller.supportTickets.value.statuses.length + 1, (index) {
+              children: List.generate(controller.supportTickets.value.statuses.length + 1, (index) {
                 if (index == 0) {
                   return AllSupportTicketsPage();
                 }

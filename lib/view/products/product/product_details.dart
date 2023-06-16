@@ -202,10 +202,10 @@ class _ProductDetailsState extends State<ProductDetails> {
     if (productModel.hasDeal != null) {
       if (productModel.hasDeal.discountType == 0) {
         discountType =
-            '(-${productModel.hasDeal.discount.toStringAsFixed(2)}%)';
+            '(-${double.parse(productModel.hasDeal.discount).toStringAsFixed(2)}%)';
       } else {
         discountType =
-            '(-${(productModel.hasDeal.discount * _settingsController.conversionRate.value).toStringAsFixed(2)}${_settingsController.appCurrency.value})';
+            '(-${(double.parse(productModel.hasDeal.discount) * _settingsController.conversionRate.value).toStringAsFixed(2)}${_settingsController.appCurrency.value})';
       }
     } else {
       if (int.parse(productModel.discount) > 0) {
@@ -227,7 +227,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   double getPriceForCart() {
     return double.parse((_productDetailsModel.data.hasDeal != null
-            ? _productDetailsModel.data.hasDeal.discount > 0
+            ? double.parse(_productDetailsModel.data.hasDeal.discount) > 0
                 ? _settingsController.calculatePrice(_productDetailsModel.data)
                 : _settingsController.calculatePrice(_productDetailsModel.data)
             : _settingsController.calculatePrice(_productDetailsModel.data))

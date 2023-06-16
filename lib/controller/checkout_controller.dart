@@ -260,16 +260,14 @@ class CheckoutController extends GetxController {
               if (element.product.product.hasDeal.discountType == 0) {
                 dis += (double.parse(element.product.sellingPrice) -
                         (double.parse(element.product.sellingPrice) -
-                            ((element.product.product.hasDeal.discount
-                                        .toDouble() /
-                                    100) *
+                            ((double.parse(element.product.product.hasDeal.discount)
+                                        / 100) *
                                 element.product.sellingPrice.toDouble()))) *
                     int.parse(element.qty);
               } else {
                 dis += (double.parse(element.product.sellingPrice) -
                         (double.parse(element.product.sellingPrice) -
-                            element.product.product.hasDeal.discount
-                                .toDouble())) *
+                            double.parse(element.product.product.hasDeal.discount))) *
                     int.parse(element.qty);
               }
             } else {

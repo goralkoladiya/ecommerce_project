@@ -72,7 +72,7 @@ class ProductModel {
   dynamic avgRating;
   // dynamic maxSellingPrice;
   // double maxSellingPrice;
-  dynamic maxSellingPrice;
+  String maxSellingPrice;
   dynamic rating;
   HasDeal hasDeal;
   // String hasDiscount;
@@ -126,7 +126,7 @@ class ProductModel {
                 .map((x) => ProductVariantDetail.fromJson(x))),
         maxSellingPrice: json["MaxSellingPrice"] == null
             ? null
-            : double.parse(json["MaxSellingPrice"].toString()).toDouble(),
+            : json["MaxSellingPrice"],
         hasDeal: json["hasDeal"] == 0 || json["hasDeal"] == null
             ? null
             : HasDeal.fromJson(json["hasDeal"]),

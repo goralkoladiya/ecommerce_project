@@ -114,7 +114,7 @@ class AppStyles {
 
   static Color textFieldFillColor = Color(0xffE1EBF1);
 
-  static Color pinkColor = AppConfig.appColorScheme.toColor();
+  static Color pinkColor =blackColor;
 
   static Color pinkColorAlt = Color.fromARGB(255, 252, 234, 234);
 

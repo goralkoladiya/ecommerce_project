@@ -32,7 +32,7 @@ class AppConfig {
   static String appColorSchemeGradient2 = '#d20000';
 
   static const String privacyPolicyUrl =
-      'https://spn21.spondan.com/amazy_app/privacy-policy';
+      'https://ecommerce.yoursoftwaredemo.com/privacy-policy';
 
   static bool googleLogin = true;
 

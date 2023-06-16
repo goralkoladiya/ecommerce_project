@@ -28,15 +28,18 @@ class HomeController extends GetxController {
       print(URLs.HOME_PAGE);
       await _dio.get(URLs.HOME_PAGE,).then((value) {
         try {
+          print("Home :");
           final data = new Map<String, dynamic>.from(value.data);
           // log("data::: ${value.data['sliders']}");
+          print("Home1");
           homePageModel.value = HomePageModel.fromJson(data);
+          print("Home2");
           homePageModel.value.newUserZone.allProducts.removeWhere((element) => element != null);
+
           print('home top ticked: ${homePageModel.value.topPicks.length}');
-          print(
-              'home top ticked: ${homePageModel.value.flashDeal.allProducts.length}');
+          print('home top ticked: ${homePageModel.value.flashDeal.allProducts.length}');
         } catch (e, t) {
-          print('home_page_data error ---<>');
+          print('home_page_data error ---<> ${value.statusCode}');
           print(e.toString());
           print(t.toString());
         }

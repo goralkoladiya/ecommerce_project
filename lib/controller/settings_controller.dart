@@ -384,7 +384,7 @@ class GeneralSettingsController extends GetxController {
           // print ("prod.maxSellingPrice : ${prod.maxSellingPrice.runtimeType}");
           // print ("prod.minSellingPrice : ${prod.minSellPrice.runtimeType}");
           if (sellingPrice(double.parse(prod.minSellPrice), prod.discountType, double.parse(prod.discount)) ==
-              sellingPrice(prod.maxSellingPrice, prod.discountType, double.parse(prod.discount))) {
+              sellingPrice(double.parse(prod.maxSellingPrice), prod.discountType, double.parse(prod.discount))) {
             if (prod.hasDiscount == 'yes') {
               priceText = singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice),
                   prod.discountType, double.parse(prod.discount)))
@@ -467,9 +467,9 @@ class GeneralSettingsController extends GetxController {
           }
         } else {
           ///variant product
-          print ("ssmaxSellingPrice : ${prod.maxSellingPrice}");
+          // print ("ssmaxSellingPrice : ${prod.maxSellingPrice}");
           if (sellingPrice(double.parse(prod.minSellPrice), prod.discountType, double.parse(prod.discount)) ==
-              sellingPrice(prod.maxSellingPrice, prod.discountType, double.parse(prod.discount))) {
+              sellingPrice(double.parse(prod.maxSellingPrice), prod.discountType, double.parse(prod.discount))) {
             if (prod.hasDiscount == 'yes') {
               priceText = singlePrice(sellingPrice(double.parse(prod.skus.first.sellingPrice),
                       prod.discountType, double.parse(prod.discount)))
@@ -499,7 +499,7 @@ class GeneralSettingsController extends GetxController {
         }
       }
     }
-    print("priceText9::${priceText}");
+    // print("priceText9::${priceText}");
     return priceText;
   }
 
@@ -626,6 +626,7 @@ class GeneralSettingsController extends GetxController {
 
   double sellingPrice(amount, discountType, double discountAmount) {
     double discount = 0.0;
+    // print(" Amount : ${amount.runtimeType}");
     if (discountType == "0" || discountType == 0) {
       discount = (amount / 100) * double.parse(discountAmount.toString());
 

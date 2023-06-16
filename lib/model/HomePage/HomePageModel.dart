@@ -189,7 +189,6 @@ class FlashDealAllProduct {
   String status;
   DateTime createdAt;
   DateTime updatedAt;
-
   ProductModel product;
 
   factory FlashDealAllProduct.fromJson(Map<String, dynamic> json) =>

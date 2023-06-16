@@ -22,11 +22,12 @@ class AllOrdersListScreen extends StatelessWidget {
             child: CustomLoadingWidget(),
           );
         } else {
-          if (orderController.allOrderListModel.value.orders == null ||
+          if (orderController.allOrderListModel.value.orders == null||
               orderController.allOrderListModel.value.orders.length == 0) {
             return NoOrderPlacedWidget();
           }
-          return Container(
+          else
+          { return Container(
             child: ListView.separated(
               separatorBuilder: (context, index) {
                 return Divider(
@@ -38,13 +39,15 @@ class AllOrdersListScreen extends StatelessWidget {
               itemCount: orderController.allOrderListModel.value.orders.length,
               itemBuilder: (context, index) {
                 OrderData order =
-                    orderController.allOrderListModel.value.orders[index];
+                orderController.allOrderListModel.value.orders[index];
                 return OrderAllToPayListDataWidget(
                   order: order,
                 );
               },
             ),
           );
+          }
+
         }
       },
     );

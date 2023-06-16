@@ -142,6 +142,12 @@ class OrderData {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };
+
+  @override
+  String toString() {
+    return 'OrderData{id: $id, customerId: $customerId, orderPaymentId: $orderPaymentId, orderType: $orderType, orderNumber: $orderNumber, paymentType: $paymentType, isPaid: $isPaid, isConfirmed: $isConfirmed, isCompleted: $isCompleted, isCancelled: $isCancelled, customerEmail: $customerEmail, customerPhone: $customerPhone, customerShippingAddress: $customerShippingAddress, customerBillingAddress: $customerBillingAddress, numberOfPackage: $numberOfPackage, grandTotal: $grandTotal, subTotal: $subTotal, discountTotal: $discountTotal, shippingTotal: $shippingTotal, numberOfItem: $numberOfItem, orderStatus: $orderStatus, taxAmount: $taxAmount, customer: $customer, packages: $packages, shippingAddress: $shippingAddress, billingAddress: $billingAddress, orderAddress: $orderAddress, deliveryType: $deliveryType, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
+
 }
 
 class OrderAddress {
@@ -271,6 +277,11 @@ class OrderAddress {
         "get_billing_state": getBillingState.toJson(),
         "get_billing_city": getBillingCity.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'OrderAddress{id: $id, orderId: $orderId, customerId: $customerId, shippingName: $shippingName, shippingEmail: $shippingEmail, shippingPhone: $shippingPhone, shippingAddress: $shippingAddress, shippingCountryId: $shippingCountryId, shippingStateId: $shippingStateId, shippingCityId: $shippingCityId, shippingPostcode: $shippingPostcode, billToSameAddress: $billToSameAddress, billingName: $billingName, billingEmail: $billingEmail, billingPhone: $billingPhone, billingAddress: $billingAddress, billingCountryId: $billingCountryId, billingStateId: $billingStateId, billingCityId: $billingCityId, billingPostcode: $billingPostcode, createdAt: $createdAt, updatedAt: $updatedAt, getShippingCountry: $getShippingCountry, getShippingState: $getShippingState, getShippingCity: $getShippingCity, getBillingCountry: $getBillingCountry, getBillingState: $getBillingState, getBillingCity: $getBillingCity}';
+  }
 }
 
 class GetIngCountry2 {
@@ -311,6 +322,11 @@ class GetIngCountry2 {
         "updated_at": updatedAt,
         "country_id": countryId == null ? null : countryId,
       };
+
+  @override
+  String toString() {
+    return 'GetIngCountry2{id: $id, name: $name, stateId: $stateId, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, countryId: $countryId}';
+  }
 }
 
 class GetIngCountry {
@@ -351,4 +367,9 @@ class GetIngCountry {
         "created_at": createdAt,
         "updated_at": updatedAt,
       };
+
+  @override
+  String toString() {
+    return 'GetIngCountry{id: $id, code: $code, name: $name, phonecode: $phonecode, status: $status, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }

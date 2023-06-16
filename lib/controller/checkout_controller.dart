@@ -549,25 +549,28 @@ class CheckoutController extends GetxController {
           });
         });
 
+
         if (couponData.value.couponType == 1) {
           if (couponData.value.discountType == 0) {
             var cAmount = 0.0;
             couponData.value.products.forEach((element) {
               prods.forEach((el) {
+                print("tt: ${el.totalPrice}");
                 if (element.productId == el.product.productId) {
                   cAmount += (el.totalPrice / 100) * couponData.value.discount;
                 }
               });
             });
+            print("c::${cAmount}");
             couponDiscount.value = cAmount;
           } else {
-            couponDiscount.value =
-                double.parse(couponData.value.discount.toString());
+            couponDiscount.value = double.parse(couponData.value.discount.toString());
           }
+
         } else if (couponData.value.couponType == 2) {
           if (couponData.value.discountType == 0) {
             if (couponData.value.maximumDiscount != null) {
-              if (couponDiscount.value > couponData.value.maximumDiscount) {
+              if (couponDiscount.value > double.parse(couponData.value.maximumDiscount)) {
                 couponDiscount.value =
                     double.parse(couponData.value.maximumDiscount.toString());
               }
@@ -582,7 +585,7 @@ class CheckoutController extends GetxController {
           }
         } else if (couponData.value.couponType == 3) {
           if (couponData.value.maximumDiscount != null) {
-            if (couponDiscount.value > couponData.value.maximumDiscount) {
+            if (couponDiscount.value > double.parse(couponData.value.maximumDiscount)) {
               couponDiscount.value =
                   double.parse(couponData.value.maximumDiscount.toString());
             }
@@ -592,6 +595,9 @@ class CheckoutController extends GetxController {
           }
         }
 
+        print("cd: ${couponDiscount.value}");
+        print("gt: ${grandTotal.value}");
+        print("GT: ${grandTotal.value = grandTotal.value - couponDiscount.value}");
         grandTotal.value = grandTotal.value - couponDiscount.value;
 
         couponApplied.value = true;

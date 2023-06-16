@@ -2144,8 +2144,7 @@ class _CartCheckoutState extends State<CartCheckout> {
                         if (checkoutController.couponDiscount.value > 0) {
                           data.addAll({
                             'coupon_id': checkoutController.couponId.value,
-                            'coupon_amount':
-                                checkoutController.couponDiscount.value,
+                            'coupon_amount': checkoutController.couponDiscount.value,
                           });
                         }
                         log(data.toString());

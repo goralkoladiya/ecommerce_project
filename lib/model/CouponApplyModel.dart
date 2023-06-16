@@ -53,15 +53,15 @@ class Coupon {
   int id;
   String title;
   String couponCode;
-  int couponType;
+  String couponType;
   DateTime startDate;
   DateTime endDate;
   double discount;
-  int discountType;
-  int minimumShopping;
-  double maximumDiscount;
-  int isExpire;
-  int isMultipleBuy;
+  String discountType;
+  String minimumShopping;
+  String maximumDiscount;
+  String isExpire;
+  String isMultipleBuy;
   List<ProductElement> products;
 
   factory Coupon.fromJson(Map<String, dynamic> json) => Coupon(
@@ -98,6 +98,11 @@ class Coupon {
         "is_multiple_buy": isMultipleBuy,
         "products": List<dynamic>.from(products.map((x) => x.toJson())),
       };
+
+  @override
+  String toString() {
+    return 'Coupon{id: $id, title: $title, couponCode: $couponCode, couponType: $couponType, startDate: $startDate, endDate: $endDate, discount: $discount, discountType: $discountType, minimumShopping: $minimumShopping, maximumDiscount: $maximumDiscount, isExpire: $isExpire, isMultipleBuy: $isMultipleBuy, products: $products}';
+  }
 }
 
 class ProductElement {

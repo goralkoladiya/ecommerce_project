@@ -439,6 +439,7 @@ class TicketCategories {
         "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
         "msg": msg,
       };
+
 }
 
 class TicketCategory {
